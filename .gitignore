@@ -191,3 +191,6 @@ gradle-app.setting
 **/build/
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij,kotlin,windows,linux
+
+minecraft_data/
+sabre-config.json
