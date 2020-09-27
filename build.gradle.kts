@@ -35,7 +35,7 @@ dependencies {
     testImplementation(kotlin("test-junit5"))
 
     // Compile Minestom into project
-    compile("com.github.Minestom:Minestom:5ff5621")
+    implementation("com.github.Minestom:Minestom:09582cf")
 }
 
 application {
