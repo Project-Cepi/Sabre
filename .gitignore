@@ -191,3 +191,7 @@ gradle-app.setting
 **/build/
 
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij,kotlin,windows,linux
+
+# Minestom ignoring
+minecraft_data/
+sabre-config.json

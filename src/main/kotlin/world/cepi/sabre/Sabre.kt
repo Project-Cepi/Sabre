@@ -16,6 +16,8 @@ fun main(args: Array<String>) {
     val storageManager = MinecraftServer.getStorageManager()
     val config = Gson().fromJson(FileReader(Sabre.CONFIG_LOCATION), Config::class.java)
 
+    storageManager.defineDefaultStorageSystem{FileStorageSystem()}
+
     // This code basically teleports the player to an ethereal instance stored in RAM.
     // I don't know how to keep track of the things so it gets deleted on a restart
     val currentInstance: InstanceContainer? = null
