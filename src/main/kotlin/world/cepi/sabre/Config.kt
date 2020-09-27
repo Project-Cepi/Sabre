@@ -3,6 +3,8 @@ package world.cepi.sabre
 import com.google.gson.Gson
 import java.io.File
 
+
+// This class represents Sabre's config, and is designed to be serialized by Gson. DO NOT initialize it on your own
 class Config {
     var ip = ""
     var port = 0
