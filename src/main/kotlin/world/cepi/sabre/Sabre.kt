@@ -1,4 +1,4 @@
-package world.cepi.Sabre
+package world.cepi.sabre
 
 import com.google.gson.Gson
 import net.minestom.server.MinecraftServer

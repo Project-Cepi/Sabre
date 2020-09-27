@@ -39,5 +39,5 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = "world.cepi.Sabre.SabreKt"
+    mainClassName = "world.cepi.sabre.SabreKt"
 }
