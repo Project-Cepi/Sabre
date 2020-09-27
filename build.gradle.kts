@@ -16,6 +16,9 @@ repositories {
     // Use jcenter for resolving dependencies.
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
+    maven { url = uri("http://repo.spongepowered.org/maven") }
+    maven { url = uri("https://libraries.minecraft.net") }
+    maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
@@ -30,9 +33,11 @@ dependencies {
 
     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+
+    compile("com.github.Minestom:Minestom:5ff5621")
 }
 
 application {
     // Define the main class for the application.
-    mainClassName = "world.cepi.Sabre.AppKt"
+    mainClassName = "world.cepi.Sabre.SabreKt"
 }
