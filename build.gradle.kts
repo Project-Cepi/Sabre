@@ -26,14 +26,15 @@ dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
 
     // Use the Kotlin JDK 8 standard library.
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk11")
+    implementation(kotlin("stdlib"))
+
+    // Use the Kotlin reflect library.
+    implementation(kotlin("reflect"))
 
     // Use the Kotlin test library.
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
+    testImplementation(kotlin("test-junit5"))
 
-    // Use the Kotlin JUnit integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-
+    // Compile Minestom into project
     compile("com.github.Minestom:Minestom:5ff5621")
 }
 
