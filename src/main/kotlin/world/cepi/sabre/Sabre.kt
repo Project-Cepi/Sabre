@@ -14,4 +14,5 @@ fun main(args: Array<String>) {
 
 object Sabre {
     const val CONFIG_LOCATION = "./sabre-config.json"
+    const val INSTANCE_STORAGE_LOCATION = "./instances"
 }
