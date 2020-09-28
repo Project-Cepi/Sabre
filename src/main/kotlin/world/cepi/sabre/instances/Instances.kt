@@ -25,6 +25,7 @@ object Instances {
             instance = instanceManager.createInstanceContainer()
         }
         instance.chunkGenerator = generator
+        instance.enableAutoChunkLoad(true)
         return instance
     }
 

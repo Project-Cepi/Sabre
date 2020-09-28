@@ -4,8 +4,11 @@ import com.google.gson.Gson
 import net.minestom.server.MinecraftServer
 import net.minestom.server.entity.Player
 import net.minestom.server.event.player.PlayerLoginEvent
+import net.minestom.server.event.player.PlayerSpawnEvent
+import net.minestom.server.instance.Instance
 import net.minestom.server.instance.InstanceContainer
 import net.minestom.server.storage.systems.FileStorageSystem
+import net.minestom.server.utils.Position
 import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.Flat
 import java.io.FileReader
@@ -22,13 +25,18 @@ fun main(args: Array<String>) {
 
     // This code basically teleports the player to an ethereal instance stored in RAM.
     // I don't know how to keep track of the things so it gets deleted on a restart
-    val currentInstance: InstanceContainer? = null
+    var currentInstance: Instance? = null
     connectionManager.addPlayerInitialization {
         it.addEventCallback(PlayerLoginEvent::class.java) {event ->
             event.spawningInstance = currentInstance ?: Instances.createInstanceContainer(Flat())
-            event.player.sendMessage("Welcome to the Cepi dev server! This universe is fleeting, and will be removed when the server restarts")
+            currentInstance = event.spawningInstance
         }
-    };
+
+        it.addEventCallback(PlayerSpawnEvent::class.java) {event ->
+            val player = event.entity as Player
+            player.teleport(Position(0F, 64F, 0F))
+        }
+    }
 
     // The IP and port are currently grabbed from the config file
     server.start(config.ip, config.port)
