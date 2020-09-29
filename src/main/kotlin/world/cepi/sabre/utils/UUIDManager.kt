@@ -1,25 +1,23 @@
 package world.cepi.sabre.utils
 
 import khttp.get
+import java.math.BigInteger
 import java.util.*
+
 
 /**
  * Turns a UUID with no hyphens (`-`) to a UUID containing hyphens
+ * 
+ * [Note: This is **literally** from stackoverflow](https://stackoverflow.com/questions/18871980/uuid-fromstring-returns-an-invalid-uuid)
+ *
+ * @param string The UUID as a string
+ *
+ * @return A valid UUID
  */
-private fun toUuidString(string: String): String {
-    require(string.length == 32) { "invalid input string!" }
-    val input = string.toCharArray()
-    val output = CharArray(36)
-    System.arraycopy(input, 0, output, 0, 8)
-    System.arraycopy(input, 8, output, 9, 4)
-    System.arraycopy(input, 12, output, 14, 4)
-    System.arraycopy(input, 16, output, 19, 4)
-    System.arraycopy(input, 20, output, 24, 12)
-    output[8] = '-'
-    output[13] = '-'
-    output[18] = '-'
-    output[23] = '-'
-    return String(output)
+private fun toValidUuid(string: String): UUID {
+    return UUID(
+            BigInteger(string.substring(0, 16), 16).toLong(),
+            BigInteger(string.substring(16), 16).toLong())
 }
 
 /**
@@ -33,5 +31,5 @@ fun getUUID(username: String): UUID {
             url = "https://api.mojang.com/users/profiles/minecraft/$username",
             params = mapOf("at" to (System.currentTimeMillis() / 1000).toString())
     ).jsonObject
-    return UUID.fromString(toUuidString(request["id"] as String))
+    return toValidUuid(request["id"] as String)
 }
