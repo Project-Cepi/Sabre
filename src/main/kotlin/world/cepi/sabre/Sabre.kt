@@ -12,6 +12,7 @@ import net.minestom.server.utils.Position
 import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.Flat
+import world.cepi.sabre.utils.getUUID
 import java.io.FileReader
 
 fun main(args: Array<String>) {
@@ -36,6 +37,10 @@ fun main(args: Array<String>) {
             val player = event.entity as Player
             player.teleport(Position(0F, 64F, 0F))
         }
+    }
+
+    connectionManager.setUuidProvider { playerConnection, username ->
+        return@setUuidProvider getUUID(username)
     }
 
     // The IP and port are currently grabbed from the config file

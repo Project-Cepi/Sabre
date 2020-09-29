@@ -37,6 +37,9 @@ dependencies {
 
     // Compile Minestom into project
     implementation("com.github.Minestom:Minestom:master-SNAPSHOT")
+
+    // KHTTP
+    implementation("com.github.jkcclemens:khttp:master-SNAPSHOT")
 }
 
 application {
