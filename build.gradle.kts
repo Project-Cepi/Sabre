@@ -36,7 +36,7 @@ dependencies {
     testImplementation(kotlin("test-junit5"))
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:09582cf")
+    implementation("com.github.Minestom:Minestom:master-SNAPSHOT")
 }
 
 application {
@@ -45,10 +45,10 @@ application {
 }
 
 tasks.jar {
-    from(configurations.compileClasspath.get().map {if (it.isDirectory) it else zipTree(it)})
     manifest {
         attributes (
             "Main-Class" to "world.cepi.sabre.SabreKt"
         )
     }
+    from(configurations.compileClasspath.get().map {if (it.isDirectory) it else zipTree(it)})
 }
