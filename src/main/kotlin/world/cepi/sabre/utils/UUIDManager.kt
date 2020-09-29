@@ -28,8 +28,7 @@ private fun toValidUuid(string: String): UUID {
  */
 fun getUUID(username: String): UUID {
     val request = get(
-            url = "https://api.mojang.com/users/profiles/minecraft/$username",
-            params = mapOf("at" to (System.currentTimeMillis() / 1000).toString())
+            url = "https://api.mojang.com/users/profiles/minecraft/$username"
     ).jsonObject
     return toValidUuid(request["id"] as String)
 }
