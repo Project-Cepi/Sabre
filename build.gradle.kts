@@ -7,6 +7,7 @@
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.10"
+    id("java")
 
     // Apply the application plugin to add support for building a CLI application.
     application
@@ -41,4 +42,13 @@ dependencies {
 application {
     // Define the main class for the application.
     mainClassName = "world.cepi.sabre.SabreKt"
+}
+
+tasks.jar {
+    from(configurations.compileClasspath.get().map {if (it.isDirectory) it else zipTree(it)})
+    manifest {
+        attributes (
+            "Main-Class" to "world.cepi.sabre.SabreKt"
+        )
+    }
 }
