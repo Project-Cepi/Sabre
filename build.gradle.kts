@@ -39,7 +39,7 @@ dependencies {
     implementation("com.github.Minestom:Minestom:master-SNAPSHOT")
 
     // KHTTP
-    implementation("com.github.jkcclemens:khttp:master-SNAPSHOT")
+    implementation("khttp:khttp:1.0.0")
 }
 
 application {
