@@ -14,11 +14,9 @@ class Flat(private vararg val layers: FlatLayer) : ChunkGenerator {
     override fun generateChunkData(batch: ChunkBatch, chunkX: Int, chunkZ: Int) {
         for (x in 0 until Chunk.CHUNK_SIZE_X) for (z in 0 until Chunk.CHUNK_SIZE_Z) {
             var y = 0
-            for (layer in layers) {
-                for (yLoop in y until y + layer.height) {
-                    batch.setBlock(x, y, z, layer.block)
-                    y++;
-                }
+            for (layer in layers) for (yLoop in y until y + layer.height) {
+                batch.setBlock(x, y, z, layer.block)
+                y++;
             }
         }
     }
