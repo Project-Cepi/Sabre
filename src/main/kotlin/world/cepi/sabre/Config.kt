@@ -43,8 +43,8 @@ class Config {
 }
 
 /**
- * Configuration for all classes
+ * Configuration for sabre
  */
-fun Any.config(): Config {
+fun config(): Config {
     return Config.config
 }

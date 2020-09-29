@@ -20,6 +20,7 @@ repositories {
     maven { url = uri("http://repo.spongepowered.org/maven") }
     maven { url = uri("https://libraries.minecraft.net") }
     maven { url = uri("https://jitpack.io") }
+    maven { url = uri("https://jcenter.bintray.com/") }
 }
 
 dependencies {
