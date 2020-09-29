@@ -7,7 +7,7 @@ import java.util.*
 
 /**
  * Turns a UUID with no hyphens (`-`) to a UUID containing hyphens
- * 
+ *
  * [Note: This is **literally** from stackoverflow](https://stackoverflow.com/questions/18871980/uuid-fromstring-returns-an-invalid-uuid)
  *
  * @param string The UUID as a string
@@ -21,7 +21,7 @@ private fun toValidUuid(string: String): UUID {
 }
 
 /**
- * Gets a UUID from a [Player]'s username
+ * Gets a UUID from a [net.minestom.server.entity.Player]'s username
  *
  * @param username The username to get the UUID from
  * @return A [UUID] retrieved from the `Mojang` API.
