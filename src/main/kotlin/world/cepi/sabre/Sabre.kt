@@ -15,7 +15,7 @@ import world.cepi.sabre.instances.generators.Flat
 import world.cepi.sabre.utils.getUUID
 import java.io.FileReader
 
-fun main(args: Array<String>) {
+fun main() {
     val server = MinecraftServer.init()
     val connectionManager = MinecraftServer.getConnectionManager()
     val storageManager = MinecraftServer.getStorageManager()
@@ -39,7 +39,7 @@ fun main(args: Array<String>) {
         }
     }
 
-    connectionManager.setUuidProvider { playerConnection, username ->
+    connectionManager.setUuidProvider { _, username ->
         return@setUuidProvider getUUID(username)
     }
 
