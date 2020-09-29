@@ -31,7 +31,12 @@ fun main() {
     var currentInstance: Instance? = null
     connectionManager.addPlayerInitialization {
         it.addEventCallback(PlayerLoginEvent::class.java) { event ->
-            event.spawningInstance = currentInstance ?: Instances.createInstanceContainer(Flat(FlatLayer(Block.BEDROCK, 1)))
+            event.spawningInstance = currentInstance ?: Instances.createInstanceContainer(Flat(
+                    FlatLayer(Block.BEDROCK, 1),
+                    FlatLayer(Block.STONE, 25),
+                    FlatLayer(Block.DIRT, 7),
+                    FlatLayer(Block.GRASS_BLOCK, 1)
+            ))
             currentInstance = event.spawningInstance
         }
 

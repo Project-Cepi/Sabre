@@ -43,7 +43,7 @@ class Config {
 }
 
 /**
- * Configuration for sabre
+ * Exposed configuration so no one has to do `Config.config`
  */
 fun config(): Config {
     return Config.config
