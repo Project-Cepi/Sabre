@@ -14,6 +14,7 @@ import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.Flat
 import world.cepi.sabre.utils.getUUID
 import java.io.FileReader
+import java.util.*
 
 fun main() {
     val server = MinecraftServer.init()
@@ -51,4 +52,18 @@ fun main() {
 object Sabre {
     const val CONFIG_LOCATION = "./sabre-config.json"
     const val INSTANCE_STORAGE_LOCATION = "./instances"
+}
+
+fun getPlayer(name: String, instance: Instance): Player? {
+    for (player in instance.players) {
+        if (player.username == name) return player
+    }
+    return null
+}
+
+fun getPlayer(uuid: UUID, instance: Instance): Player? {
+    for (player in instance.players) {
+        if (player.uuid == uuid) return player
+    }
+    return null
 }
