@@ -14,7 +14,7 @@ import java.util.*
  *
  * @return A valid UUID
  */
-private fun toValidUuid(string: String): UUID {
+fun toValidUuid(string: String): UUID {
     return UUID(
             BigInteger(string.substring(0, 16), 16).toLong(),
             BigInteger(string.substring(16), 16).toLong())
