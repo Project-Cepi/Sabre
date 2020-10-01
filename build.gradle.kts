@@ -15,8 +15,10 @@ plugins {
 
 repositories {
     // Use jcenter for resolving dependencies.
-    // You can declare any Maven/Ivy/file repository here.
     jcenter()
+
+    // Use mavenCentral
+    maven { url = uri("https://repo1.maven.org/maven2/") }
     maven { url = uri("http://repo.spongepowered.org/maven") }
     maven { url = uri("https://libraries.minecraft.net") }
     maven { url = uri("https://jitpack.io") }
@@ -39,6 +41,9 @@ dependencies {
     // Compile Minestom into project
     implementation("com.github.Minestom:Minestom:master-SNAPSHOT")
 
+    // Use the Netty library
+    implementation("io.netty:netty-transport-native-epoll:4.1.52.Final")
+
     // KHTTP
     implementation("khttp:khttp:1.0.0")
 }
@@ -51,11 +56,12 @@ application {
 tasks.jar {
     manifest {
         attributes (
-            "Main-Class" to "world.cepi.sabre.SabreKt"
+            "Main-Class" to "world.cepi.sabre.SabreKt",
+            "Multi-Release" to true
         )
     }
 
-    from(configurations.compileClasspath.get().map {if (it.isDirectory) it else zipTree(it)}) {
+    from(configurations.compileClasspath.get().map { if (it.isDirectory) it else zipTree(it) }) {
         exclude("META-INF/*.RSA", "META-INF/*.SF","META-INF/*.DSA")
     }
 }
