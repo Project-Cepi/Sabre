@@ -7,10 +7,9 @@
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.10"
-    id("java")
 
-    // Apply the application plugin to add support for building a CLI application.
-    application
+    // Apply the application plugin to add support for building a jar
+    java
 }
 
 repositories {
@@ -46,11 +45,6 @@ dependencies {
 
     // KHTTP
     implementation("khttp:khttp:1.0.0")
-}
-
-application {
-    // Define the main class for the application.
-    mainClassName = "world.cepi.sabre.SabreKt"
 }
 
 tasks.jar {
