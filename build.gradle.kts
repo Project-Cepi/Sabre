@@ -39,6 +39,9 @@ dependencies {
 
     // KHTTP
     implementation("khttp:khttp:1.0.0")
+
+    // Implement Klaxon
+    implementation("com.beust:klaxon:5.0.1")
 }
 
 tasks.withType<Test> {

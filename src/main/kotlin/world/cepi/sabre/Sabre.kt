@@ -1,6 +1,5 @@
 package world.cepi.sabre
 
-import com.google.gson.Gson
 import net.minestom.server.MinecraftServer
 import net.minestom.server.entity.Player
 import net.minestom.server.event.player.PlayerLoginEvent

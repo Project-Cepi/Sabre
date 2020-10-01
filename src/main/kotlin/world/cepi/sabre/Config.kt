@@ -1,6 +1,6 @@
 package world.cepi.sabre
 
-import com.google.gson.Gson
+import com.beust.klaxon.Klaxon
 import java.io.File
 import java.io.FileReader
 import java.util.logging.Logger
@@ -19,7 +19,7 @@ class Config {
     var port = 25565
 
     fun save() {
-        val jsonStr = Gson().toJson(this)
+        val jsonStr = Klaxon().toJsonString(this)
 
         val configFile = File(Sabre.CONFIG_LOCATION)
         configFile.writeText(jsonStr)
@@ -28,15 +28,15 @@ class Config {
     companion object {
 
         /**
-         * Configuration object acting as a singleton, as a `Gson` workaround.
+         * Configuration object acting as a singleton
          */
         var config: Config
             private set
 
         init {
-            // If it already exists, parse as normal with GSON
+            // If it already exists, parse as normal
             if (exists()) {
-                config = Gson().fromJson(FileReader(Sabre.CONFIG_LOCATION), Config::class.java)
+                config = Klaxon().parse<Config>(FileReader(Sabre.CONFIG_LOCATION))!!
             } else {
                 // Create a new config and save it.
                 config = Config()
