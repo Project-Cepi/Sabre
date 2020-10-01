@@ -54,5 +54,8 @@ tasks.jar {
             "Main-Class" to "world.cepi.sabre.SabreKt"
         )
     }
-    from(configurations.compileClasspath.get().map {if (it.isDirectory) it else zipTree(it)})
+
+    from(configurations.compileClasspath.get().map {if (it.isDirectory) it else zipTree(it)}) {
+        exclude("META-INF/*.RSA", "META-INF/*.SF","META-INF/*.DSA")
+    }
 }

@@ -8,7 +8,14 @@ import java.util.logging.Logger
 
 // This class represents Sabre's config, and contains all the properties that can be configured in Sabre
 class Config {
+    /**
+     * The IP that Minestom is hosted on -- For local hosting, feel free to use `0.0.0.0` or `localhost`
+     */
     var ip = ""
+
+    /**
+     * The port the server is hosted on. The universal default is `25565`
+     */
     var port = 25565
 
     fun save() {

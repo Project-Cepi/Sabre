@@ -8,7 +8,7 @@ import java.util.*
 /**
  * Turns a UUID with no hyphens (`-`) to a UUID containing hyphens
  *
- * [Note: This is **literally** from stackoverflow](https://stackoverflow.com/questions/18871980/uuid-fromstring-returns-an-invalid-uuid)
+ * [Note: This is from StackOverflow](https://stackoverflow.com/questions/18871980)
  *
  * @param string The UUID as a string
  *
