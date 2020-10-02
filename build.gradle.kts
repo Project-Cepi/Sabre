@@ -11,11 +11,11 @@ repositories {
     jcenter()
 
     // Use mavenCentral
-    maven { url = uri("https://repo1.maven.org/maven2/") }
-    maven { url = uri("http://repo.spongepowered.org/maven") }
-    maven { url = uri("https://libraries.minecraft.net") }
-    maven { url = uri("https://jitpack.io") }
-    maven { url = uri("https://jcenter.bintray.com/") }
+    maven(url = "https://repo1.maven.org/maven2/")
+    maven(url = "http://repo.spongepowered.org/maven")
+    maven(url = "https://libraries.minecraft.net")
+    maven(url = "https://jitpack.io")
+    maven(url = "https://jcenter.bintray.com/")
 }
 
 dependencies {
