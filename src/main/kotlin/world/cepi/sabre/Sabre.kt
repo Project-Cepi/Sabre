@@ -1,17 +1,18 @@
 package world.cepi.sabre
 
-import com.google.gson.Gson
 import net.minestom.server.MinecraftServer
 import net.minestom.server.entity.Player
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
 import net.minestom.server.instance.Instance
 import net.minestom.server.instance.InstanceContainer
+import net.minestom.server.instance.block.Block
 import net.minestom.server.storage.systems.FileStorageSystem
 import net.minestom.server.utils.Position
 import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.instances.Instances
-import world.cepi.sabre.instances.generators.Flat
+import world.cepi.sabre.instances.generators.flat.Flat
+import world.cepi.sabre.instances.generators.flat.FlatLayer
 import world.cepi.sabre.utils.getUUID
 import java.io.FileReader
 import java.util.*
@@ -30,7 +31,12 @@ fun main() {
     var currentInstance: Instance? = null
     connectionManager.addPlayerInitialization {
         it.addEventCallback(PlayerLoginEvent::class.java) { event ->
-            event.spawningInstance = currentInstance ?: Instances.createInstanceContainer(Flat())
+            event.spawningInstance = currentInstance ?: Instances.createInstanceContainer(Flat(
+                    FlatLayer(Block.BEDROCK, 1),
+                    FlatLayer(Block.STONE, 25),
+                    FlatLayer(Block.DIRT, 7),
+                    FlatLayer(Block.GRASS_BLOCK, 1)
+            ))
             currentInstance = event.spawningInstance
         }
 
