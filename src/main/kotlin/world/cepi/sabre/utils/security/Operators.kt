@@ -82,6 +82,20 @@ object Operators {
     }
 }
 
+/**
+ * Check if a player is in the OP list.
+ *
+ * @param player The target player to check if they are OP
+ *
+ * @return If the player is considered an operator
+ */
 fun isOp(player: Player) = Operators.ops.has(player.uuid.toString())
 
+/**
+ * Get a player's permission level.
+ *
+ * @param player The target player for this function
+ *
+ * @return The player's permission level.
+ */
 fun getPermissionLevel(player: Player): Int? = Operators.ops.get(player.uuid.toString()) as Int
