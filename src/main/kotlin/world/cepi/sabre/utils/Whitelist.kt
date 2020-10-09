@@ -36,10 +36,10 @@ object WhitelistCommand : Command("whitelist") {
 }
 
 object Whitelist {
-    val whitelistFile = File(Sabre.CONFIG_LOCATION)
+    private val whitelistFile = File(Sabre.CONFIG_LOCATION)
     var whitelist: JSONArray
     init {
-        if (whitelistFile.exists()) whitelist = JSONArray(whitelistFile.readText()) else whitelist = JSONArray()
+        whitelist = if (whitelistFile.exists()) JSONArray(whitelistFile.readText()) else JSONArray()
     }
     fun add(id: UUID) {
         whitelist.put(id)
