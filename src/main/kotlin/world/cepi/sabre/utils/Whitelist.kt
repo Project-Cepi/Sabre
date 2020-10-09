@@ -47,7 +47,10 @@ object Whitelist {
     }
 
     fun remove(id: UUID) {
-        TODO("Need a way to remove from JSONArray")
+        whitelist.forEachIndexed{index, element ->
+            if (id == element) whitelist.remove(index)
+        }
+        whitelist.write(FileWriter(Sabre.WHITELIST_LOCATION))
     }
     fun isWhitelisted(player: Player): Boolean = player.uuid in whitelist
 }
