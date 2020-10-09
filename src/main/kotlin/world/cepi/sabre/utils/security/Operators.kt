@@ -41,7 +41,7 @@ object OpCommand: Command("op") {
 
         addSyntax({source, args ->
             val targetLevel = args.getInteger("level")
-            val targetId = getUUID(args.getWord("target"))
+            val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
 
             if ((source is Player && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
                 Operators.add(targetId, targetLevel)
@@ -56,8 +56,8 @@ object DeopCommand: Command("deop") {
         setDefaultExecutor{sender, _ -> sender.sendMessage("Usage: /deop <player") }
 
         addSyntax({source, args ->
-           val targetId = getUUID(args.getWord("target"))
-           val targetLevel = Operators.ops[targetId.toString()] as Int
+            val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
+            val targetLevel = Operators.ops[targetId.toString()] as Int
 
             if ((source is Player && source.permissionLevel >= targetLevel) || source is CommandSender) {
                 Operators.remove(targetId)
