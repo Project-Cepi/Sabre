@@ -5,7 +5,6 @@ import net.minestom.server.entity.Player
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
 import net.minestom.server.instance.Instance
-import net.minestom.server.instance.InstanceContainer
 import net.minestom.server.instance.block.Block
 import net.minestom.server.storage.systems.FileStorageSystem
 import net.minestom.server.utils.Position
@@ -13,10 +12,8 @@ import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.flat.Flat
 import world.cepi.sabre.instances.generators.flat.FlatLayer
-import world.cepi.sabre.utils.Whitelist
 import world.cepi.sabre.utils.getUUID
-import world.cepi.sabre.utils.isWhitelisted
-import java.io.FileReader
+import world.cepi.sabre.utils.security.isWhitelisted
 import java.util.*
 
 fun main() {

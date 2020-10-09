@@ -1,10 +1,11 @@
-package world.cepi.sabre.utils
+package world.cepi.sabre.utils.security
 
 import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
 import org.json.JSONArray
 import world.cepi.sabre.Sabre
+import world.cepi.sabre.utils.getUUID
 import java.io.File
 import java.io.FileWriter
 import java.util.*
@@ -47,7 +48,7 @@ object Whitelist {
     }
 
     fun remove(id: UUID) {
-        whitelist.forEachIndexed{index, element ->
+        whitelist.forEachIndexed{ index, element ->
             if (id == element) whitelist.remove(index)
         }
         whitelist.write(FileWriter(Sabre.WHITELIST_LOCATION))
