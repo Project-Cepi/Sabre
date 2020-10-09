@@ -81,3 +81,5 @@ object Operators {
         ops.write(FileWriter(Sabre.CONFIG_LOCATION))
     }
 }
+
+fun isOp(player: Player) = Operators.ops.has(player.uuid.toString())
