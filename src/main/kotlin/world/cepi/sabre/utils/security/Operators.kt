@@ -83,3 +83,5 @@ object Operators {
 }
 
 fun isOp(player: Player) = Operators.ops.has(player.uuid.toString())
+
+fun getPermissionLevel(player: Player): Int? = Operators.ops.get(player.uuid.toString()) as Int
