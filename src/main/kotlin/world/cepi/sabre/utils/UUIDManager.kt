@@ -26,9 +26,12 @@ fun toValidUuid(string: String): UUID {
  * @param username The username to get the UUID from
  * @return A [UUID] retrieved from the `Mojang` API.
  */
-fun getUUID(username: String): UUID {
+fun getUUID(username: String): UUID? {
     val request = get(
             url = "https://api.mojang.com/users/profiles/minecraft/$username"
-    ).jsonObject
-    return toValidUuid(request["id"] as String)
+    )
+    val requestJson = request.jsonObject
+
+    return if (request.statusCode == 204) null else toValidUuid(requestJson["id"] as String)
+
 }
