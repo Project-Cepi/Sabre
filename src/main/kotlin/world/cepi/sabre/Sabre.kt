@@ -42,7 +42,7 @@ fun main() {
             currentInstance = event.spawningInstance
 
             // Kicks the player if they are not on the whitelist
-            if (!isWhitelisted(event.player)) event.player.kick("You are not on the whitelist for this server")
+            if (config.whitelist && !isWhitelisted(event.player)) event.player.kick("You are not on the whitelist for this server")
         }
 
         it.addEventCallback(PlayerSpawnEvent::class.java) { event ->

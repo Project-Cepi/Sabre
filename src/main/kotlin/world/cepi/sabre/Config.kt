@@ -18,6 +18,9 @@ class Config {
      */
     var port = 25565
 
+    // Whether or not the whitelist is enabled. Defaults to false
+    var whitelist = false
+
     fun save() {
         val jsonStr = Klaxon().toJsonString(this)
 
