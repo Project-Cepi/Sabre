@@ -52,5 +52,6 @@ object Whitelist {
         }
         whitelist.write(FileWriter(Sabre.WHITELIST_LOCATION))
     }
-    fun isWhitelisted(player: Player): Boolean = player.uuid in whitelist
 }
+
+fun isWhitelisted(player: Player): Boolean = player.uuid in Whitelist.whitelist

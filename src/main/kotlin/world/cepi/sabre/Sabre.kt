@@ -15,6 +15,7 @@ import world.cepi.sabre.instances.generators.flat.Flat
 import world.cepi.sabre.instances.generators.flat.FlatLayer
 import world.cepi.sabre.utils.Whitelist
 import world.cepi.sabre.utils.getUUID
+import world.cepi.sabre.utils.isWhitelisted
 import java.io.FileReader
 import java.util.*
 
@@ -40,7 +41,8 @@ fun main() {
             ))
             currentInstance = event.spawningInstance
 
-            if (event.player !in Whitelist.whitelist) event.player.kick("You are not on the whitelist for this server")
+            // Kicks the player if they are not on the whitelist
+            if (!isWhitelisted(event.player)) event.player.kick("You are not on the whitelist for this server")
         }
 
         it.addEventCallback(PlayerSpawnEvent::class.java) { event ->
