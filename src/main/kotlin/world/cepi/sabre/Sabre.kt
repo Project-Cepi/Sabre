@@ -13,6 +13,7 @@ import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.flat.Flat
 import world.cepi.sabre.instances.generators.flat.FlatLayer
+import world.cepi.sabre.utils.Whitelist
 import world.cepi.sabre.utils.getUUID
 import java.io.FileReader
 import java.util.*
@@ -38,6 +39,8 @@ fun main() {
                     FlatLayer(Block.GRASS_BLOCK, 1)
             ))
             currentInstance = event.spawningInstance
+
+            if (event.player !in Whitelist.whitelist) event.player.kick("You are not on the whitelist for this server")
         }
 
         it.addEventCallback(PlayerSpawnEvent::class.java) { event ->
