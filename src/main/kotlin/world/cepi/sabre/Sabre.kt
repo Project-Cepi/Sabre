@@ -13,6 +13,8 @@ import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.flat.Flat
 import world.cepi.sabre.instances.generators.flat.FlatLayer
 import world.cepi.sabre.utils.getUUID
+import world.cepi.sabre.utils.security.getPermissionLevel
+import world.cepi.sabre.utils.security.isOp
 import world.cepi.sabre.utils.security.isWhitelisted
 import java.util.*
 
@@ -40,6 +42,9 @@ fun main() {
 
             // Kicks the player if they are not on the whitelist
             if (config.whitelist && !isWhitelisted(event.player)) event.player.kick("You are not on the whitelist for this server")
+
+            // OPs players when they join if they are on the ops list
+            if (isOp(event.player)) event.player.permissionLevel = getPermissionLevel(event.player) ?: 0
         }
 
         it.addEventCallback(PlayerSpawnEvent::class.java) { event ->
