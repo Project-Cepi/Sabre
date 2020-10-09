@@ -17,7 +17,7 @@ object StopCommand : CommandProcessor {
         return true
     }
 
-    override fun hasAccess(player: Player?): Boolean = player!!.permissionLevel >= 4
+    override fun hasAccess(player: Player): Boolean = player.permissionLevel >= 4
 }
 
 

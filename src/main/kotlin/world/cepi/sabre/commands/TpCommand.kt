@@ -21,12 +21,13 @@ object TpCommand: Command("tp") {
         val playerArg = ArgumentType.String("player")
 
         addSyntax({sender, args ->
-            var target = getPlayer(args.getWord("player"))
+            val target = getPlayer(args.getWord("player"))
             if (target != null && sender is Player) sender.teleport(target.position)
         }, playerArg)
 
-        addSyntax({source: CommandSender?, args: Arguments? ->
-            if (source is Player)  source.teleport(Position(args!!.getFloat("x"), args.getFloat("y"), args.getFloat("z")))
+        addSyntax({source, args ->
+            if (source is Player)
+                source.teleport(Position(args!!.getFloat("x"), args.getFloat("y"), args.getFloat("z")))
         })
     }
 }

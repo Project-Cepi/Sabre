@@ -27,7 +27,7 @@ object OpCommand: Command("op") {
         val level = ArgumentType.Integer("level")
 
         addSyntax({ sender, args ->
-            val targetId = getUUID(args.getWord("target"))
+            val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
 
             if (sender is Player) {
                 if (sender.permissionLevel >= 3 && sender.permissionLevel >= config.opLevel) {
