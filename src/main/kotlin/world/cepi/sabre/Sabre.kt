@@ -68,18 +68,3 @@ object Sabre {
     const val WHITELIST_LOCATION = "./whitelist.json"
     const val OP_LOCATION = "./ops.json"
 }
-
-fun getPlayer(name: String): Player? {
-    for (player in MinecraftServer.getConnectionManager().onlinePlayers) {
-        if (player.username == name) return player
-    }
-    return null
-}
-
-fun getPlayer(uuid: UUID): Player? {
-    val connectionManager = MinecraftServer.getConnectionManager()
-    for (player in connectionManager.onlinePlayers) {
-        if (player.uuid == uuid) return player
-    }
-    return null
-}

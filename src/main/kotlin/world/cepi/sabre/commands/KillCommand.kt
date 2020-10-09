@@ -1,11 +1,9 @@
 package world.cepi.sabre.commands
 
-import net.minestom.server.chat.ColoredText
 import net.minestom.server.command.builder.Command
-import net.minestom.server.command.builder.arguments.Argument
 import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
-import world.cepi.sabre.getPlayer
+import world.cepi.sabre.utils.getPlayer
 
 object KillCommand: Command("kill") {
     init {
