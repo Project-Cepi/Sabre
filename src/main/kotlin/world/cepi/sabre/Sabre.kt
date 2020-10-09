@@ -4,6 +4,7 @@ import net.minestom.server.MinecraftServer
 import net.minestom.server.entity.Player
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
+import net.minestom.server.extras.MojangAuth
 import net.minestom.server.instance.Instance
 import net.minestom.server.instance.block.Block
 import net.minestom.server.storage.systems.FileStorageSystem
@@ -51,6 +52,10 @@ fun main() {
             val player = event.entity as Player
             player.teleport(Position(0F, 64F, 0F))
         }
+    }
+
+    if (config.onlineMode) {
+        MojangAuth.init();
     }
 
     // We have to set a different UUID provider because Mojang's API is not used by default

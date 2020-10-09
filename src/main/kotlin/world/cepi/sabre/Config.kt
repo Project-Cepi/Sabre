@@ -20,6 +20,9 @@ class Config {
     /** Default op level. Defaults to 4 */
     var opLevel = 4
 
+    /** If the server should use Mojang Authentication or not. */
+    var onlineMode = true
+
     fun save() {
         val jsonStr = Klaxon().toJsonString(this)
 
