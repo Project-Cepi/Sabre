@@ -21,6 +21,9 @@ class Config {
     // Whether or not the whitelist is enabled. Defaults to false
     var whitelist = false
 
+    // Default op level. Defaults to 4
+    var opLevel = 4
+
     fun save() {
         val jsonStr = Klaxon().toJsonString(this)
 
