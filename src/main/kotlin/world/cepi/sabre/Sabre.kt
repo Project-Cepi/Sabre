@@ -1,6 +1,7 @@
 package world.cepi.sabre
 
 import net.minestom.server.MinecraftServer
+import net.minestom.server.chat.ColoredText
 import net.minestom.server.entity.Player
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
@@ -33,6 +34,7 @@ fun main() {
     // I don't know how to keep track of the things so it gets deleted on a restart
     var currentInstance: Instance? = null
     connectionManager.addPlayerInitialization {
+        it.sendTitleSubtitleMessage(ColoredText.of(""), ColoredText.of(""))
         it.addEventCallback(PlayerLoginEvent::class.java) { event ->
             event.spawningInstance = currentInstance ?: Instances.createInstanceContainer(Flat(
                     FlatLayer(Block.BEDROCK, 1),
