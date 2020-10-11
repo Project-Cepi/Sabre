@@ -14,14 +14,11 @@ import world.cepi.sabre.commands.GamemodeCommand
 import world.cepi.sabre.commands.KillCommand
 import world.cepi.sabre.commands.StopCommand
 import world.cepi.sabre.commands.TpCommand
+import world.cepi.sabre.commands.security.*
 import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.flat.Flat
 import world.cepi.sabre.instances.generators.flat.FlatLayer
 import world.cepi.sabre.utils.getUUID
-import world.cepi.sabre.utils.security.getPermissionLevel
-import world.cepi.sabre.utils.security.isOp
-import world.cepi.sabre.utils.security.isWhitelisted
-import java.util.*
 
 fun main() {
     val server = MinecraftServer.init()
@@ -71,6 +68,8 @@ fun main() {
     MinecraftServer.getCommandManager().register(StopCommand())
     MinecraftServer.getCommandManager().register(TpCommand())
     MinecraftServer.getCommandManager().register(GamemodeCommand())
+    MinecraftServer.getCommandManager().register(OpCommand())
+    MinecraftServer.getCommandManager().register(WhitelistCommand())
 
     // The IP and port are currently grabbed from the config file
     server.start(config.ip, config.port)

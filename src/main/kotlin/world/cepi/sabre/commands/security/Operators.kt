@@ -1,9 +1,7 @@
-package world.cepi.sabre.utils.security
+package world.cepi.sabre.commands.security
 
-import net.minestom.server.chat.ColoredText
 import net.minestom.server.command.CommandSender
 import net.minestom.server.command.ConsoleSender
-import net.minestom.server.command.builder.Arguments
 import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
@@ -15,7 +13,7 @@ import java.io.File
 import java.io.FileWriter
 import java.util.*
 
-object OpCommand: Command("op") {
+class OpCommand: Command("op") {
     init {
         val config = Config()
 

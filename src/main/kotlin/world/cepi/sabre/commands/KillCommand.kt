@@ -11,7 +11,7 @@ class KillCommand: Command("kill") {
             sender.sendMessage("Usage: /kill <player>")
         }
 
-        val target = ArgumentType.String("target")
+        val target = ArgumentType.Word("target")
 
         addSyntax({source, args ->
             val player = getPlayer(args.getWord("target"))

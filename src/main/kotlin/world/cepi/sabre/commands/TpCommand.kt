@@ -15,7 +15,7 @@ class TpCommand: Command("tp") {
         val x = ArgumentType.Float("x")
         val y = ArgumentType.Float("y")
         val z = ArgumentType.Float("z")
-        val playerArg = ArgumentType.String("player")
+        val playerArg = ArgumentType.Word("player")
 
         addSyntax({sender, args ->
             val target = getPlayer(args.getWord("player"))
