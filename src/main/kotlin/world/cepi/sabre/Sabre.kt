@@ -10,6 +10,7 @@ import net.minestom.server.instance.block.Block
 import net.minestom.server.storage.systems.FileStorageSystem
 import net.minestom.server.utils.Position
 import world.cepi.sabre.Config.Companion.config
+import world.cepi.sabre.commands.GamemodeCommand
 import world.cepi.sabre.commands.KillCommand
 import world.cepi.sabre.commands.StopCommand
 import world.cepi.sabre.commands.TpCommand
@@ -69,6 +70,7 @@ fun main() {
     MinecraftServer.getCommandManager().register(KillCommand())
     MinecraftServer.getCommandManager().register(StopCommand())
     MinecraftServer.getCommandManager().register(TpCommand())
+    MinecraftServer.getCommandManager().register(GamemodeCommand())
 
     // The IP and port are currently grabbed from the config file
     server.start(config.ip, config.port)

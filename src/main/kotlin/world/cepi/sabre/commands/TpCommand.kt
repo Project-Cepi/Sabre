@@ -24,7 +24,7 @@ class TpCommand: Command("tp") {
 
         addSyntax({source, args ->
             if (source is Player)
-                source.teleport(Position(args!!.getFloat("x"), args.getFloat("y"), args.getFloat("z")))
+                source.teleport(Position(args.getFloat("x"), args.getFloat("y"), args.getFloat("z")))
         }, x, y, z)
     }
 }
