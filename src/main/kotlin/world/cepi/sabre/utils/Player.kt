@@ -5,10 +5,11 @@ import net.minestom.server.entity.Player
 import java.util.*
 
 fun getPlayer(name: String): Player? {
-    for (player in MinecraftServer.getConnectionManager().onlinePlayers) {
-        if (player.username == name) return player
+    return try {
+        MinecraftServer.getConnectionManager().onlinePlayers.first { it.username == name }
+    } catch(e: NullPointerException) {
+        null
     }
-    return null
 }
 
 fun getPlayer(uuid: UUID): Player? {

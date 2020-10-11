@@ -4,20 +4,20 @@ import net.minestom.server.MinecraftServer
 import net.minestom.server.command.CommandProcessor
 import net.minestom.server.command.CommandSender
 import net.minestom.server.command.builder.Arguments
+import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.CommandExecutor
 import net.minestom.server.entity.Player
 
-class StopCommand : CommandProcessor {
-    override fun getCommandName(): String = "stop"
+class StopCommand : Command("stop") {
+    init {
+        setDefaultExecutor { _, _ ->
+            MinecraftServer.stopCleanly()
+        }
 
-    override fun getAliases(): Array<String> = arrayOf()
-
-    override fun process(sender: CommandSender?, command: String?, args: Array<out String>?): Boolean {
-        MinecraftServer.stopCleanly()
-        return true
+//        setCondition {
+//            return it !is Player || (it as Player).permissionLevel >= 4
+//        }
     }
-
-    override fun hasAccess(player: Player): Boolean = player.permissionLevel >= 4
 }
 
 

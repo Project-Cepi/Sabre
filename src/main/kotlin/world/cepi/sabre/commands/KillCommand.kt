@@ -14,10 +14,6 @@ class KillCommand: Command("kill") {
         val target = ArgumentType.String("target")
 
         addSyntax({source, args ->
-            if (args.getWord("target") == null && source is Player) source.kill()
-        }, target)
-
-        addSyntax({source, args ->
             val player = getPlayer(args.getWord("target"))
             if (player == null) {
                 source.sendMessage("Could not find target!")
