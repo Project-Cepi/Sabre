@@ -6,7 +6,7 @@ import net.minestom.server.entity.Player
 import net.minestom.server.utils.Position
 import world.cepi.sabre.utils.getPlayer
 
-object TpCommand: Command("tp") {
+class TpCommand: Command("tp") {
     init {
         setDefaultExecutor { source, _ ->
             source.sendMessage("Usage: /tp <x> <y> <z>")

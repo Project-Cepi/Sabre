@@ -5,7 +5,7 @@ import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
 import world.cepi.sabre.utils.getPlayer
 
-object KillCommand: Command("kill") {
+class KillCommand: Command("kill") {
     init {
         setDefaultExecutor { sender, _ ->
             sender.sendMessage("Usage: /kill <player>")

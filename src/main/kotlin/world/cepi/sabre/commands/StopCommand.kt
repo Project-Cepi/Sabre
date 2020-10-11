@@ -7,7 +7,7 @@ import net.minestom.server.command.builder.Arguments
 import net.minestom.server.command.builder.CommandExecutor
 import net.minestom.server.entity.Player
 
-object StopCommand : CommandProcessor {
+class StopCommand : CommandProcessor {
     override fun getCommandName(): String = "stop"
 
     override fun getAliases(): Array<String> = arrayOf()

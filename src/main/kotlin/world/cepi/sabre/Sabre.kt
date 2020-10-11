@@ -10,6 +10,9 @@ import net.minestom.server.instance.block.Block
 import net.minestom.server.storage.systems.FileStorageSystem
 import net.minestom.server.utils.Position
 import world.cepi.sabre.Config.Companion.config
+import world.cepi.sabre.commands.KillCommand
+import world.cepi.sabre.commands.StopCommand
+import world.cepi.sabre.commands.TpCommand
 import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.flat.Flat
 import world.cepi.sabre.instances.generators.flat.FlatLayer
@@ -62,6 +65,10 @@ fun main() {
     connectionManager.setUuidProvider { _, username ->
         return@setUuidProvider getUUID(username)
     }
+
+    MinecraftServer.getCommandManager().register(KillCommand())
+    MinecraftServer.getCommandManager().register(StopCommand())
+    MinecraftServer.getCommandManager().register(TpCommand())
 
     // The IP and port are currently grabbed from the config file
     server.start(config.ip, config.port)
