@@ -19,73 +19,14 @@ import world.cepi.sabre.commands.security.*
 import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.flat.Flat
 import world.cepi.sabre.instances.generators.flat.FlatLayer
+import world.cepi.sabre.loaders.load
 import world.cepi.sabre.utils.getUUID
-import java.util.function.Consumer
 
 
 fun main() {
     val server = MinecraftServer.init()
-    val connectionManager = MinecraftServer.getConnectionManager()
-    val storageManager = MinecraftServer.getStorageManager()
 
-    // Basically this sets the default storage manager to be a filesystem
-    // As opposed to a database or something, I think
-    storageManager.defineDefaultStorageSystem { FileStorageSystem() }
-
-    // This code basically teleports the player to an ethereal instance stored in RAM.
-    // I don't know how to keep track of the things so it gets deleted on a restart
-    var currentInstance: Instance? = null
-    connectionManager.addPlayerInitialization {
-        try {
-            it.addEventCallback(PlayerLoginEvent::class.java) { event ->
-                event.spawningInstance = currentInstance ?: Instances.createInstanceContainer(Flat(
-                        FlatLayer(Block.BEDROCK, 1),
-                        FlatLayer(Block.STONE, 25),
-                        FlatLayer(Block.DIRT, 7),
-                        FlatLayer(Block.GRASS_BLOCK, 1)
-                ))
-                currentInstance = event.spawningInstance
-
-                event.spawningInstance.loadChunk(0, 0)
-
-                // Kicks the player if they are not on the whitelist
-                if (config.whitelist && !isWhitelisted(event.player)) event.player.kick("You are not on the whitelist for this server")
-
-                // OPs players when they join if they are on the ops list
-                if (isOp(event.player)) event.player.permissionLevel = getPermissionLevel(event.player) ?: 0
-            }
-
-            it.addEventCallback(PlayerSpawnEvent::class.java) { event ->
-                val player = event.entity as Player
-                player.teleport(Position(0F, 64F, 0F))
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    if (config.onlineMode) {
-        MojangAuth.init();
-    }
-
-    // We have to set a different UUID provider because Mojang's API is not used by default
-    connectionManager.setUuidProvider { _, username ->
-        return@setUuidProvider getUUID(username)
-    }
-
-    MinecraftServer.getCommandManager().register(KillCommand())
-    MinecraftServer.getCommandManager().register(StopCommand())
-    MinecraftServer.getCommandManager().register(TpCommand())
-    MinecraftServer.getCommandManager().register(GamemodeCommand())
-    MinecraftServer.getCommandManager().register(OpCommand())
-    MinecraftServer.getCommandManager().register(WhitelistCommand())
-
-    MinecraftServer.getSchedulerManager().buildShutdownTask {
-        connectionManager.onlinePlayers.forEach { player: Player ->
-            player.kick("Server is closing.")
-            connectionManager.removePlayer(player.playerConnection)
-        }
-    }
+    load()
 
     // The IP and port are currently grabbed from the config file
     server.start(config.ip, config.port)
