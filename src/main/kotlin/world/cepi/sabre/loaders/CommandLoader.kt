@@ -5,6 +5,7 @@ import world.cepi.sabre.commands.GamemodeCommand
 import world.cepi.sabre.commands.KillCommand
 import world.cepi.sabre.commands.StopCommand
 import world.cepi.sabre.commands.TpCommand
+import world.cepi.sabre.commands.monitoring.Ping
 import world.cepi.sabre.commands.security.OpCommand
 import world.cepi.sabre.commands.security.WhitelistCommand
 
@@ -20,6 +21,7 @@ object CommandLoader {
         commandManager.register(GamemodeCommand())
         commandManager.register(OpCommand())
         commandManager.register(WhitelistCommand())
+        commandManager.register(Ping())
     }
 
 }
