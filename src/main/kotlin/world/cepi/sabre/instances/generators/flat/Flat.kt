@@ -20,7 +20,7 @@ class Flat(
         /**
          * List of chunk populaters to be used for chunk generation.
          */
-        private val chunkPopulators: List<ChunkPopulator> = listOf(),
+        private val chunkPopulators: List<ChunkPopulator> = listOf()
 ) : ChunkGenerator {
 
     override fun generateChunkData(batch: ChunkBatch, chunkX: Int, chunkZ: Int) {

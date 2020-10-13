@@ -27,6 +27,8 @@ class Ping : Command("ping") {
             val player = getPlayer(args.getWord("player"))
             if (player != null) {
                 sender.sendMessage("Pong! ${player.username}'s Latency is ${player.latency}")
+            } else {
+                sender.sendMessage("This player does not exist!")
             }
         }, target)
 

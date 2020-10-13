@@ -7,6 +7,7 @@ import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
 import org.json.JSONObject
 import world.cepi.sabre.Config
+import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.Sabre
 import world.cepi.sabre.utils.getUUID
 import java.io.File
@@ -15,8 +16,6 @@ import java.util.*
 
 class OpCommand: Command("op") {
     init {
-        val config = Config()
-
         setDefaultExecutor { sender, _ ->
             sender.sendMessage("Usage: /op <player> <level>")
         }
@@ -49,11 +48,11 @@ class OpCommand: Command("op") {
     }
 }
 
-object DeopCommand: Command("deop") {
+class DeopCommand: Command("deop") {
     init {
-        setDefaultExecutor{sender, _ -> sender.sendMessage("Usage: /deop <player") }
+        setDefaultExecutor{ sender, _ -> sender.sendMessage("Usage: /deop <player") }
 
-        addSyntax({source, args ->
+        addSyntax({ source, args ->
             val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
             val targetLevel = Operators.ops[targetId.toString()] as Int
 
@@ -71,12 +70,12 @@ object Operators {
 
     fun add(id: UUID, level: Int) {
         ops.put(id.toString(), level)
-        ops.write(FileWriter(Sabre.CONFIG_LOCATION))
+        ops.write(FileWriter(Sabre.OP_LOCATION))
     }
 
     fun remove(id: UUID) {
         ops.remove(id.toString())
-        ops.write(FileWriter(Sabre.CONFIG_LOCATION))
+        ops.write(FileWriter(Sabre.OP_LOCATION))
     }
 }
 

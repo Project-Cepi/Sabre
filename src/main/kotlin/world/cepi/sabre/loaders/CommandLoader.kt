@@ -6,12 +6,13 @@ import world.cepi.sabre.commands.KillCommand
 import world.cepi.sabre.commands.StopCommand
 import world.cepi.sabre.commands.TpCommand
 import world.cepi.sabre.commands.monitoring.Ping
+import world.cepi.sabre.commands.security.DeopCommand
 import world.cepi.sabre.commands.security.OpCommand
 import world.cepi.sabre.commands.security.WhitelistCommand
 
-object CommandLoader {
+object CommandLoader : Loader {
 
-    fun load() {
+    override fun load() {
 
         val commandManager = MinecraftServer.getCommandManager()
 
@@ -20,6 +21,7 @@ object CommandLoader {
         commandManager.register(TpCommand())
         commandManager.register(GamemodeCommand())
         commandManager.register(OpCommand())
+        commandManager.register(DeopCommand())
         commandManager.register(WhitelistCommand())
         commandManager.register(Ping())
     }

@@ -1,5 +1,6 @@
 package world.cepi.sabre.loaders
 
+import net.minestom.server.MinecraftServer
 import net.minestom.server.entity.Player
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
@@ -15,9 +16,12 @@ import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.flat.Flat
 import world.cepi.sabre.instances.generators.flat.FlatLayer
 
-object InstanceLoader {
+object InstanceLoader : Loader {
 
-    fun load(connectionManager: ConnectionManager) {
+    override fun load() {
+
+        val connectionManager = MinecraftServer.getConnectionManager()
+
         var currentInstance: Instance? = null
         connectionManager.addPlayerInitialization {
             try {
