@@ -1,7 +1,12 @@
 package world.cepi.sabre.loaders
 
 import net.minestom.server.MinecraftServer
-import net.minestom.server.command.CommandManager
+
+interface Loader {
+
+    fun load()
+
+}
 
 /** Loads all the loaders from the loader package. */
 fun load() {
