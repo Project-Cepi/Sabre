@@ -2,7 +2,6 @@ package world.cepi.sabre.instances
 
 import net.minestom.server.MinecraftServer
 import net.minestom.server.instance.ChunkGenerator
-import net.minestom.server.instance.Instance
 import net.minestom.server.instance.InstanceContainer
 import net.minestom.server.instance.SharedInstance
 import net.minestom.server.storage.StorageLocation
@@ -20,11 +19,11 @@ object Instances {
     fun createInstanceContainer(generator: ChunkGenerator, storeChunks: Boolean = false, storageLocation: StorageLocation = MinecraftServer.getStorageManager().getLocation(Sabre.INSTANCE_STORAGE_LOCATION)): InstanceContainer {
         val instanceManager = MinecraftServer.getInstanceManager()
         val instance: InstanceContainer
-        if (storeChunks) {
-            instance = instanceManager.createInstanceContainer(storageLocation)
+        instance = if (storeChunks) {
+            instanceManager.createInstanceContainer(storageLocation)
         }
         else {
-            instance = instanceManager.createInstanceContainer()
+            instanceManager.createInstanceContainer()
         }
         instance.chunkGenerator = generator
         instance.enableAutoChunkLoad(true)

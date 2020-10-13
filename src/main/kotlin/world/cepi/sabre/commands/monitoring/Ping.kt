@@ -18,7 +18,7 @@ class Ping : Command("ping") {
             } else true
         }
 
-        setDefaultExecutor { source, args ->
+        setDefaultExecutor { source, _ ->
             val player = source as Player
             player.sendMessage("Pong! Latency is ${player.latency}")
         }

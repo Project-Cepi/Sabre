@@ -3,7 +3,6 @@ package world.cepi.sabre
 import com.beust.klaxon.Klaxon
 import java.io.File
 import java.io.FileReader
-import java.util.logging.Logger
 
 
 // This class represents Sabre's config, and contains all the properties that can be configured in Sabre

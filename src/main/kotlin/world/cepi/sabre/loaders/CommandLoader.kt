@@ -6,6 +6,7 @@ import world.cepi.sabre.commands.KillCommand
 import world.cepi.sabre.commands.StopCommand
 import world.cepi.sabre.commands.TpCommand
 import world.cepi.sabre.commands.monitoring.Ping
+import world.cepi.sabre.commands.monitoring.Status
 import world.cepi.sabre.commands.security.DeopCommand
 import world.cepi.sabre.commands.security.OpCommand
 import world.cepi.sabre.commands.security.WhitelistCommand
@@ -24,6 +25,7 @@ object CommandLoader : Loader {
         commandManager.register(DeopCommand())
         commandManager.register(WhitelistCommand())
         commandManager.register(Ping())
+        commandManager.register(Status())
     }
 
 }

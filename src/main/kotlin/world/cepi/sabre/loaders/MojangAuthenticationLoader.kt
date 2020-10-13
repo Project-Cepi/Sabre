@@ -7,7 +7,7 @@ object MojangAuthenticationLoader : Loader {
 
     override fun load() {
         if (config.onlineMode) {
-            MojangAuth.init();
+            MojangAuth.init()
         }
     }
 
