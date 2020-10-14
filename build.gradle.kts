@@ -42,6 +42,11 @@ dependencies {
     implementation("org.http4k", "http4k-core")
     implementation("org.http4k", "http4k-client-jetty")
 
+    // Http4K
+    implementation(platform("org.http4k:http4k-bom:3.267.0"))
+    implementation("org.http4k", "http4k-core")
+    implementation("org.http4k", "http4k-client-jetty")
+
     // Implement Klaxon
     implementation("com.beust:klaxon:5.0.1")
 }
