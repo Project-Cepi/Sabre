@@ -1,6 +1,12 @@
 package world.cepi.sabre.utils
 
+import com.google.gson.Gson
 import khttp.get
+import org.http4k.client.JettyClient
+import org.http4k.core.Method
+import org.http4k.core.Request
+import org.http4k.core.Status
+import org.json.JSONObject
 import java.math.BigInteger
 import java.util.*
 
@@ -27,11 +33,9 @@ fun toValidUuid(string: String): UUID {
  * @return A [UUID] retrieved from the `Mojang` API.
  */
 fun getUUID(username: String): UUID? {
-    val request = get(
-            url = "https://api.mojang.com/users/profiles/minecraft/$username"
-    )
-    val requestJson = request.jsonObject
+    val client = JettyClient()
 
-    return if (request.statusCode == 204) null else toValidUuid(requestJson["id"] as String)
+    val response = client(Request(Method.GET, "https://api.mojang.com/users/profiles/minecraft/$username"))
 
+    return if (response.status == Status.NO_CONTENT) null else toValidUuid(JSONObject(response.bodyString())["id"].toString())
 }
