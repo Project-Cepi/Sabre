@@ -43,7 +43,7 @@ dependencies {
     implementation("org.http4k", "http4k-client-jetty")
 
     // Http4K
-    implementation(platform("org.http4k:http4k-bom:3.267.0"))
+    implementation(platform("org.http4k:http4k-bom:3.266.0"))
     implementation("org.http4k", "http4k-core")
     implementation("org.http4k", "http4k-client-jetty")
 
