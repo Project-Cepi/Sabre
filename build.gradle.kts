@@ -40,6 +40,11 @@ dependencies {
     // KHTTP
     implementation("khttp:khttp:1.0.0")
 
+    // Http4K
+    implementation(platform("org.http4k:http4k-bom:3.266.0"))
+    implementation("org.http4k", "http4k-core")
+    implementation("org.http4k", "http4k-client-jetty")
+
     // Implement Klaxon
     implementation("com.beust:klaxon:5.0.1")
 }
