@@ -1,7 +1,6 @@
 package world.cepi.sabre.utils
 
 import com.google.gson.Gson
-import khttp.get
 import org.http4k.client.JettyClient
 import org.http4k.core.Method
 import org.http4k.core.Request
