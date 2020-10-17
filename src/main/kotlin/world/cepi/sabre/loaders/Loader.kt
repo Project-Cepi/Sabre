@@ -1,6 +1,6 @@
 package world.cepi.sabre.loaders
 
-/** Loader interface for making it easier to refrence the load function*/
+/** Loader interface for making it easier to reference the load function*/
 interface Loader {
 
     /** Load function that calls in sequential order in the [Loaders] enum. */
@@ -15,7 +15,7 @@ enum class Loaders(val loader: Loader) {
     UUID(UUIDLoader),
     INSTANCES(InstanceLoader),
     COMMANDS(CommandLoader),
-    SAFESHUTDOWN(SafeShutdownLoader)
+    SAFE_SHUTDOWN(SafeShutdownLoader)
 }
 
 

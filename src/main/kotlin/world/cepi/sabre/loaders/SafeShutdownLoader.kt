@@ -14,7 +14,7 @@ object SafeShutdownLoader : Loader {
                 player.kick("Server is closing.")
                 connectionManager.removePlayer(player.playerConnection)
             }
-        }
+        }.schedule()
     }
 
 }
