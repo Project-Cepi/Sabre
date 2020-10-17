@@ -2,7 +2,9 @@ package world.cepi.sabre.loaders
 
 import net.minestom.server.MinecraftServer
 import net.minestom.server.entity.Player
+import net.minestom.server.event.entity.EntityDeathEvent
 import net.minestom.server.event.player.PlayerLoginEvent
+import net.minestom.server.event.player.PlayerRespawnEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
 import net.minestom.server.instance.Instance
 import net.minestom.server.instance.block.Block
@@ -24,6 +26,8 @@ object InstanceLoader : Loader {
         var currentInstance: Instance? = null
         connectionManager.addPlayerInitialization {
             try {
+
+                it.respawnPoint = Position(0F, 64F, 0F)
                 it.addEventCallback(PlayerLoginEvent::class.java) { event ->
                     event.spawningInstance = currentInstance ?: Instances.createInstanceContainer(Flat(
                             FlatLayer(Block.BEDROCK, 1),
@@ -44,7 +48,7 @@ object InstanceLoader : Loader {
 
                 it.addEventCallback(PlayerSpawnEvent::class.java) { event ->
                     val player = event.entity as Player
-                    player.teleport(Position(0F, 64F, 0F))
+                    player.teleport(player.respawnPoint)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()

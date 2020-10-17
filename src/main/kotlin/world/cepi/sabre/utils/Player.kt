@@ -5,7 +5,7 @@ import net.minestom.server.entity.Player
 import java.util.*
 
 fun getPlayer(name: String): Player? {
-    return MinecraftServer.getConnectionManager().onlinePlayers.firstOrNull { it.username == name }
+    return MinecraftServer.getConnectionManager().onlinePlayers.firstOrNull { it.username.equals(name, true) }
 }
 
 fun getPlayer(uuid: UUID): Player? {
