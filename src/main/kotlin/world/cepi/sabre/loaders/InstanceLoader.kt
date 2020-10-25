@@ -29,15 +29,15 @@ object InstanceLoader : Loader {
 
                 it.respawnPoint = Position(0F, 64F, 0F)
                 it.addEventCallback(PlayerLoginEvent::class.java) { event ->
-                    event.spawningInstance = currentInstance ?: Instances.createInstanceContainer(Flat(
+                    event.setSpawningInstance(currentInstance ?: Instances.createInstanceContainer(Flat(
                             FlatLayer(Block.BEDROCK, 1),
                             FlatLayer(Block.STONE, 25),
                             FlatLayer(Block.DIRT, 7),
                             FlatLayer(Block.GRASS_BLOCK, 1)
-                    ))
+                    )))
                     currentInstance = event.spawningInstance
 
-                    event.spawningInstance.loadChunk(0, 0)
+                    event.spawningInstance!!.loadChunk(0, 0)
 
                     // Kicks the player if they are not on the whitelist
                     if (Config.config.whitelist && !isWhitelisted(event.player)) event.player.kick("You are not on the whitelist for this server")

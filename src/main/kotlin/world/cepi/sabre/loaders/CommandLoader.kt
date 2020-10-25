@@ -1,10 +1,7 @@
 package world.cepi.sabre.loaders
 
 import net.minestom.server.MinecraftServer
-import world.cepi.sabre.commands.GamemodeCommand
-import world.cepi.sabre.commands.KillCommand
-import world.cepi.sabre.commands.StopCommand
-import world.cepi.sabre.commands.TpCommand
+import world.cepi.sabre.commands.*
 import world.cepi.sabre.commands.monitoring.Ping
 import world.cepi.sabre.commands.monitoring.Status
 import world.cepi.sabre.commands.security.DeopCommand

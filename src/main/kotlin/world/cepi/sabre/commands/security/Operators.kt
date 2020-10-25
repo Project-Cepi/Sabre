@@ -35,14 +35,14 @@ class OpCommand: Command("op") {
             } else Operators.add(targetId, config.opLevel)
         }, target)
 
-        addSyntax({source, args ->
+        addSyntax({ source, args ->
             val targetLevel = args.getInteger("level")
             val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
 
             if ((source is Player && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
                 Operators.add(targetId, targetLevel)
                 source.sendMessage("${args.getWord("target")} was made a level $level operator")
-            } else source?.sendMessage("You don't have permission to add an op at level $targetLevel")
+            } else source.sendMessage("You don't have permission to add an op at level $targetLevel")
         }, target, level)
     }
 }
@@ -55,7 +55,7 @@ class DeopCommand: Command("deop") {
             val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
             val targetLevel = Operators.ops[targetId.toString()] as Int
 
-            if ((source is Player && source.permissionLevel >= targetLevel) || source is CommandSender) {
+            if ((source is Player && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
                 Operators.remove(targetId)
                 source.sendMessage("Revoked ${args.getWord("target")}'s operator privileges")
             } else source.sendMessage("You don't have permission to revoke a level $targetLevel's privileges")
