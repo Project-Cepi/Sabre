@@ -12,7 +12,6 @@ object SafeShutdownLoader : Loader {
         MinecraftServer.getSchedulerManager().buildShutdownTask {
             connectionManager.onlinePlayers.forEach { player: Player ->
                 player.kick("Server is closing.")
-                connectionManager.removePlayer(player.playerConnection)
             }
         }.schedule()
     }
