@@ -61,7 +61,7 @@ tasks.withType<Test> {
 tasks.jar {
     manifest {
         attributes (
-            "Main-Class" to "world.cepi.sabre.SabreKt",
+            "Main-Class" to "world.cepi.sabre.BootstrapKt",
             "Multi-Release" to true
         )
     }
