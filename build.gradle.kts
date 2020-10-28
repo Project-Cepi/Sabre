@@ -61,7 +61,7 @@ tasks.withType<Test> {
 tasks.jar {
     manifest {
         attributes (
-            "Main-Class" to "world.cepi.sabre.BootstrapKt",
+            "Main-Class" to "world.cepi.sabre.SabreKt",
             "Multi-Release" to true
         )
     }
@@ -72,6 +72,6 @@ tasks.jar {
 }
 
 
-//configurations.all {
-//    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
-//}
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
+}
