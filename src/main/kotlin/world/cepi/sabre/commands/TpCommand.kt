@@ -18,7 +18,7 @@ class TpCommand: Command("tp") {
         val playerArg = ArgumentType.Word("player")
 
         addSyntax({sender, args ->
-            val target = getPlayer(args.getWord("player"))
+            val target = getPlayer(args.getWord("player")!!)
             if (target != null && sender is Player) sender.teleport(target.position)
         }, playerArg)
 
