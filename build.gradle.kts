@@ -70,3 +70,8 @@ tasks.jar {
         exclude("META-INF/*.RSA", "META-INF/*.SF","META-INF/*.DSA")
     }
 }
+
+
+//configurations.all {
+//    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
+//}

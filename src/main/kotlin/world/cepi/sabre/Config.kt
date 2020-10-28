@@ -22,6 +22,12 @@ class Config {
     /** If the server should use Mojang Authentication or not. */
     var onlineMode = true
 
+    /** The base view distance of all chunks. */
+    var renderDistance = 8
+
+    /** How far the player can see entities. */
+    var entityDistance = 8
+
     fun save() {
         val jsonStr = Klaxon().toJsonString(this)
 
