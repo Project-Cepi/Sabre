@@ -24,7 +24,7 @@ class Ping : Command("ping") {
         }
 
         addSyntax({ sender, args ->
-            val player = getPlayer(args.getWord("player")!!)
+            val player = getPlayer(args.getWord("player"))
             if (player != null) {
                 sender.sendMessage("Pong! ${player.username}'s Latency is ${player.latency}")
             } else {
