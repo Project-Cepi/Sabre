@@ -32,7 +32,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.0")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:b575d6df57")
+    implementation("com.github.Minestom:Minestom:463e1f047f")
 
     // Use the Netty library
     implementation("io.netty:netty-transport-native-epoll:4.1.52.Final")
