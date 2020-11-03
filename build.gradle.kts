@@ -32,15 +32,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.6.0")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:master-SNAPSHOT")
+    implementation("com.github.Minestom:Minestom:463e1f047f")
 
     // Use the Netty library
     implementation("io.netty:netty-transport-native-epoll:4.1.52.Final")
-
-    // Http4K
-    implementation(platform("org.http4k:http4k-bom:3.266.0"))
-    implementation("org.http4k", "http4k-core")
-    implementation("org.http4k", "http4k-client-jetty")
 
     // Http4K
     implementation(platform("org.http4k:http4k-bom:3.266.0"))
@@ -69,4 +64,8 @@ tasks.jar {
     from(configurations.compileClasspath.get().map { if (it.isDirectory) it else zipTree(it) }) {
         exclude("META-INF/*.RSA", "META-INF/*.SF","META-INF/*.DSA")
     }
+}
+
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
 }

@@ -4,7 +4,9 @@ package world.cepi.sabre.loaders
 interface Loader {
 
     /** Load function that calls in sequential order in the [Loaders] enum. */
-    fun load()
+    fun load() {
+
+    }
 
 }
 
