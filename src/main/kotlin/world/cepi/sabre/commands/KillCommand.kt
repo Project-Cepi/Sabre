@@ -13,7 +13,7 @@ class KillCommand: Command("kill") {
         val target = ArgumentType.Word("target")
 
         addSyntax({source, args ->
-            val player = getPlayer(args.getWord("target")!!)
+            val player = getPlayer(args.getWord("target"))
             if (player == null) {
                 source.sendMessage("Could not find target!")
                 return@addSyntax

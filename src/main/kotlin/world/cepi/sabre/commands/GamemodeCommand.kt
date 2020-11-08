@@ -10,7 +10,7 @@ class GamemodeCommand : Command("gamemode") {
     init {
         val gamemode = ArgumentType.Word("gamemode").from(*GameMode.values().map { it.name.toLowerCase() }.toList().toTypedArray())
 
-        setCondition { sender ->
+        setCondition { sender, _ ->
             if (!sender.isPlayer) {
                 sender.sendMessage("The command is only available for players!")
                 false
