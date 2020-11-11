@@ -22,6 +22,14 @@ class Config {
     /** If the server should use Mojang Authentication or not. */
     var onlineMode = true
 
+    /** Whether or not the server should use Velocity forwarding. CANNOT be enabled if BungeeCord is*/
+    var enableVelocity = false
+    var velocitySecret = ""
+
+    /**Whether or not the server should use BungeeCord forwarding. CANNOT be enabled if Velocity is*/
+    var enableBungee = false
+    var bungeeSecret = false
+
     /** The base view distance of all chunks. */
     var renderDistance = 8
 
