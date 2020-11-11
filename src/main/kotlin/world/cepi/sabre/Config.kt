@@ -23,12 +23,10 @@ class Config {
     var onlineMode = true
 
     /** Whether or not the server should use Velocity forwarding. CANNOT be enabled if BungeeCord is*/
-    var enableVelocity = false
+    var proxy = ""
     var velocitySecret = ""
 
     /**Whether or not the server should use BungeeCord forwarding. CANNOT be enabled if Velocity is*/
-    var enableBungee = false
-    var bungeeSecret = false
 
     /** The base view distance of all chunks. */
     var renderDistance = 8
@@ -72,4 +70,10 @@ class Config {
  */
 fun config(): Config {
     return Config.config
+}
+
+enum class Forwarder() {
+    BUNGEE,
+    VELOCITY,
+    NONE
 }
