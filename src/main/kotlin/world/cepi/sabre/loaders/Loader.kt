@@ -20,7 +20,7 @@ enum class Loaders(val loader: Loader) {
     SAFE_SHUTDOWN(SafeShutdownLoader),
     VELOCITY(VelocityLoader),
     BUNGEE(BungeeLoader),
-    BIOME(BiomeLoader)
+    OPTIFINE(OptifineLoader)
 }
 
 

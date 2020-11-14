@@ -34,6 +34,11 @@ class Config {
     /** How far the player can see entities. */
     var entityDistance = 8
 
+    /** Fixes a crash with Optifine clients by registering certain biomes.
+     * If you specifically do not want these biomes to be registered, set to false.
+     * But be aware that Optifine clients will crash when they connect to the server.*/
+    var optifineSupport = true
+
     fun save() {
         val jsonStr = Klaxon().toJsonString(this)
 
