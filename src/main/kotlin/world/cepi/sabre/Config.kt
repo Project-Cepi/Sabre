@@ -22,11 +22,11 @@ class Config {
     /** If the server should use Mojang Authentication or not. */
     var onlineMode = true
 
-    /** Whether or not the server should use Velocity forwarding. CANNOT be enabled if BungeeCord is*/
-    var proxy = ""
-    var velocitySecret = ""
+    /** Whether or not the server should use forwarding.*/
+    var proxy = "NONE"
 
-    /**Whether or not the server should use BungeeCord forwarding. CANNOT be enabled if Velocity is*/
+    /** The secret for velocity. Not used if bungeecord is set as the proxy value. */
+    var velocitySecret = ""
 
     /** The base view distance of all chunks. */
     var renderDistance = 8
@@ -77,7 +77,7 @@ fun config(): Config {
     return Config.config
 }
 
-enum class Forwarder() {
+enum class Forwarder {
     BUNGEE,
     VELOCITY,
     NONE
