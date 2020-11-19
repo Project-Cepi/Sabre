@@ -38,10 +38,8 @@ dependencies {
     // Use the Netty library
     implementation("io.netty:netty-transport-native-epoll:4.1.52.Final")
 
-    // Http4K
-    implementation(platform("org.http4k:http4k-bom:3.266.0"))
-    implementation("org.http4k", "http4k-core")
-    implementation("org.http4k", "http4k-client-jetty")
+    // OkHttp
+    implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
 
     // org.json
     implementation("org.json", "json", "20200518")
