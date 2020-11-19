@@ -1,6 +1,7 @@
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.10"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
 
     // Apply the application plugin to add support for building a jar
     java
@@ -56,13 +57,9 @@ tasks.withType<Test> {
 tasks.jar {
     manifest {
         attributes (
-            "Main-Class" to "world.cepi.sabre.SabreKt",
+            "Main-Class" to "world.cepi.sabre.BootstrapKt",
             "Multi-Release" to true
         )
-    }
-
-    from(configurations.compileClasspath.get().map { if (it.isDirectory) it else zipTree(it) }) {
-        exclude("META-INF/*.RSA", "META-INF/*.SF","META-INF/*.DSA")
     }
 }
 
