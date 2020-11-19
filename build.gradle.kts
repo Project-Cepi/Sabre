@@ -29,14 +29,8 @@ dependencies {
     // Use the Kotlin reflect library.
     implementation(kotlin("reflect"))
 
-    // Use the Kotlin test library.
-    testImplementation("org.junit.jupiter:junit-jupiter:5.6.0")
-
     // Compile Minestom into project
     implementation("com.github.Minestom:Minestom:0187864")
-
-    // Use the Netty library
-    implementation("io.netty:netty-transport-native-epoll:4.1.52.Final")
 
     // OkHttp
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
