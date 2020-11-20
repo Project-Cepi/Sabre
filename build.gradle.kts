@@ -1,6 +1,7 @@
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.10"
+    id("com.github.johnrengelman.shadow") version "6.1.0"
 
     // Apply the application plugin to add support for building a jar
     java
@@ -28,19 +29,11 @@ dependencies {
     // Use the Kotlin reflect library.
     implementation(kotlin("reflect"))
 
-    // Use the Kotlin test library.
-    testImplementation("org.junit.jupiter:junit-jupiter:5.6.0")
-
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:98fe83c605")
+    implementation("com.github.Minestom:Minestom:0187864")
 
-    // Use the Netty library
-    implementation("io.netty:netty-transport-native-epoll:4.1.52.Final")
-
-    // Http4K
-    implementation(platform("org.http4k:http4k-bom:3.266.0"))
-    implementation("org.http4k", "http4k-core")
-    implementation("org.http4k", "http4k-client-jetty")
+    // OkHttp
+    implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
 
     // org.json
     implementation("org.json", "json", "20200518")
@@ -56,13 +49,9 @@ tasks.withType<Test> {
 tasks.jar {
     manifest {
         attributes (
-            "Main-Class" to "world.cepi.sabre.SabreKt",
+            "Main-Class" to "world.cepi.sabre.BootstrapKt",
             "Multi-Release" to true
         )
-    }
-
-    from(configurations.compileClasspath.get().map { if (it.isDirectory) it else zipTree(it) }) {
-        exclude("META-INF/*.RSA", "META-INF/*.SF","META-INF/*.DSA")
     }
 }
 

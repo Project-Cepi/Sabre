@@ -23,8 +23,8 @@ Clone the repository using:
 
 Once it is cloned, make sure you have gradle installed, and run
 
-`./gradlew build` on Mac or Linux, and
+`./gradlew shadowJar` on Mac or Linux, and
 
-`gradlew build` on Windows.
+`gradlew shadowJar` on Windows.
 
 This will output the jar to `build/libs` in the project directory.
