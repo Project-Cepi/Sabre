@@ -39,12 +39,7 @@ class Config {
      * But be aware that Optifine clients will crash when they connect to the server.*/
     var optifineSupport = true
 
-    fun save() {
-        val jsonStr = Klaxon().toJsonString(this)
-
-        val configFile = File(Sabre.CONFIG_LOCATION)
-        configFile.writeText(jsonStr)
-    }
+    fun save() = File(Sabre.CONFIG_LOCATION).writeText(Klaxon().toJsonString(this))
 
     companion object {
 
