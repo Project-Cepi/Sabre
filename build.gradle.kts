@@ -1,3 +1,5 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.10"
@@ -11,12 +13,13 @@ repositories {
     // Use jcenter for resolving dependencies.
     jcenter()
 
-    // Use mavenCentral
-    maven(url = "https://repo1.maven.org/maven2/")
-    maven(url = "http://repo.spongepowered.org/maven")
-    maven(url = "https://libraries.minecraft.net")
-    maven(url = "https://jitpack.io")
-    maven(url = "https://jcenter.bintray.com/")
+    listOf(
+            "repo1.maven.org/maven2",
+            "repo.spongepowered.org/maven",
+            "libraries.minecraft.net",
+            "jitpack.io",
+            "jcenter.bintray.com"
+    ).forEach { maven(url = "https://$it") } // require https for all dependencies
 }
 
 dependencies {
@@ -30,7 +33,7 @@ dependencies {
     implementation(kotlin("reflect"))
 
     // Compile Minestom into project
-    implementation("com.github.Minestom:Minestom:a8c1c73")
+    implementation("com.github.Minestom", "Minestom", "a8c1c73")
 
     // OkHttp
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
@@ -39,22 +42,22 @@ dependencies {
     implementation("org.json", "json", "20200518")
 
     // Implement Klaxon
-    implementation("com.beust:klaxon:5.0.1")
+    implementation("com.beust", "klaxon", "5.0.1")
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
-
-tasks.jar {
-    manifest {
-        attributes (
-            "Main-Class" to "world.cepi.sabre.BootstrapKt",
-            "Multi-Release" to true
-        )
+tasks {
+    named<ShadowJar>("shadowJar") {
+        archiveBaseName.set("sabre")
+        manifest {
+            attributes (
+                    "Main-Class" to "world.cepi.sabre.BootstrapKt",
+                    "Multi-Release" to true
+            )
+        }
     }
-}
 
-configurations.all {
-    resolutionStrategy.cacheChangingModulesFor(0, "seconds")
+    test { useJUnitPlatform() }
+
+    build { dependsOn(shadowJar) }
+
 }
