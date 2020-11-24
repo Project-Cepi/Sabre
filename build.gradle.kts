@@ -3,6 +3,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.10"
+    kotlin("plugin.serialization") version "1.4.10"
     id("com.github.johnrengelman.shadow") version "6.1.0"
 
     // Apply the application plugin to add support for building a jar
@@ -41,8 +42,8 @@ dependencies {
     // org.json
     implementation("org.json", "json", "20200518")
 
-    // Implement Klaxon
-    implementation("com.beust", "klaxon", "5.0.1")
+    // import kotlinx serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 }
 
 tasks {
@@ -60,4 +61,10 @@ tasks {
 
     build { dependsOn(shadowJar) }
 
+}
+
+configure<SourceSetContainer> {
+    named("main") {
+        java.srcDir("src/main/kotlin")
+    }
 }
