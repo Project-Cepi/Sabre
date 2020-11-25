@@ -2,6 +2,7 @@ package world.cepi.sabre
 
 import kotlinx.serialization.*
 import kotlinx.serialization.json.Json
+import world.cepi.sabre.instances.generators.flat.Flat
 import java.io.File
 import java.io.FileReader
 
@@ -41,7 +42,7 @@ class Config(
          * But be aware that Optifine clients will crash when they connect to the server.*/
         val optifineSupport: Boolean = true,
 ) {
-    fun save() = File(Sabre.CONFIG_LOCATION).writeText(Json.encodeToString(this).drop(1))
+    fun save() = File(Sabre.CONFIG_LOCATION).writeText(Json.encodeToString(this))
 
     companion object {
 
@@ -52,7 +53,7 @@ class Config(
         init {
             // If it already exists, parse as normal
             if (exists()) {
-                config = Json.decodeFromString<Config>(File(Sabre.CONFIG_LOCATION).readLines().joinToString { "\n" })
+                config = Json.decodeFromString(File(Sabre.CONFIG_LOCATION).readText())
             } else {
                 // Create a new config and save it.
                 config = Config()
