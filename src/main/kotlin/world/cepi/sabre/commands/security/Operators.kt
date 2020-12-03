@@ -51,6 +51,8 @@ class DeopCommand: Command("deop") {
     init {
         setDefaultExecutor{ sender, _ -> sender.sendMessage("Usage: /deop <player") }
 
+        val target = ArgumentType.Word("target")
+
         addSyntax({ source, args ->
             val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
             val targetLevel = Operators.ops[targetId.toString()] as Int
@@ -59,7 +61,7 @@ class DeopCommand: Command("deop") {
                 Operators.remove(targetId)
                 source.sendMessage("Revoked ${args.getWord("target")}'s operator privileges")
             } else source.sendMessage("You don't have permission to revoke a level $targetLevel's privileges")
-        })
+        }, target)
     }
 }
 
