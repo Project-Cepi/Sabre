@@ -21,7 +21,7 @@ class WhitelistCommand : Command("whitelist") {
 
         addSyntax({ source, args ->
             if (args.getWord("mode") == "add") {
-                if (getUUID(args.getWord("player").toString()) in Whitelist.whitelist) source.sendMessage("${args.getWord("player")} is already on the whitelist.")
+                if (getUUID(args.getWord("player")) in Whitelist.whitelist) source.sendMessage("${args.getWord("player")} is already on the whitelist.")
             }
             val uuid = getUUID(args.getWord("player")) ?: return@addSyntax
             Whitelist.add(uuid)
