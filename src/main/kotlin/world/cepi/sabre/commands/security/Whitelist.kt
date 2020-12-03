@@ -1,5 +1,11 @@
 package world.cepi.sabre.commands.security
 
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
@@ -16,43 +22,76 @@ class WhitelistCommand : Command("whitelist") {
             source.sendMessage("Usage: /whitelist <add|remove> <player>")
         }
 
-        val mode = ArgumentType.Word("mode").from("add", "remove")
+        val remove = ArgumentType.Word("remove").from("remove")
+        val add = ArgumentType.Word("add").from("add")
         val playerArg = ArgumentType.Word("player")
 
         addSyntax({ source, args ->
-            if (args.getWord("mode") == "add") {
-                if (getUUID(args.getWord("player")) in Whitelist.whitelist) source.sendMessage("${args.getWord("player")} is already on the whitelist.")
-            }
-            val uuid = getUUID(args.getWord("player")) ?: return@addSyntax
-            Whitelist.add(uuid)
-        }, mode, playerArg)
 
-        addSyntax({source, args ->
-            val uuid = getUUID(args.getWord("player")) ?: return@addSyntax
-            if (uuid !in Whitelist.whitelist) source.sendMessage("Player is not on the whitelist")
+            val uuid = getUUID(args.getWord("player"))
+
+            if (uuid == null) {
+                source.sendMessage("That user does not exist!")
+                return@addSyntax
+            }
+
+            if (uuid.isWhitelisted()) {
+                source.sendMessage("${args.getWord("player")} is already on the whitelist.")
+                return@addSyntax
+            }
+
+            Whitelist.add(uuid)
+            source.sendMessage("Added ${args.getWord("player")} to the whitelist!")
+        }, add, playerArg)
+
+        addSyntax({ source, args ->
+            val uuid = getUUID(args.getWord("player"))
+
+            if (uuid == null) {
+                source.sendMessage("That user does not exist!")
+                return@addSyntax
+            }
+
+            if (!uuid.isWhitelisted()) {
+                source.sendMessage("Player is not on the whitelist")
+                return@addSyntax
+            }
 
             Whitelist.remove(uuid)
-        }, playerArg)
+            source.sendMessage("Removed ${args.getWord("player")} from the whitelist!")
+        }, remove, playerArg)
     }
 }
 
 object Whitelist {
-    private val whitelistFile = File(Sabre.CONFIG_LOCATION)
-    var whitelist: JSONArray
+    private val whitelistFile = File(Sabre.WHITELIST_LOCATION)
+    var whitelist: MutableList<UUID>
+
+    val serilalizer: KSerializer<List<String>> = ListSerializer(String.serializer())
+
     init {
-        whitelist = if (whitelistFile.exists()) JSONArray(whitelistFile.readText()) else JSONArray()
+        whitelist = try {
+            Json.decodeFromString(serilalizer, whitelistFile.readText()).map { UUID.fromString(it) }.toMutableList()
+        } catch (e: Exception) {
+            mutableListOf()
+        }
     }
+
     fun add(id: UUID) {
-        whitelist.put(id)
-        whitelist.write(FileWriter(whitelistFile))
+        whitelist.add(id)
+        save()
     }
 
     fun remove(id: UUID) {
-        whitelist.forEachIndexed{ index, element ->
-            if (id == element) whitelist.remove(index)
-        }
-        whitelist.write(FileWriter(Sabre.WHITELIST_LOCATION))
+        whitelist.remove(id)
+        save()
+    }
+
+    private fun save() {
+        if (!whitelistFile.exists())
+            whitelistFile.createNewFile()
+        whitelistFile.writeText(Json.encodeToString(serilalizer, whitelist.map { it.toString() }.toList()))
     }
 }
 
-fun isWhitelisted(player: Player): Boolean = player.uuid in Whitelist.whitelist
+fun UUID.isWhitelisted(): Boolean = this in Whitelist.whitelist
