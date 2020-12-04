@@ -51,7 +51,7 @@ tasks {
         archiveBaseName.set("sabre")
         manifest {
             attributes (
-                    "Main-Class" to "world.cepi.sabre.BootstrapKt",
+                    "Main-Class" to "world.cepi.sabre.BootstrapWrapper",
                     "Multi-Release" to true
             )
         }

@@ -1,5 +1,7 @@
 package world.cepi.sabre.loaders
 
+import net.minestom.server.MinecraftServer
+
 /** Loader interface for making it easier to reference the load function*/
 interface Loader {
 
@@ -24,4 +26,13 @@ enum class Loaders(val loader: Loader) {
 
 
 /** Loads all the loaders from the loader package. */
-fun load() = Loaders.values().forEach { it.loader.load() }
+fun load() {
+    Loaders.values().forEach {
+        try {
+            it.loader.load()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            MinecraftServer.LOGGER.warn("Logger ${it.name} failed to load.")
+        }
+    }
+}

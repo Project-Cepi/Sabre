@@ -7,13 +7,13 @@ import kotlin.system.exitProcess
 
 
 fun main() {
-    val server = MinecraftServer.init()
-
-    load()
-
-    // The IP and port are currently grabbed from the config file
-
     try {
+        val server = MinecraftServer.init()
+
+        load()
+
+        // The IP and port are currently grabbed from the config file
+
         server.start(config.ip, config.port)
     } catch (e: Exception) {
         // graceful exit that doesn't fall back to bootstrap.
@@ -23,6 +23,7 @@ fun main() {
 }
 
 object Sabre {
+    val logger = MinecraftServer.LOGGER
     const val CONFIG_LOCATION = "./sabre-config.json"
     const val INSTANCE_STORAGE_LOCATION = "./instances"
     const val WHITELIST_LOCATION = "./whitelist.json"

@@ -28,6 +28,7 @@ fun toValidUuid(string: String): UUID {
  * Gets a UUID from a [net.minestom.server.entity.Player]'s username
  *
  * @param username The username to get the UUID from
+ *
  * @return A [UUID] retrieved from the `Mojang` API.
  */
 fun getUUID(username: String): UUID? {
