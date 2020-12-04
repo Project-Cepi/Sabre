@@ -2,8 +2,8 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.4.10"
-    kotlin("plugin.serialization") version "1.4.10"
+    id("org.jetbrains.kotlin.jvm") version "1.4.20"
+    kotlin("plugin.serialization") version "1.4.20"
     id("com.github.johnrengelman.shadow") version "6.1.0"
 
     // Apply the application plugin to add support for building a jar
