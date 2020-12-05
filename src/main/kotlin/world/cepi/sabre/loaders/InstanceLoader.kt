@@ -11,7 +11,6 @@ import net.minestom.server.instance.block.Block
 import net.minestom.server.utils.Position
 import world.cepi.sabre.Config
 import world.cepi.sabre.commands.security.getPermissionLevel
-import world.cepi.sabre.commands.security.isOp
 import world.cepi.sabre.commands.security.isWhitelisted
 import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.flat.Flat
@@ -43,7 +42,7 @@ object InstanceLoader : Loader {
                     if (Config.config.whitelist && !event.player.uuid.isWhitelisted()) event.player.kick("You are not on the whitelist for this server")
 
                     // OPs players when they join if they are on the ops list
-                    if (isOp(event.player)) event.player.permissionLevel = getPermissionLevel(event.player) ?: 0
+                    event.player.permissionLevel = getPermissionLevel(event.player) ?: 0
                 }
 
                 it.addEventCallback(PlayerSpawnEvent::class.java) { event ->

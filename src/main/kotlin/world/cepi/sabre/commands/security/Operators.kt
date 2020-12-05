@@ -1,5 +1,10 @@
 package world.cepi.sabre.commands.security
 
+import kotlinx.serialization.KSerializer
+import kotlinx.serialization.builtins.ListSerializer
+import kotlinx.serialization.builtins.MapSerializer
+import kotlinx.serialization.builtins.serializer
+import kotlinx.serialization.json.Json
 import net.minestom.server.command.CommandSender
 import net.minestom.server.command.ConsoleSender
 import net.minestom.server.command.builder.Command
@@ -55,7 +60,7 @@ class DeopCommand: Command("deop") {
 
         addSyntax({ source, args ->
             val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
-            val targetLevel = Operators.ops[targetId.toString()] as Int
+            val targetLevel = Operators.operators[targetId] as Int
 
             if ((source is Player && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
                 Operators.remove(targetId)
@@ -66,28 +71,36 @@ class DeopCommand: Command("deop") {
 }
 
 object Operators {
-    private val opFile = File(Sabre.OP_LOCATION)
-    val ops = if (opFile.exists()) JSONObject(opFile) else JSONObject()
+    private val operatorFile = File(Sabre.OP_LOCATION)
+    var operators: MutableMap<UUID, Int>
 
-    fun add(id: UUID, level: Int) {
-        ops.put(id.toString(), level)
-        ops.write(FileWriter(Sabre.OP_LOCATION))
+    val serilalizer: KSerializer<Map<String, Int>> = MapSerializer(String.serializer(), Int.serializer())
+
+    init {
+        operators = try {
+            Json.decodeFromString(serilalizer, operatorFile.readText()).mapKeys { UUID.fromString(it.key) }.toMutableMap()
+        } catch (e: Exception) {
+            mutableMapOf()
+        }
+    }
+
+    fun add(id: UUID, opLevel: Int) {
+        operators[id] = opLevel
+        save()
     }
 
     fun remove(id: UUID) {
-        ops.remove(id.toString())
-        ops.write(FileWriter(Sabre.OP_LOCATION))
+        operators.remove(id)
+        save()
+    }
+
+    private fun save() {
+        if (!operatorFile.exists())
+            operatorFile.createNewFile()
+        val operators1 = operators
+        operatorFile.writeText(Json.encodeToString(serilalizer, operators.mapKeys { it.key.toString() } ))
     }
 }
-
-/**
- * Check if a player is in the OP list.
- *
- * @param player The target player to check if they are OP
- *
- * @return If the player is considered an operator
- */
-fun isOp(player: Player) = Operators.ops.has(player.uuid.toString())
 
 /**
  * Get a player's permission level.
@@ -96,4 +109,4 @@ fun isOp(player: Player) = Operators.ops.has(player.uuid.toString())
  *
  * @return The player's permission level.
  */
-fun getPermissionLevel(player: Player): Int? = Operators.ops.get(player.uuid.toString()) as Int
+fun getPermissionLevel(player: Player): Int? = Operators.operators[player.uuid] as Int
