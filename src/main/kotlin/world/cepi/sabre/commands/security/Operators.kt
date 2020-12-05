@@ -97,7 +97,6 @@ object Operators {
     private fun save() {
         if (!operatorFile.exists())
             operatorFile.createNewFile()
-        val operators1 = operators
         operatorFile.writeText(Json.encodeToString(serilalizer, operators.mapKeys { it.key.toString() } ))
     }
 }
