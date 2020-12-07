@@ -10,7 +10,6 @@ import net.minestom.server.command.ConsoleSender
 import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
-import org.json.JSONObject
 import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.Sabre
 import world.cepi.sabre.utils.getUUID

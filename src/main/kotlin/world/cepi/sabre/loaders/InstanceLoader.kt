@@ -12,6 +12,7 @@ import net.minestom.server.utils.Position
 import world.cepi.sabre.Config
 import world.cepi.sabre.commands.security.getPermissionLevel
 import world.cepi.sabre.commands.security.isWhitelisted
+import world.cepi.sabre.config
 import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.flat.Flat
 import world.cepi.sabre.instances.generators.flat.FlatLayer
@@ -28,12 +29,16 @@ object InstanceLoader : Loader {
 
                 it.respawnPoint = Position(0F, 64F, 0F)
                 it.addEventCallback(PlayerLoginEvent::class.java) { event ->
-                    event.setSpawningInstance(currentInstance ?: Instances.createInstanceContainer(Flat(
-                            FlatLayer(Block.BEDROCK, 1),
-                            FlatLayer(Block.STONE, 25),
-                            FlatLayer(Block.DIRT, 7),
-                            FlatLayer(Block.GRASS_BLOCK, 1)
-                    )))
+
+                    if (config().useFlatGenerator) {
+                        event.setSpawningInstance(currentInstance ?: Instances.createInstanceContainer(Flat(
+                                FlatLayer(Block.BEDROCK, 1),
+                                FlatLayer(Block.STONE, 25),
+                                FlatLayer(Block.DIRT, 7),
+                                FlatLayer(Block.GRASS_BLOCK, 1)
+                        )))
+                    }
+
                     currentInstance = event.spawningInstance
 
                     event.spawningInstance!!.loadChunk(0, 0)

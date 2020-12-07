@@ -39,9 +39,6 @@ dependencies {
     // OkHttp
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
 
-    // org.json
-    implementation("org.json", "json", "20200518")
-
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 }
