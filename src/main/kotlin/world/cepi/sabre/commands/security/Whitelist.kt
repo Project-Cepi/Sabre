@@ -3,17 +3,12 @@ package world.cepi.sabre.commands.security
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentType
-import net.minestom.server.entity.Player
-import org.json.JSONArray
 import world.cepi.sabre.Sabre
 import world.cepi.sabre.utils.getUUID
 import java.io.File
-import java.io.FileWriter
 import java.util.*
 
 class WhitelistCommand : Command("whitelist") {
