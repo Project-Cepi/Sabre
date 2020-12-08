@@ -4,7 +4,7 @@ import net.minestom.server.MinecraftServer
 import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.loaders.load
 import kotlin.system.exitProcess
-
+import org.slf4j.Logger
 
 fun main() {
     try {
@@ -23,7 +23,7 @@ fun main() {
 }
 
 object Sabre {
-    val logger = MinecraftServer.LOGGER
+    val logger: Logger = MinecraftServer.LOGGER
     const val CONFIG_LOCATION = "./sabre-config.json"
     const val INSTANCE_STORAGE_LOCATION = "./instances"
     const val WHITELIST_LOCATION = "./whitelist.json"

@@ -2,6 +2,7 @@ package world.cepi.sabre.commands
 
 import net.minestom.server.MinecraftServer
 import net.minestom.server.command.builder.Command
+import net.minestom.server.entity.Player
 
 class StopCommand : Command("stop") {
     init {
@@ -9,9 +10,9 @@ class StopCommand : Command("stop") {
             MinecraftServer.stopCleanly()
         }
 
-//        setCondition {
-//            return it !is Player || (it as Player).permissionLevel >= 4
-//        }
+        setCondition { source, _ ->
+            return@setCondition source !is Player || source.permissionLevel >= 4
+        }
     }
 }
 

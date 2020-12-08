@@ -9,6 +9,8 @@ object SafeShutdownLoader : Loader {
 
         val connectionManager = MinecraftServer.getConnectionManager()
 
+        Runtime.getRuntime().addShutdownHook(Thread(MinecraftServer::stopCleanly));
+
         MinecraftServer.getSchedulerManager().buildShutdownTask {
             connectionManager.onlinePlayers.forEach { player: Player ->
                 player.kick("Server is closing.")

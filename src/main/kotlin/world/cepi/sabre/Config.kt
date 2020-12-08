@@ -49,6 +49,9 @@ class Config(
          * But be aware that Optifine clients will crash when they connect to the server
          * unless you specify them */
         val optifineSupport: Boolean = true,
+
+        /** The unknown message for an unknown command. */
+        val unknownMessage: String = "Unknown command."
 ) {
 
     fun save() = File(Sabre.CONFIG_LOCATION).writeText(format.encodeToString(this))
