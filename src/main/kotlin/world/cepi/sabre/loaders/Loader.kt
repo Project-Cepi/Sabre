@@ -6,10 +6,7 @@ import net.minestom.server.MinecraftServer
 interface Loader {
 
     /** Load function that calls in sequential order in the [Loaders] enum. */
-    fun load() {
-
-    }
-
+    fun load()
 }
 
 /** Enum representation of all loaders, act independently from eachother.*/
