@@ -43,9 +43,9 @@ class OpCommand: Command("op") {
             val targetLevel = args.getInteger("level")
             val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
 
-            if ((source is Player && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
+            if ((source is Player && source.permissionLevel >= targetLevel && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
                 Operators.add(targetId, targetLevel)
-                source.sendMessage("${args.getWord("target")} was made a level $level operator")
+                source.sendMessage("${args.getWord("target")} was made a level $targetLevel operator")
             } else source.sendMessage("You don't have permission to add an op at level $targetLevel")
         }, target, level)
     }
