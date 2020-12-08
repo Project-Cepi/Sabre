@@ -8,7 +8,12 @@ import net.minestom.server.Bootstrap;
 public class BootstrapWrapper {
 
     public static void main(String[] args) {
-        Bootstrap.bootstrap("world.cepi.sabre.SabreKt", args);
+        try {
+            Bootstrap.bootstrap("world.cepi.sabre.SabreKt", args);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            System.exit(1); // Sometimes Minestom just (doesn't) exit
+        }
     }
 
 }
