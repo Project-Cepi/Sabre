@@ -17,7 +17,7 @@ object CommandLoader : Loader {
         val commandManager = MinecraftServer.getCommandManager()
 
         commandManager.unknownCommandCallback =
-                CommandCallback { sender: CommandSender, command: String? ->
+                CommandCallback { sender: CommandSender, _ ->
                     sender.sendMessage(config().unknownMessage)
                 }
 
