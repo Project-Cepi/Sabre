@@ -19,7 +19,8 @@ enum class Loaders(val loader: Loader) {
     SAFE_SHUTDOWN(SafeShutdownLoader),
     VELOCITY(VelocityLoader),
     BUNGEE(BungeeLoader),
-    OPTIFINE(OptifineLoader)
+    OPTIFINE(OptifineLoader),
+    BLOCKRULES(BlockPlacementLoader)
 }
 
 

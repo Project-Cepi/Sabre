@@ -51,7 +51,10 @@ class Config(
         val optifineSupport: Boolean = true,
 
         /** The unknown message for an unknown command. */
-        val unknownMessage: String = "Unknown command."
+        val unknownMessage: String = "Unknown command.",
+
+        /** Uses Minestom's vanilla block rules to place blocks correctly. */
+        val useBlockRules: Boolean = true
 ) {
 
     fun save() = File(Sabre.CONFIG_LOCATION).writeText(format.encodeToString(this))
