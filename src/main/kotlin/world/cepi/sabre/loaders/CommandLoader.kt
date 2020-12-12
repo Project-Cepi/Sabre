@@ -3,8 +3,7 @@ package world.cepi.sabre.loaders
 import net.minestom.server.MinecraftServer
 import net.minestom.server.command.CommandSender
 import net.minestom.server.utils.callback.CommandCallback
-import world.cepi.sabre.Config.Companion.config
-import world.cepi.sabre.commands.StopCommand
+import world.cepi.sabre.commands.ShutdownCommand
 import world.cepi.sabre.commands.security.DeopCommand
 import world.cepi.sabre.commands.security.OpCommand
 import world.cepi.sabre.commands.security.WhitelistCommand
@@ -21,7 +20,7 @@ object CommandLoader : Loader {
                     sender.sendMessage(config().unknownMessage)
                 }
 
-        commandManager.register(StopCommand())
+        commandManager.register(ShutdownCommand())
         commandManager.register(OpCommand())
         commandManager.register(DeopCommand())
         commandManager.register(WhitelistCommand())
