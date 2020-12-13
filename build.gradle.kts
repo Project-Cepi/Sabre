@@ -39,6 +39,8 @@ dependencies {
     // OkHttp
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
 
+    implementation("org.spongepowered", "configurate-gson", "4.0.0")
+    implementation("org.spongepowered", "configurate-extra-kotlin", "4.0.0")
     // org.json
     implementation("org.json", "json", "20200518")
 
