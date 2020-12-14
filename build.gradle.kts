@@ -42,6 +42,9 @@ dependencies {
     // org.json
     implementation("org.json", "json", "20200518")
 
+    // KStom
+    implementation("com.github.Project-Cepi:KStom:latest")
+
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 }
