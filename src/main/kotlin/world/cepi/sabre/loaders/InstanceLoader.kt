@@ -49,8 +49,7 @@ object InstanceLoader : Loader {
                 }
 
                 it.addEventCallback(PlayerSpawnEvent::class.java) { event ->
-                    val player = event.entity as Player
-                    player.teleport(player.respawnPoint)
+                    event.player.teleport(event.player.respawnPoint)
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
