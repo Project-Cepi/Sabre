@@ -58,6 +58,7 @@ tasks {
                     "Multi-Release" to true
             )
         }
+        mergeServiceFiles()
     }
 
     test { useJUnitPlatform() }
