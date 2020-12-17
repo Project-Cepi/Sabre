@@ -1,5 +1,5 @@
 # Sabre
-Sabre is a reimplementation of the Gameplay plugin using the Minestom API
+Sabre is a server jar using the Minestom API as a community-formatted jar.
 
 ## Installation
 
