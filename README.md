@@ -1,5 +1,5 @@
 # Sabre
-Sabre is a server jar using the Minestom API as a community-formatted jar.
+Sabre is a server jar wrapper using the Minestom API as a community-maintained groundwork library.
 
 ## Installation
 
