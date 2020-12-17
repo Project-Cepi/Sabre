@@ -1,11 +1,9 @@
 package world.cepi.sabre.commands.security
 
 import kotlinx.serialization.KSerializer
-import kotlinx.serialization.builtins.ListSerializer
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.Json
-import net.minestom.server.command.CommandSender
 import net.minestom.server.command.ConsoleSender
 import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentType
@@ -14,7 +12,6 @@ import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.Sabre
 import world.cepi.sabre.utils.getUUID
 import java.io.File
-import java.io.FileWriter
 import java.util.*
 
 class OpCommand: Command("op") {

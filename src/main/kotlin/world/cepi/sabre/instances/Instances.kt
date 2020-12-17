@@ -30,9 +30,5 @@ object Instances {
         return instance
     }
 
-    fun createSharedInstance(parent: InstanceContainer): SharedInstance {
-        val instanceManager = MinecraftServer.getInstanceManager()
-        return instanceManager.createSharedInstance(parent)
-    }
 }
 

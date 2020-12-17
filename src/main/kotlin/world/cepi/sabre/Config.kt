@@ -1,14 +1,11 @@
 package world.cepi.sabre
 
-import kotlinx.serialization.*
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.JsonBuilder
-import kotlinx.serialization.modules.SerializersModule
-import kotlinx.serialization.modules.contextual
-import okhttp3.internal.format
-import world.cepi.sabre.instances.generators.flat.Flat
 import java.io.File
-import java.io.FileReader
 
 
 /** This class represents Sabre's config, and contains all the properties that can be configured in Sabre */

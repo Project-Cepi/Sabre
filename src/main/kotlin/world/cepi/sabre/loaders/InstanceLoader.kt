@@ -1,7 +1,6 @@
 package world.cepi.sabre.loaders
 
 import net.minestom.server.MinecraftServer
-import net.minestom.server.entity.Player
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
 import net.minestom.server.instance.Instance
