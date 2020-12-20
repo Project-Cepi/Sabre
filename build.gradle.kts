@@ -34,7 +34,7 @@ dependencies {
     implementation(kotlin("reflect"))
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "213599a649")
+    implementation("com.github.Minestom", "Minestom", "81592d8b56")
 
     // OkHttp
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
