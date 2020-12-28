@@ -15,15 +15,18 @@ import world.cepi.sabre.Sabre
  * You can also pass in a custom storage location; if you don't the default will be used
  */
 object Instances {
-    fun createInstanceContainer(generator: ChunkGenerator, storeChunks: Boolean = false, storageLocation: StorageLocation? = MinecraftServer.getStorageManager().getLocation(Sabre.INSTANCE_STORAGE_LOCATION)): InstanceContainer {
+    fun createInstanceContainer(
+            generator: ChunkGenerator,
+            storeChunks: Boolean = false,
+            storageLocation: StorageLocation? =
+                    MinecraftServer.getStorageManager().getLocation(Sabre.INSTANCE_STORAGE_LOCATION)
+    ): InstanceContainer {
         val instanceManager = MinecraftServer.getInstanceManager()
         val instance: InstanceContainer
-        instance = if (storeChunks) {
+        instance = if (storeChunks)
             instanceManager.createInstanceContainer(storageLocation)
-        }
-        else {
+        else
             instanceManager.createInstanceContainer()
-        }
         instance.chunkGenerator = generator
         instance.enableAutoChunkLoad(true)
         return instance

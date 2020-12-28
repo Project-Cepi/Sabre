@@ -50,7 +50,7 @@ class OpCommand: Command("op") {
 
 class DeopCommand: Command("deop") {
     init {
-        setDefaultExecutor{ sender, _ -> sender.sendMessage("Usage: /deop <player") }
+        setDefaultExecutor { sender, _ -> sender.sendMessage("Usage: /deop <player") }
 
         val target = ArgumentType.Word("target")
 
