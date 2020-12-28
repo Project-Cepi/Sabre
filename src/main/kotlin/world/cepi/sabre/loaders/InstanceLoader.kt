@@ -9,7 +9,7 @@ import net.minestom.server.utils.Position
 import world.cepi.sabre.Config
 import world.cepi.sabre.commands.security.getPermissionLevel
 import world.cepi.sabre.commands.security.isWhitelisted
-import world.cepi.sabre.config
+import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.flat.Flat
 import world.cepi.sabre.instances.generators.flat.FlatLayer
@@ -24,7 +24,7 @@ object InstanceLoader : Loader {
         connectionManager.addPlayerInitialization {
             try {
 
-                if (config().useFlatGenerator) {
+                if (config.useFlatGenerator) {
                 it.respawnPoint = Position(0F, 64F, 0F)
                 it.addEventCallback(PlayerLoginEvent::class.java) { event ->
                     event.setSpawningInstance(currentInstance ?: Instances.createInstanceContainer(Flat(

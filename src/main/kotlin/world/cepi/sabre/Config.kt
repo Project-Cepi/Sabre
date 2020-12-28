@@ -68,8 +68,7 @@ class Config(
         }
 
         /** Configuration object acting as a singleton */
-        var config: Config
-            private set
+        val config: Config
 
         init {
             // If it already exists, parse as normal
@@ -85,15 +84,6 @@ class Config(
         private fun exists(): Boolean = File(Sabre.CONFIG_LOCATION).exists()
     }
 
-}
-
-/**
- * Exposed configuration so no one has to do `Config.config`
- *
- * @return The configuration from the internal [Config] object. Shorthand for [Config.config]
- */
-fun config(): Config {
-    return Config.config
 }
 
 enum class Forwarder {

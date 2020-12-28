@@ -16,7 +16,6 @@ enum class Loaders(val loader: Loader) {
     UUID(UUIDLoader),
     INSTANCES(InstanceLoader),
     COMMANDS(CommandLoader),
-    SAFE_SHUTDOWN(SafeShutdownLoader),
     VELOCITY(VelocityLoader),
     BUNGEE(BungeeLoader),
     OPTIFINE(OptifineLoader),
