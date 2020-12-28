@@ -3,7 +3,6 @@ package world.cepi.sabre.instances
 import net.minestom.server.MinecraftServer
 import net.minestom.server.instance.ChunkGenerator
 import net.minestom.server.instance.InstanceContainer
-import net.minestom.server.instance.SharedInstance
 import net.minestom.server.storage.StorageLocation
 import world.cepi.sabre.Sabre
 

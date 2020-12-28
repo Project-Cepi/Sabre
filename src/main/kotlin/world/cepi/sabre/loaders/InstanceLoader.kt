@@ -41,7 +41,7 @@ object InstanceLoader : Loader {
                     event.spawningInstance!!.loadChunk(0, 0)
 
                     // Kicks the player if they are not on the whitelist
-                    if (Config.config.whitelist && !event.player.uuid.isWhitelisted()) event.player.kick("You are not on the whitelist for this server")
+                    if (Config.config.whitelist && !event.player.uuid.isWhitelisted()) event.player.kick("You are not on the whitelist for this server!")
 
                     // OPs players when they join if they are on the ops list
                     event.player.permissionLevel = getPermissionLevel(event.player) ?: 0

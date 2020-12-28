@@ -11,6 +11,9 @@ plugins {
 }
 
 repositories {
+    // maven central
+    mavenCentral()
+
     // Use jcenter for resolving dependencies.
     jcenter()
 
@@ -47,6 +50,9 @@ dependencies {
 
     // implement KStom
     implementation("com.github.Project-Cepi:KStom:main-SNAPSHOT")
+
+    // get jline3
+    implementation("org.jline:jline:3.18.0")
 }
 
 tasks {

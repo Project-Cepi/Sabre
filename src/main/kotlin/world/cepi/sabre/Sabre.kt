@@ -1,13 +1,25 @@
 package world.cepi.sabre
 
 import net.minestom.server.MinecraftServer
+import org.jline.reader.LineReaderBuilder
+import org.jline.terminal.TerminalBuilder
+import org.jline.widget.AutosuggestionWidgets
+import org.slf4j.Logger
 import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.loaders.load
 import kotlin.system.exitProcess
-import org.slf4j.Logger
+
 
 fun main() {
     try {
+
+        val terminal = TerminalBuilder.terminal()
+        val lineReader = LineReaderBuilder.builder().terminal(terminal).build()
+
+        val autosuggestionWidgets = AutosuggestionWidgets(lineReader)
+
+        autosuggestionWidgets.enable()
+
         val server = MinecraftServer.init()
 
         load()

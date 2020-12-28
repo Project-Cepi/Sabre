@@ -13,7 +13,7 @@ import java.util.*
 
 class WhitelistCommand : Command("whitelist") {
     init {
-        setDefaultExecutor {source, _ ->
+        setDefaultExecutor { source, _ ->
             source.sendMessage("Usage: /whitelist <add|remove> <player>")
         }
 
@@ -62,7 +62,7 @@ object Whitelist {
     private val whitelistFile = File(Sabre.WHITELIST_LOCATION)
     var whitelist: MutableList<UUID>
 
-    val serilalizer: KSerializer<List<String>> = ListSerializer(String.serializer())
+    private val serilalizer: KSerializer<List<String>> = ListSerializer(String.serializer())
 
     init {
         whitelist = try {

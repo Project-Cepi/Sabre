@@ -40,4 +40,3 @@ fun getUUID(username: String): UUID? {
     else toValidUuid(JSONObject(response.body?.string())["id"].toString())
 }
 
-fun getUUIDInternally(username: String): UUID? = MinecraftServer.getConnectionManager().onlinePlayers.firstOrNull { it.username == username }?.uuid

@@ -70,7 +70,7 @@ object Operators {
     private val operatorFile = File(Sabre.OP_LOCATION)
     var operators: MutableMap<UUID, Int>
 
-    val serilalizer: KSerializer<Map<String, Int>> = MapSerializer(String.serializer(), Int.serializer())
+    private val serilalizer: KSerializer<Map<String, Int>> = MapSerializer(String.serializer(), Int.serializer())
 
     init {
         operators = try {
