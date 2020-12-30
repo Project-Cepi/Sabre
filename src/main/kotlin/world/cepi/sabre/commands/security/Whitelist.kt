@@ -85,7 +85,7 @@ object Whitelist {
     private fun save() {
         if (!whitelistFile.exists())
             whitelistFile.createNewFile()
-        whitelistFile.writeText(Json.encodeToString(serilalizer, whitelist.map { it.toString() }.toList()))
+        whitelistFile.writeText(Json.encodeToString(serilalizer, whitelist.map { it.toString() }))
     }
 }
 
