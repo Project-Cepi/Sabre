@@ -19,7 +19,8 @@ enum class Loaders(val loader: Loader) {
     VELOCITY(VelocityLoader),
     BUNGEE(BungeeLoader),
     OPTIFINE(OptifineLoader),
-    BLOCKRULES(BlockPlacementLoader)
+    BLOCKRULES(BlockPlacementLoader),
+    THRESHOLD(ThresholdLoader)
 }
 
 

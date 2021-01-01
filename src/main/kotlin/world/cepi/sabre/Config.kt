@@ -1,5 +1,6 @@
 package world.cepi.sabre
 
+import jdk.jfr.Threshold
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
@@ -51,7 +52,13 @@ class Config(
         val unknownMessage: String = "Unknown command.",
 
         /** Uses Minestom's vanilla block rules to place blocks correctly. */
-        val useBlockRules: Boolean = true
+        val useBlockRules: Boolean = true,
+
+        /** The compression threshold for the network. Useful to set if you're behind a proxy. */
+        val compressionThreshold: Int = 256,
+
+        /** If the server should cache packets. */
+        val cachePackets: Boolean = true
 ) {
 
     fun save() = File(Sabre.CONFIG_LOCATION).writeText(format.encodeToString(this))
