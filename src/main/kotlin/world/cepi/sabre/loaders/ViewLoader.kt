@@ -10,4 +10,5 @@ object ViewLoader : Loader {
         MinecraftServer.setEntityViewDistance(config.entityDistance)
         MinecraftServer.setChunkViewDistance(config.renderDistance)
     }
+
 }

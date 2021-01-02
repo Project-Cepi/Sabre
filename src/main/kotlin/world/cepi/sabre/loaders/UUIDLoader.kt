@@ -14,4 +14,5 @@ object UUIDLoader : Loader {
             return@setUuidProvider getUUID(username)
         }
     }
+
 }

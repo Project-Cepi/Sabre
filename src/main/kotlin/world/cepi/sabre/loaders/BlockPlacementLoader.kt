@@ -9,4 +9,5 @@ object BlockPlacementLoader : Loader {
         if (config.useBlockRules)
             PlacementRules.init()
     }
+
 }
