@@ -4,24 +4,10 @@ import net.minestom.server.MinecraftServer
 import net.minestom.server.command.CommandProcessor
 import net.minestom.server.command.CommandSender
 import net.minestom.server.entity.Player
+import world.cepi.kstom.KommandProcessor
 
 
-class ShutdownCommand : CommandProcessor {
-    override fun getCommandName(): String {
-        return "stop"
-    }
-
-    override fun getAliases(): Array<String> {
-        return arrayOf()
-    }
-
-    override fun process(sender: CommandSender, command: String, args: Array<String>): Boolean {
-        MinecraftServer.stopCleanly()
-        return true
-    }
-
-    override fun hasAccess(player: Player): Boolean {
-        return player.permissionLevel >= 4
-    }
-}
-
+class ShutdownCommand : KommandProcessor("stop", listOf(), { it.permissionLevel >= 4 }, { _, _, _ ->
+    MinecraftServer.stopCleanly()
+    true
+})

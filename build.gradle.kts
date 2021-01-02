@@ -37,7 +37,7 @@ dependencies {
     implementation(kotlin("reflect"))
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "2ec727d5f8")
+    implementation("com.github.Minestom", "Minestom", "dad642a6a2")
 
     // OkHttp
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
@@ -79,4 +79,10 @@ configure<SourceSetContainer> {
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
+}
+
+configurations.all {
+    resolutionStrategy {
+        cacheChangingModulesFor(0, TimeUnit.SECONDS)
+    }
 }
