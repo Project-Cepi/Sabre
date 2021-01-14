@@ -6,6 +6,7 @@ import net.minestom.server.Bootstrap;
 public class BootstrapWrapper {
 
     public static void main(String[] args) {
+        System.setProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager");
         try {
             Bootstrap.bootstrap("world.cepi.sabre.SabreKt", args);
         } catch (Exception exception) {

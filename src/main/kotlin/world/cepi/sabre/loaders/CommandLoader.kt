@@ -1,5 +1,6 @@
 package world.cepi.sabre.loaders
 
+import com.google.common.base.Strings
 import net.minestom.server.MinecraftServer
 import net.minestom.server.command.CommandSender
 import net.minestom.server.utils.callback.CommandCallback
@@ -16,8 +17,10 @@ object CommandLoader : Loader {
         val commandManager = MinecraftServer.getCommandManager()
 
         commandManager.unknownCommandCallback =
-                CommandCallback { sender: CommandSender, _ ->
-                    sender.sendMessage(config.unknownMessage)
+                CommandCallback { sender: CommandSender, command: String ->
+                    if (!Strings.isNullOrEmpty(command)) {
+                        sender.sendMessage(config.unknownMessage)
+                    }
                 }
 
         commandManager.register(ShutdownCommand())
