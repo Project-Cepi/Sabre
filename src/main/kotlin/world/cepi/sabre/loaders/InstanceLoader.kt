@@ -23,7 +23,7 @@ object InstanceLoader : Loader {
             try {
 
                 if (config.useFlatGenerator) {
-                    it.respawnPoint = Position(0F, 64F, 0F)
+                    it.respawnPoint = Position(0.0, 64.0, 0.0)
                     it.addEventCallback(PlayerLoginEvent::class) {
                         setSpawningInstance(Instances.createInstanceContainer(Flat(
                                 FlatLayer(Block.BEDROCK, 1),
