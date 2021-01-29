@@ -7,7 +7,14 @@ import net.minestom.server.entity.Player
 import world.cepi.kstom.KommandProcessor
 
 
-class ShutdownCommand : KommandProcessor("stop", listOf(), { it.permissionLevel >= 4 }, { _, _, _ ->
-    MinecraftServer.stopCleanly()
-    true
-})
+class ShutdownCommand : KommandProcessor("stop",
+        listOf(),
+        { it.permissionLevel >= 4 },
+        lambda@{ sender, _, _ ->
+            if (sender.hasPermission("sabre.stop")) {
+                MinecraftServer.stopCleanly()
+                return@lambda true
+            }
+
+            false
+        })
