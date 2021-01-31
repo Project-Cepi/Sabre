@@ -49,7 +49,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 
     // implement KStom
-    implementation("com.github.Project-Cepi:KStom:4fc7563d18")
+    implementation("com.github.Project-Cepi:KStom:6c445a01fc")
 
     // Log4j Jul
     implementation("org.apache.logging.log4j:log4j-jul:2.14.0")
