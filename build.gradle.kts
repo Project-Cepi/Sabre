@@ -36,8 +36,14 @@ dependencies {
     // Use the Kotlin reflect library.
     implementation(kotlin("reflect"))
 
+    // Add support for kotlinx courotines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2")
+
+    // import kotlinx serialization
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "fa0c5050e4")
+    implementation("com.github.Minestom", "Minestom", "9fe2b8359c")
 
     // OkHttp
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
@@ -45,11 +51,9 @@ dependencies {
     // org.json
     implementation("org.json", "json", "20200518")
 
-    // import kotlinx serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 
     // implement KStom
-    implementation("com.github.Project-Cepi:KStom:6c445a01fc")
+    implementation("com.github.Project-Cepi:KStom:47ffd38ceb")
 
     // Log4j Jul
     implementation("org.apache.logging.log4j:log4j-jul:2.14.0")
