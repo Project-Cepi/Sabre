@@ -43,7 +43,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "9fe2b8359c")
+    implementation("com.github.Minestom", "Minestom", "5a308f0ced")
 
     // OkHttp
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")

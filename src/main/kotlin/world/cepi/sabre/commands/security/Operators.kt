@@ -24,12 +24,12 @@ class OpCommand: Command("op") {
         val level = ArgumentType.Integer("level")
 
         addSyntax({ sender, args ->
-            val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
+            val targetId = getUUID(args.get(target)) ?: return@addSyntax
 
             if (sender is Player) {
                 if (sender.permissionLevel >= 3 && sender.permissionLevel >= config.opLevel) {
                     Operators.add(targetId, config.opLevel)
-                    sender.sendMessage("${args.getWord("target")} was made a level ${config.opLevel} operator")
+                    sender.sendMessage("${args.get(target)} was made a level ${config.opLevel} operator")
                 } else {
                     sender.sendMessage("You don't have permission to add an op at the default level (${config.opLevel})")
                 }
@@ -37,12 +37,12 @@ class OpCommand: Command("op") {
         }, target)
 
         addSyntax({ source, args ->
-            val targetLevel = args.getInteger("level")
-            val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
+            val targetLevel = args.get(level)
+            val targetId = getUUID(args.get(target)) ?: return@addSyntax
 
             if ((source is Player && source.permissionLevel >= targetLevel && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
                 Operators.add(targetId, targetLevel)
-                source.sendMessage("${args.getWord("target")} was made a level $targetLevel operator")
+                source.sendMessage("${args.get(target)} was made a level $targetLevel operator")
             } else source.sendMessage("You don't have permission to add an op at level $targetLevel")
         }, target, level)
     }
@@ -55,12 +55,12 @@ class DeopCommand: Command("deop") {
         val target = ArgumentType.Word("target")
 
         addSyntax({ source, args ->
-            val targetId = getUUID(args.getWord("target")) ?: return@addSyntax
+            val targetId = getUUID(args.get(target)) ?: return@addSyntax
             val targetLevel = Operators.operators[targetId] as Int
 
             if ((source is Player && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
                 Operators.remove(targetId)
-                source.sendMessage("Revoked ${args.getWord("target")}'s operator privileges")
+                source.sendMessage("Revoked ${args.get(target)}'s operator privileges")
             } else source.sendMessage("You don't have permission to revoke a level $targetLevel's privileges")
         }, target)
     }

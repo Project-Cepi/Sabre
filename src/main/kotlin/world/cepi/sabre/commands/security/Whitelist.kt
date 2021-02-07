@@ -23,7 +23,7 @@ class WhitelistCommand : Command("whitelist") {
 
         addSyntax({ source, args ->
 
-            val uuid = getUUID(args.getWord("player"))
+            val uuid = getUUID(args.get(playerArg))
 
             if (uuid == null) {
                 source.sendMessage("That user does not exist!")
@@ -31,16 +31,16 @@ class WhitelistCommand : Command("whitelist") {
             }
 
             if (uuid.isWhitelisted()) {
-                source.sendMessage("${args.getWord("player")} is already on the whitelist.")
+                source.sendMessage("${args.get(playerArg)} is already on the whitelist.")
                 return@addSyntax
             }
 
             Whitelist.add(uuid)
-            source.sendMessage("Added ${args.getWord("player")} to the whitelist!")
+            source.sendMessage("Added ${args.get(playerArg)} to the whitelist!")
         }, add, playerArg)
 
         addSyntax({ source, args ->
-            val uuid = getUUID(args.getWord("player"))
+            val uuid = getUUID(args.get(playerArg))
 
             if (uuid == null) {
                 source.sendMessage("That user does not exist!")
@@ -53,7 +53,7 @@ class WhitelistCommand : Command("whitelist") {
             }
 
             Whitelist.remove(uuid)
-            source.sendMessage("Removed ${args.getWord("player")} from the whitelist!")
+            source.sendMessage("Removed ${args.get(playerArg)} from the whitelist!")
         }, remove, playerArg)
     }
 }
