@@ -4,7 +4,7 @@ import net.minestom.server.MinecraftServer
 import net.minestom.server.command.CommandProcessor
 import net.minestom.server.command.CommandSender
 import net.minestom.server.entity.Player
-import world.cepi.kstom.KommandProcessor
+import world.cepi.kstom.command.KommandProcessor
 
 
 class ShutdownCommand : KommandProcessor("stop",
