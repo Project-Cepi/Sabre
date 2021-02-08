@@ -52,7 +52,7 @@ dependencies {
     implementation("org.json", "json", "20200518")
 
     // implement KStom
-    implementation("com.github.Project-Cepi:KStom:6e996d24c4")
+    implementation("com.github.Project-Cepi:KStom:700ad836a1")
 
     // Log4j Jul
     implementation("org.apache.logging.log4j:log4j-jul:2.14.0")
