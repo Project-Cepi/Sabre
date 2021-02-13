@@ -11,7 +11,6 @@ import world.cepi.sabre.instances.Instances
 import world.cepi.sabre.instances.generators.flat.Flat
 import world.cepi.sabre.instances.generators.flat.FlatLayer
 import world.cepi.kstom.addEventCallback
-import world.cepi.sabre.commands.security.isWhitelisted
 
 object InstanceLoader : Loader {
 
@@ -37,9 +36,6 @@ object InstanceLoader : Loader {
                 }
 
                 it.addEventCallback(PlayerLoginEvent::class) {
-
-                    // Kicks the player if they are not on the whitelist
-                    if (config.whitelist && !player.uuid.isWhitelisted()) player.kick("You are not on the whitelist for this server!")
 
                     // OPs players when they join if they are on the ops list
                     player.permissionLevel = getPermissionLevel(player) ?: 0
