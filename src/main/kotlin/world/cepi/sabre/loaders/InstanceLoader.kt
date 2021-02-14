@@ -18,18 +18,20 @@ object InstanceLoader : Loader {
 
         val connectionManager = MinecraftServer.getConnectionManager()
 
+        val instance = Instances.createInstanceContainer(Flat(
+            FlatLayer(Block.BEDROCK, 1),
+            FlatLayer(Block.STONE, 25),
+            FlatLayer(Block.DIRT, 7),
+            FlatLayer(Block.GRASS_BLOCK, 1)
+        ))
+
         connectionManager.addPlayerInitialization {
             try {
 
                 if (config.useFlatGenerator) {
                     it.respawnPoint = Position(0.0, 64.0, 0.0)
                     it.addEventCallback(PlayerLoginEvent::class) {
-                        setSpawningInstance(Instances.createInstanceContainer(Flat(
-                                FlatLayer(Block.BEDROCK, 1),
-                                FlatLayer(Block.STONE, 25),
-                                FlatLayer(Block.DIRT, 7),
-                                FlatLayer(Block.GRASS_BLOCK, 1)
-                        )))
+                        setSpawningInstance(instance)
 
                         spawningInstance!!.loadChunk(0, 0)
                     }
