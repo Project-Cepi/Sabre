@@ -9,9 +9,9 @@ import world.cepi.kstom.command.KommandProcessor
 
 class ShutdownCommand : KommandProcessor("stop",
         listOf(),
-        { it.permissionLevel >= 4 },
+        { it.permissionLevel >= 4 || it.hasPermission("sabre.stop") },
         lambda@{ sender, _, _ ->
-            if (sender.hasPermission("sabre.stop")) {
+            if (sender.hasPermission("sabre.stop") || (sender is Player && sender.permissionLevel >= 4)) {
                 MinecraftServer.stopCleanly()
                 return@lambda true
             }
