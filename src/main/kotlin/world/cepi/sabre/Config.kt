@@ -18,9 +18,6 @@ class Config(
         /** The port the server is hosted on. The universal default is `25565` */
         val port: Int = 25565,
 
-        /** Whether or not the whitelist is enabled. Defaults to false */
-        val whitelist: Boolean = false,
-
         /** Default op level. Defaults to 4 */
         val opLevel: Int = 4,
 
