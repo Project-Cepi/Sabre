@@ -43,7 +43,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "df2ee23a7c")
+    implementation("com.github.Minestom", "Minestom", "7bd9283e17")
 
     // OkHttp
     implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
@@ -52,7 +52,7 @@ dependencies {
     implementation("org.json", "json", "20200518")
 
     // implement KStom
-    implementation("com.github.Project-Cepi:KStom:120c4c5475")
+    implementation("com.github.Project-Cepi:KStom:6d054839bf")
 
     // Log4j Jul
     implementation("org.apache.logging.log4j:log4j-jul:2.14.0")
