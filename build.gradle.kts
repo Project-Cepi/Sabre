@@ -1,5 +1,5 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.4.30"
@@ -92,3 +92,6 @@ configurations.all {
         cacheChangingModulesFor(0, TimeUnit.SECONDS)
     }
 }
+
+tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "11" }
+
