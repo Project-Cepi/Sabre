@@ -6,13 +6,13 @@ import world.cepi.sabre.Forwarder
 import world.cepi.sabre.Config.Companion.config
 
 object VelocityLoader : Loader {
-    override fun load() {
+    override fun invoke() {
         if (config.proxy == Forwarder.VELOCITY) VelocityProxy.enable(config.velocitySecret)
     }
 }
 
 object BungeeLoader : Loader {
-    override fun load() {
+    override fun invoke() {
         if (config.proxy == Forwarder.BUNGEE) BungeeCordProxy.enable()
     }
 }

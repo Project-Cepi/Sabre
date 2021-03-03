@@ -25,9 +25,7 @@ fun main() {
 }
 
 object Sabre {
-    val logger: Logger = MinecraftServer.LOGGER
     const val CONFIG_LOCATION = "./sabre-config.json"
     const val INSTANCE_STORAGE_LOCATION = "./instances"
-    const val WHITELIST_LOCATION = "./whitelist.json"
     const val OP_LOCATION = "./ops.json"
 }

@@ -14,7 +14,7 @@ import world.cepi.kstom.addEventCallback
 
 object InstanceLoader : Loader {
 
-    override fun load() {
+    override fun invoke() {
 
         val connectionManager = MinecraftServer.getConnectionManager()
 

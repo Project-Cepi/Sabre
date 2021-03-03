@@ -11,7 +11,7 @@ import world.cepi.sabre.Config.Companion.config
 
 object CommandLoader : Loader {
 
-    override fun load() {
+    override fun invoke() {
 
         val commandManager = MinecraftServer.getCommandManager()
 

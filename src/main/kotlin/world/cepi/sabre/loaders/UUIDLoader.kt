@@ -5,7 +5,7 @@ import world.cepi.sabre.utils.getUUID
 
 object UUIDLoader : Loader {
 
-    override fun load() {
+    override fun invoke() {
 
         val connectionManager = MinecraftServer.getConnectionManager()
 

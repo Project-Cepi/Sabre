@@ -104,4 +104,4 @@ object Operators {
  *
  * @return The player's permission level.
  */
-fun getPermissionLevel(player: Player): Int? = Operators.operators[player.uuid]
+internal fun getPermissionLevel(player: Player): Int? = Operators.operators[player.uuid]

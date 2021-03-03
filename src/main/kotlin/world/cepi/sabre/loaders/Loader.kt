@@ -6,7 +6,7 @@ import net.minestom.server.MinecraftServer
 interface Loader {
 
     /** Load function that calls in sequential order in the [Loaders] enum. */
-    fun load()
+    operator fun invoke()
 }
 
 /** Enum representation of all loaders, act independently from eachother.*/
@@ -29,7 +29,7 @@ enum class Loaders(val loader: Loader) {
 fun load() {
     Loaders.values().forEach {
         try {
-            it.loader.load()
+            it.loader()
         } catch (e: Exception) {
             e.printStackTrace()
             MinecraftServer.LOGGER.warn("Logger ${it.name} failed to load.")

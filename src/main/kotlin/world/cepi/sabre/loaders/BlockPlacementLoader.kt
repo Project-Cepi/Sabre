@@ -5,7 +5,7 @@ import world.cepi.sabre.Config.Companion.config
 
 object BlockPlacementLoader : Loader {
 
-    override fun load() {
+    override fun invoke() {
         if (config.useBlockRules)
             PlacementRules.init()
     }

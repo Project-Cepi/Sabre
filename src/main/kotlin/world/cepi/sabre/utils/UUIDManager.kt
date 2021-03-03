@@ -1,13 +1,13 @@
 package world.cepi.sabre.utils
 
-import net.minestom.server.MinecraftServer
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import org.json.JSONObject
+import java.io.BufferedReader
+import java.io.InputStream
+import java.io.InputStreamReader
 import java.math.BigInteger
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.*
-
-private val client = OkHttpClient()
 
 /**
  * Turns a UUID with no hyphens (`-`) to a UUID containing hyphens
@@ -32,11 +32,21 @@ fun toValidUuid(string: String): UUID {
  * @return A [UUID] retrieved from the `Mojang` API.
  */
 fun getUUID(username: String): UUID? {
-    val response = client.newCall(Request.Builder()
-            .url("https://api.mojang.com/users/profiles/minecraft/$username")
-            .build()).execute()
+    val connection = URL("https://api.mojang.com/users/profiles/minecraft/$username").openConnection() as HttpURLConnection
 
-    return if (response.code == 204) null
-    else toValidUuid(JSONObject(response.body?.string())["id"].toString())
+    val responseCode = connection.responseCode
+    val inputStream: InputStream = if (responseCode in 200..299) {
+        return null
+    } else {
+        connection.errorStream
+    }
+
+    val `in` = BufferedReader(
+        InputStreamReader(
+            inputStream
+        )
+    )
+
+    return toValidUuid(JSONObject(`in`)["id"].toString())
 }
 

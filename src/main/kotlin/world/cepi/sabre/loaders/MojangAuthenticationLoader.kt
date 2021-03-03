@@ -5,7 +5,7 @@ import world.cepi.sabre.Config.Companion.config
 
 object MojangAuthenticationLoader : Loader {
 
-    override fun load() {
+    override fun invoke() {
         if (config.onlineMode)
             MojangAuth.init()
     }

@@ -21,7 +21,7 @@ class Flat(
         for (x in 0 until Chunk.CHUNK_SIZE_X) for (z in 0 until Chunk.CHUNK_SIZE_Z) {
             var y = 0
             for (layer in layers) for (yLoop in y until y + layer.thickness) {
-                batch.setBlock(x, y, z, layer.block)
+                batch.setBlockStateId(x, y, z, layer.block.blockId, null)
                 y++
             }
         }
