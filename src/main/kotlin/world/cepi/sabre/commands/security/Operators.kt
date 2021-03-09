@@ -1,5 +1,7 @@
 package world.cepi.sabre.commands.security
 
+import it.unimi.dsi.fastutil.objects.Object2IntMap
+import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.serializer
@@ -8,13 +10,14 @@ import net.minestom.server.command.ConsoleSender
 import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.Player
+import world.cepi.kstom.command.addSyntax
 import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.Sabre
 import world.cepi.sabre.utils.getUUID
 import java.io.File
 import java.util.*
 
-class OpCommand: Command("op") {
+object OpCommand: Command("op") {
     init {
         setDefaultExecutor { sender, _ ->
             sender.sendMessage("Usage: /op <player> <level>")
@@ -23,7 +26,7 @@ class OpCommand: Command("op") {
         val target = ArgumentType.Word("target")
         val level = ArgumentType.Integer("level")
 
-        addSyntax({ sender, args ->
+        addSyntax(target) { sender, args ->
             val targetId = getUUID(args.get(target)) ?: return@addSyntax
 
             if (sender is Player) {
@@ -34,9 +37,9 @@ class OpCommand: Command("op") {
                     sender.sendMessage("You don't have permission to add an op at the default level (${config.opLevel})")
                 }
             } else Operators.add(targetId, config.opLevel)
-        }, target)
+        }
 
-        addSyntax({ source, args ->
+        addSyntax(target, level) { source, args ->
             val targetLevel = args.get(level)
             val targetId = getUUID(args.get(target)) ?: return@addSyntax
 
@@ -44,39 +47,39 @@ class OpCommand: Command("op") {
                 Operators.add(targetId, targetLevel)
                 source.sendMessage("${args.get(target)} was made a level $targetLevel operator")
             } else source.sendMessage("You don't have permission to add an op at level $targetLevel")
-        }, target, level)
+        }
     }
 }
 
-class DeopCommand: Command("deop") {
+object DeopCommand: Command("deop") {
     init {
         setDefaultExecutor { sender, _ -> sender.sendMessage("Usage: /deop <player") }
 
         val target = ArgumentType.Word("target")
 
-        addSyntax({ source, args ->
+        addSyntax(target) { source, args ->
             val targetId = getUUID(args.get(target)) ?: return@addSyntax
-            val targetLevel = Operators.operators[targetId] as Int
+            val targetLevel = Operators.operators.getInt(targetId)
 
             if ((source is Player && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
                 Operators.remove(targetId)
                 source.sendMessage("Revoked ${args.get(target)}'s operator privileges")
             } else source.sendMessage("You don't have permission to revoke a level $targetLevel's privileges")
-        }, target)
+        }
     }
 }
 
 object Operators {
     private val operatorFile = File(Sabre.OP_LOCATION)
-    var operators: MutableMap<UUID, Int>
+    val operators: Object2IntMap<UUID> = Object2IntOpenHashMap()
 
-    private val serilalizer: KSerializer<Map<String, Int>> = MapSerializer(String.serializer(), Int.serializer())
+    private val serilalizer = MapSerializer(String.serializer(), Int.serializer())
 
     init {
-        operators = try {
-            Json.decodeFromString(serilalizer, operatorFile.readText()).mapKeys { UUID.fromString(it.key) }.toMutableMap()
+        try {
+            operators.putAll(Json.decodeFromString(serilalizer, operatorFile.readText()).mapKeys { UUID.fromString(it.key) })
         } catch (e: Exception) {
-            mutableMapOf()
+
         }
     }
 
@@ -86,7 +89,7 @@ object Operators {
     }
 
     fun remove(id: UUID) {
-        operators.remove(id)
+        operators.removeInt(id)
         save()
     }
 
@@ -104,4 +107,4 @@ object Operators {
  *
  * @return The player's permission level.
  */
-internal fun getPermissionLevel(player: Player): Int? = Operators.operators[player.uuid]
+internal fun getPermissionLevel(player: Player): Int = Operators.operators.getInt(player.uuid)

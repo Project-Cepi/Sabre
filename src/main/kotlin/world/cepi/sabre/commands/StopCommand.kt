@@ -8,7 +8,7 @@ import net.minestom.server.entity.Player
 import world.cepi.kstom.command.KommandProcessor
 
 
-class ShutdownCommand : KommandProcessor("stop",
+object ShutdownCommand : KommandProcessor("stop",
         listOf(),
         { it.permissionLevel >= 4 || it.hasPermission("sabre.stop") },
         lambda@{ sender, _, _ ->

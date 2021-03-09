@@ -42,11 +42,11 @@ dependencies {
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
+    // Use the JUpiter test library.
+    testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
+
     // Compile Minestom into project
     implementation("com.github.Minestom", "Minestom", "7241dbdcf7")
-
-    // OkHttp
-    implementation("com.squareup.okhttp3", "okhttp", "4.9.0")
 
     // org.json
     implementation("org.json", "json", "20200518")
@@ -94,4 +94,3 @@ configurations.all {
 }
 
 tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "11" }
-

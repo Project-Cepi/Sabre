@@ -46,7 +46,7 @@ object InstanceLoader : Loader {
                 it.addEventCallback(PlayerLoginEvent::class) {
 
                     // OPs players when they join if they are on the ops list
-                    player.permissionLevel = getPermissionLevel(player) ?: 0
+                    player.permissionLevel = getPermissionLevel(player)
                 }
 
                 it.addEventCallback(PlayerSpawnEvent::class) {

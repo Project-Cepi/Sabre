@@ -22,8 +22,7 @@ object Instances {
                     MinecraftServer.getStorageManager().getLocation(Sabre.INSTANCE_STORAGE_LOCATION)
     ): InstanceContainer {
         val instanceManager = MinecraftServer.getInstanceManager()
-        val instance: InstanceContainer
-        instance = if (storeChunks)
+        val instance: InstanceContainer = if (storeChunks)
             instanceManager.createInstanceContainer(storageLocation)
         else
             instanceManager.createInstanceContainer()

@@ -22,9 +22,9 @@ object CommandLoader : Loader {
                     }
                 }
 
-        commandManager.register(ShutdownCommand())
-        commandManager.register(OpCommand())
-        commandManager.register(DeopCommand())
+        commandManager.register(ShutdownCommand)
+        commandManager.register(OpCommand)
+        commandManager.register(DeopCommand)
     }
 
 }

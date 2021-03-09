@@ -1,7 +1,6 @@
 package world.cepi.sabre
 
 import net.minestom.server.MinecraftServer
-import org.slf4j.Logger
 import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.loaders.load
 import kotlin.system.exitProcess
