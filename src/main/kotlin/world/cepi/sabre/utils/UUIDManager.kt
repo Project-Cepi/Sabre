@@ -20,7 +20,7 @@ import java.util.*
  */
 fun toValidUuid(string: String): UUID {
     return UUID(
-            BigInteger(string.substring(0, 16), 16).toLong(),
+            BigInteger(string.substring(0..16), 16).toLong(),
             BigInteger(string.substring(16), 16).toLong())
 }
 
@@ -36,17 +36,11 @@ fun getUUID(username: String): UUID? {
 
     val responseCode = connection.responseCode
     val inputStream: InputStream = if (responseCode in 200..299) {
-        return null
+        connection.inputStream
     } else {
-        connection.errorStream
+        return null
     }
 
-    val `in` = BufferedReader(
-        InputStreamReader(
-            inputStream
-        )
-    )
-
-    return toValidUuid(JSONObject(`in`)["id"].toString())
+    return toValidUuid(JSONObject(inputStream)["id"].toString())
 }
 
