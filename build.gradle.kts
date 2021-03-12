@@ -46,7 +46,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "68ef3e31af")
+    implementation("com.github.Minestom", "Minestom", "de66dcebe9")
 
     // org.json
     implementation("org.json", "json", "20200518")
