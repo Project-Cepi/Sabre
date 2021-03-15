@@ -55,7 +55,7 @@ dependencies {
     implementation("com.github.Project-Cepi:KStom:6d054839bf")
 
     // Log4j Jul
-    implementation("org.apache.logging.log4j:log4j-jul:2.14.0")
+    implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
 }
 
 tasks {
