@@ -1,6 +1,7 @@
 package world.cepi.sabre.loaders
 
 import com.google.common.base.Strings
+import net.kyori.adventure.text.Component
 import net.minestom.server.MinecraftServer
 import net.minestom.server.command.CommandSender
 import net.minestom.server.utils.callback.CommandCallback
@@ -18,7 +19,7 @@ object CommandLoader : Loader {
         commandManager.unknownCommandCallback =
                 CommandCallback { sender: CommandSender, command: String ->
                     if (!Strings.isNullOrEmpty(command)) {
-                        sender.sendMessage(config.unknownMessage)
+                        sender.sendMessage(Component.text(config.unknownMessage))
                     }
                 }
 
