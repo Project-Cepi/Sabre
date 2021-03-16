@@ -6,9 +6,14 @@ import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.Json
+import net.kyori.adventure.identity.Identity
+import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.event.HoverEvent
+import net.kyori.adventure.text.format.NamedTextColor
 import net.minestom.server.command.ConsoleSender
 import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.arguments.ArgumentType
+import net.minestom.server.entity.EntityType
 import net.minestom.server.entity.Player
 import world.cepi.kstom.command.addSyntax
 import world.cepi.sabre.Config.Companion.config
@@ -20,7 +25,7 @@ import java.util.*
 object OpCommand: Command("op") {
     init {
         setDefaultExecutor { sender, _ ->
-            sender.sendMessage("Usage: /op <player> <level>")
+            sender.sendMessage(Component.text("Usage: /op <player> <level>"))
         }
 
         val target = ArgumentType.Word("target")
@@ -32,9 +37,11 @@ object OpCommand: Command("op") {
             if (sender is Player) {
                 if (sender.permissionLevel >= 3 && sender.permissionLevel >= config.opLevel) {
                     Operators.add(targetId, config.opLevel)
-                    sender.sendMessage("${args.get(target)} was made a level ${config.opLevel} operator")
+                    sender.sendMessage(Component.text(args.get(target))
+                        .hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId))
+                        .append(Component.text("was made a level ${config.opLevel} operator")))
                 } else {
-                    sender.sendMessage("You don't have permission to add an op at the default level (${config.opLevel})")
+                    sender.sendMessage(Component.text("You don't have permission to add an op at the default level (${config.opLevel})", NamedTextColor.RED))
                 }
             } else Operators.add(targetId, config.opLevel)
         }
@@ -45,15 +52,17 @@ object OpCommand: Command("op") {
 
             if ((source is Player && source.permissionLevel >= targetLevel && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
                 Operators.add(targetId, targetLevel)
-                source.sendMessage("${args.get(target)} was made a level $targetLevel operator")
-            } else source.sendMessage("You don't have permission to add an op at level $targetLevel")
+                source.sendMessage(Component.text(args.get(target))
+                    .hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId))
+                    .append(Component.text("was made a level $targetLevel operator")))
+            } else source.sendMessage(Component.text("You don't have permission to add an op at level $targetLevel!", NamedTextColor.RED))
         }
     }
 }
 
 object DeopCommand: Command("deop") {
     init {
-        setDefaultExecutor { sender, _ -> sender.sendMessage("Usage: /deop <player") }
+        setDefaultExecutor { sender, _ -> sender.sendMessage(Component.text("Usage: /deop <player")) }
 
         val target = ArgumentType.Word("target")
 
@@ -63,8 +72,10 @@ object DeopCommand: Command("deop") {
 
             if ((source is Player && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
                 Operators.remove(targetId)
-                source.sendMessage("Revoked ${args.get(target)}'s operator privileges")
-            } else source.sendMessage("You don't have permission to revoke a level $targetLevel's privileges")
+                source.sendMessage(Component.text("Revoked ")
+                    .append(Component.text(args.get(target)).hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId)))
+                    .append(Component.text("s operator privileges")))
+            } else source.sendMessage(Component.text("You don't have permission to revoke a level $targetLevel's privileges", NamedTextColor.RED))
         }
     }
 }
