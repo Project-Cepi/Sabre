@@ -34,16 +34,14 @@ object OpCommand: Command("op") {
         addSyntax(target) { sender, args ->
             val targetId = getUUID(args.get(target)) ?: return@addSyntax
 
-            if (sender is Player) {
-                if (sender.permissionLevel >= 3 && sender.permissionLevel >= config.opLevel) {
-                    Operators.add(targetId, config.opLevel)
-                    sender.sendMessage(Component.text(args.get(target))
-                        .hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId))
-                        .append(Component.text(" was made a level ${config.opLevel} operator")))
-                } else {
-                    sender.sendMessage(Component.text("You don't have permission to add an op at the default level (${config.opLevel})", NamedTextColor.RED))
-                }
-            } else Operators.add(targetId, config.opLevel)
+            if (sender is Player && (sender.permissionLevel < 3 || sender.permissionLevel < config.opLevel)) {
+                sender.sendMessage(Component.text("You don't have permission to add an op at the default level (${config.opLevel})", NamedTextColor.RED))
+            } else {
+                Operators.add(targetId, config.opLevel)
+                sender.sendMessage(Component.text(args.get(target))
+                    .hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId))
+                    .append(Component.text(" was made a level ${config.opLevel} operator")))
+            }
         }
 
         addSyntax(target, level) { source, args ->
