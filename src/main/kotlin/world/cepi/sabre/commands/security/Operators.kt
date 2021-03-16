@@ -39,7 +39,7 @@ object OpCommand: Command("op") {
                     Operators.add(targetId, config.opLevel)
                     sender.sendMessage(Component.text(args.get(target))
                         .hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId))
-                        .append(Component.text("was made a level ${config.opLevel} operator")))
+                        .append(Component.text(" was made a level ${config.opLevel} operator")))
                 } else {
                     sender.sendMessage(Component.text("You don't have permission to add an op at the default level (${config.opLevel})", NamedTextColor.RED))
                 }
@@ -54,7 +54,7 @@ object OpCommand: Command("op") {
                 Operators.add(targetId, targetLevel)
                 source.sendMessage(Component.text(args.get(target))
                     .hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId))
-                    .append(Component.text("was made a level $targetLevel operator")))
+                    .append(Component.text(" was made a level $targetLevel operator")))
             } else source.sendMessage(Component.text("You don't have permission to add an op at level $targetLevel!", NamedTextColor.RED))
         }
     }
