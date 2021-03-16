@@ -39,7 +39,7 @@ fun toValidUuid(string: String): UUID {
 fun getUUID(username: String): UUID? {
     val connection = URL("https://api.mojang.com/users/profiles/minecraft/$username").openConnection() as HttpURLConnection
 
-    val inputStream: InputStream = if (connection.responseCode in 200..299) {
+    val inputStream: InputStream = if (connection.responseCode == 200) {
         connection.inputStream
     } else {
         return null
