@@ -21,10 +21,10 @@ fun toValidUuid(string: String): UUID {
     val builder: StringBuilder = StringBuilder(string)
 
     /* Backwards adding to avoid index adjustments */
-    builder.insert(20, "-")
-    builder.insert(16, "-")
-    builder.insert(12, "-")
-    builder.insert(8, "-")
+    builder.insert(20, '-')
+    builder.insert(16, '-')
+    builder.insert(12, '-')
+    builder.insert(8, '-')
 
     return UUID.fromString(builder.toString())
 }

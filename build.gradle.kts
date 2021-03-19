@@ -46,13 +46,13 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.1")
 
     // Compile Minestom into project
-    implementation("com.github.kezz", "Minestom", "ec9b2023e5")
+    implementation("com.github.Project-Cepi", "Minestom", "c26756c487")
 
     // org.json
     implementation("org.json", "json", "20200518")
 
     // implement KStom
-    implementation("com.github.Project-Cepi","KStom", "9950e8305f")
+    implementation("com.github.Project-Cepi","KStom", "cbcf67f09c")
 
     // Log4j Jul
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
