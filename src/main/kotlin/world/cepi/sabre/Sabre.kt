@@ -5,7 +5,6 @@ import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.loaders.load
 import kotlin.system.exitProcess
 
-
 fun main() {
     try {
 
