@@ -1,9 +1,7 @@
 package world.cepi.sabre.utils
 
-import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStream
-import java.math.BigInteger
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.*
@@ -18,7 +16,7 @@ import java.util.*
  * @return A valid UUID
  */
 fun toValidUuid(string: String): UUID {
-    val builder: StringBuilder = StringBuilder(string)
+    val builder: StringBuilder = StringBuilder(32).append(string)
 
     /* Backwards adding to avoid index adjustments */
     builder.insert(20, '-')
@@ -45,6 +43,7 @@ fun getUUID(username: String): UUID? {
         return null
     }
 
-    return toValidUuid(JSONObject(inputStream.bufferedReader().use(BufferedReader::readText))["id"].toString())
+    // Can break at any time.
+    return toValidUuid(inputStream.bufferedReader().use(BufferedReader::readText).substring(21, 21 + 32))
 }
 

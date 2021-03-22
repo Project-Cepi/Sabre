@@ -2,8 +2,13 @@ package world.cepi.sabre.loaders
 
 import net.minestom.server.extras.bungee.BungeeCordProxy
 import net.minestom.server.extras.velocity.VelocityProxy
-import world.cepi.sabre.Forwarder
 import world.cepi.sabre.Config.Companion.config
+
+enum class Forwarder {
+    BUNGEE,
+    VELOCITY,
+    NONE
+}
 
 object VelocityLoader : Loader {
     override fun invoke() {

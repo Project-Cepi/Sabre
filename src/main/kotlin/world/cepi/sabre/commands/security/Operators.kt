@@ -1,12 +1,9 @@
 package world.cepi.sabre.commands.security
 
-import it.unimi.dsi.fastutil.objects.Object2IntMap
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
-import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.Json
-import net.kyori.adventure.identity.Identity
 import net.kyori.adventure.text.Component
 import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.text.format.NamedTextColor
@@ -80,7 +77,7 @@ object DeopCommand: Command("deop") {
 
 object Operators {
     private val operatorFile = File(Sabre.OP_LOCATION)
-    val operators: Object2IntMap<UUID> = Object2IntOpenHashMap()
+    val operators = Object2IntOpenHashMap<UUID>()
 
     private val serilalizer = MapSerializer(String.serializer(), Int.serializer())
 

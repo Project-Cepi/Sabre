@@ -1,61 +1,61 @@
 package world.cepi.sabre
 
-import jdk.jfr.Threshold
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import world.cepi.sabre.loaders.Forwarder
 import java.io.File
 
 
 /** This class represents Sabre's config, and contains all the properties that can be configured in Sabre */
 @Serializable
 class Config(
-        /** The IP that Minestom is hosted on -- For local hosting, feel free to use `0.0.0.0` or `localhost` */
-        val ip: String = "0.0.0.0",
+    /** The IP that Minestom is hosted on -- For local hosting, feel free to use `0.0.0.0` or `localhost` */
+    val ip: String = "0.0.0.0",
 
-        /** The port the server is hosted on. The universal default is `25565` */
-        val port: Int = 25565,
+    /** The port the server is hosted on. The universal default is `25565` */
+    val port: Int = 25565,
 
-        /** Default op level. Defaults to 4 */
-        val opLevel: Int = 4,
+    /** Default op level. Defaults to 4 */
+    val opLevel: Int = 4,
 
-        /** If the server should use Mojang Authentication or not. */
-        val onlineMode: Boolean = true,
+    /** If the server should use Mojang Authentication or not. */
+    val onlineMode: Boolean = true,
 
-        /** Whether or not the server should use forwarding.*/
-        val proxy: Forwarder = Forwarder.NONE,
+    /** Whether or not the server should use forwarding.*/
+    val proxy: Forwarder = Forwarder.NONE,
 
-        /** The secret for velocity. Not used if bungeecord is set as the proxy value. */
-        val velocitySecret: String = "",
+    /** The secret for velocity. Not used if bungeecord is set as the proxy value. */
+    val velocitySecret: String = "",
 
-        /** The base view distance of all chunks. */
-        val renderDistance: Int = 8,
+    /** The base view distance of all chunks. */
+    val renderDistance: Int = 8,
 
-        /** How far the player can see entities. */
-        val entityDistance: Int = 8,
+    /** How far the player can see entities. */
+    val entityDistance: Int = 8,
 
-        /** Use the built in Dynamic flat generator */
-        val useFlatGenerator: Boolean = true,
+    /** Use the built in Dynamic flat generator */
+    val useFlatGenerator: Boolean = true,
 
-        /** Fixes a crash with Optifine clients by registering certain biomes.
+    /** Fixes a crash with Optifine clients by registering certain biomes.
          * If you specifically do not want these biomes to be registered, set to false.
          * But be aware that Optifine clients will crash when they connect to the server
          * unless you specify them */
-        val optifineSupport: Boolean = true,
+    val optifineSupport: Boolean = true,
 
-        /** The unknown message for an unknown command. */
-        val unknownMessage: String = "Unknown command.",
+    /** The unknown message for an unknown command. */
+    val unknownMessage: String = "Unknown command.",
 
-        /** Uses Minestom's vanilla block rules to place blocks correctly. */
-        val useBlockRules: Boolean = true,
+    /** Uses Minestom's vanilla block rules to place blocks correctly. */
+    val useBlockRules: Boolean = true,
 
-        /** The compression threshold for the network. Useful to set if you're behind a proxy. */
-        val compressionThreshold: Int = 256,
+    /** The compression threshold for the network. Useful to set if you're behind a proxy. */
+    val compressionThreshold: Int = 256,
 
-        /** If the server should cache packets. */
-        val cachePackets: Boolean = true
+    /** If the server should cache packets. */
+    val cachePackets: Boolean = true
 ) {
 
     fun save() = File(Sabre.CONFIG_LOCATION).writeText(format.encodeToString(this))
@@ -88,10 +88,4 @@ class Config(
         private fun exists(): Boolean = File(Sabre.CONFIG_LOCATION).exists()
     }
 
-}
-
-enum class Forwarder {
-    BUNGEE,
-    VELOCITY,
-    NONE
 }
