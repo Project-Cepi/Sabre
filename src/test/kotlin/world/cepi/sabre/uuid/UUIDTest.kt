@@ -1,5 +1,6 @@
 package world.cepi.sabre.uuid
 
+import org.junit.jupiter.api.RepeatedTest
 import org.junit.jupiter.api.Test
 import world.cepi.sabre.utils.getUUID
 import world.cepi.sabre.utils.toValidUuid
@@ -7,7 +8,7 @@ import java.util.*
 
 class UUIDTest {
 
-    @Test
+    @RepeatedTest(3)
     fun `UUIDs should be parsed correctly`() {
 
         val uuid = UUID.randomUUID()
