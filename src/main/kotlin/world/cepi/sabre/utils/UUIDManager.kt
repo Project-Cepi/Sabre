@@ -35,7 +35,7 @@ fun getUUID(username: String): UUID? {
         return null
     }
 
-    inputStream.skipNBytes(21) // Skips the first few characters in JSON
+    inputStream.skip(21) // Skips the first few characters in JSON
 
     // Can break at any time.
     return toValidUuid(String(inputStream.readNBytes(uuidRadix * 2))) // reads the length of the UUID
