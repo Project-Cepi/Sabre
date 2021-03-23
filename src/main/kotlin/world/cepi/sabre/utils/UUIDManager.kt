@@ -4,7 +4,36 @@ import java.io.BufferedReader
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
+import java.nio.charset.StandardCharsets
 import java.util.*
+
+const val radix = 16
+
+fun uuidOptimizedParseLong(s: CharSequence): Long {
+
+    var i = 0
+
+    var result = 0L
+
+    while (i < radix - 1) { // Length of UUID
+        // Accumulating negatively avoids surprises near MAX_VALUE
+        val digit = Character.digit(s[i], radix).toLong()
+        result *= radix.toLong()
+        i++
+        result += digit
+    }
+
+    return result
+}
+
+fun uuidOptimizedParseUnsignedLong(s: String): Long {
+
+    val first = uuidOptimizedParseLong(s)
+    val second = Character.digit(s[radix - 1], radix)
+
+    return first * radix + second
+
+}
 
 /**
  * Turns a UUID with no hyphens (`-`) to a UUID containing hyphens
@@ -16,15 +45,10 @@ import java.util.*
  * @return A valid UUID
  */
 fun toValidUuid(string: String): UUID {
-    val builder: StringBuilder = StringBuilder(32).append(string)
-
-    /* Backwards adding to avoid index adjustments */
-    builder.insert(20, '-')
-    builder.insert(16, '-')
-    builder.insert(12, '-')
-    builder.insert(8, '-')
-
-    return UUID.fromString(builder.toString())
+    return UUID(
+        uuidOptimizedParseUnsignedLong(string.substring(0, radix)),
+        uuidOptimizedParseUnsignedLong(string.substring(radix))
+    )
 }
 
 /**
@@ -43,7 +67,9 @@ fun getUUID(username: String): UUID? {
         return null
     }
 
+    inputStream.skipNBytes(21) // Skips the first few characters in JSON
+
     // Can break at any time.
-    return toValidUuid(inputStream.bufferedReader().use(BufferedReader::readText).substring(21, 21 + 32))
+    return toValidUuid(String(inputStream.readNBytes(radix * 2), StandardCharsets.UTF_8)) // reads the length of the UUID
 }
 
