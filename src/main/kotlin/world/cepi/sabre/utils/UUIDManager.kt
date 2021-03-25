@@ -35,7 +35,19 @@ fun getUUID(username: String): UUID? {
         return null
     }
 
-    inputStream.skip(21) // Skips the first few characters in JSON
+    var idFound = false
+    while (!idFound) {
+        if (
+            inputStream.read().toChar() == '"'
+            && inputStream.read().toChar() == 'i'
+            && inputStream.read().toChar() == 'd'
+            && inputStream.read().toChar() == '"'
+            && inputStream.read().toChar() == ':'
+        ) {
+            inputStream.skip(1)
+            idFound = true
+        }
+    }
 
     // Can break at any time.
     return toValidUuid(String(inputStream.readNBytes(uuidRadix * 2))) // reads the length of the UUID
