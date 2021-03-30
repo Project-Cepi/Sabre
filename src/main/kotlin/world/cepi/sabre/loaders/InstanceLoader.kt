@@ -49,8 +49,10 @@ object InstanceLoader : Loader {
                     player.permissionLevel = getPermissionLevel(player)
                 }
 
-                it.addEventCallback(PlayerSpawnEvent::class) {
-                    player.teleport(player.respawnPoint)
+                if (config.shouldRespawnAtSpawnPoint) {
+                    it.addEventCallback(PlayerSpawnEvent::class) {
+                        player.teleport(player.respawnPoint)
+                    }
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
