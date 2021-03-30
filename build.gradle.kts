@@ -22,7 +22,8 @@ repositories {
             "repo.spongepowered.org/maven",
             "libraries.minecraft.net",
             "jitpack.io",
-            "jcenter.bintray.com"
+            "jcenter.bintray.com",
+            "repo.velocitypowered.com/snapshots"
     ).forEach { maven(url = "https://$it") } // require https for all dependencies
 }
 
