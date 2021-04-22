@@ -62,7 +62,6 @@ dependencies {
 
 tasks {
     named<ShadowJar>("shadowJar") {
-        archiveBaseName.set("sabre")
         manifest {
             attributes (
                     "Main-Class" to "world.cepi.sabre.BootstrapWrapper",
@@ -70,6 +69,8 @@ tasks {
             )
         }
         mergeServiceFiles()
+
+        archiveBaseName.set("sabre")
     }
 
     test { useJUnitPlatform() }
