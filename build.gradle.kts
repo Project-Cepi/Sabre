@@ -15,9 +15,6 @@ repositories {
     // maven central
     mavenCentral()
 
-    // Use jcenter for resolving dependencies.
-    jcenter()
-
     listOf(
             "repo1.maven.org/maven2",
             "repo.spongepowered.org/maven",
@@ -54,7 +51,7 @@ dependencies {
     implementation("org.json", "json", "20200518")
 
     // implement KStom
-    implementation("com.github.Project-Cepi","KStom", "001a22d3ea")
+    implementation("com.github.Project-Cepi","KStom", "44b08cf20c")
 
     // Log4j Jul
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
