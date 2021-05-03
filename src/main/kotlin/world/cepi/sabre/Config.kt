@@ -24,7 +24,7 @@ class Config(
     /** If the server should use Mojang Authentication or not. */
     val onlineMode: Boolean = true,
 
-    /** Whether or not the server should use forwarding.*/
+    /** Whether or not the server should use forwarding. */
     val proxy: Forwarder = Forwarder.NONE,
 
     /** The secret for velocity. Not used if bungeecord is set as the proxy value. */
@@ -39,9 +39,9 @@ class Config(
     /** Use the built in Dynamic flat generator */
     val useFlatGenerator: Boolean = true,
 
-    /** Fixes a crash with Optifine clients by registering certain biomes.
+    /** Fixes a crash with old Optifine clients by registering certain biomes.
          * If you specifically do not want these biomes to be registered, set to false.
-         * But be aware that Optifine clients will crash when they connect to the server
+         * But be aware that older Optifine clients will crash when they connect to the server
          * unless you specify them */
     val optifineSupport: Boolean = true,
 
@@ -51,19 +51,19 @@ class Config(
     /** Uses Minestom's vanilla block rules to place blocks correctly. */
     val useBlockRules: Boolean = true,
 
-    /** The compression threshold for the network. Useful to set if you're behind a proxy. */
+    /** The compression threshold for the network. Useful to set if you're behind a proxy. Set to -1 to disable. */
     val compressionThreshold: Int = 256,
 
     /** If the server should cache packets. */
     val cachePackets: Boolean = true,
 
-    /** If the player should respawn at their spawn point */
+    /** If the player should respawn at their spawn point. */
     val shouldRespawnAtSpawnPoint: Boolean = true,
 
-    /** How fast time moves (flat generator). Set to 0 to not move. */
+    /** How fast time moves (flat generator). Set to 0 to not move. (will look laggy unless time is set to negative) */
     val timeRate: Int = 1,
 
-    /** The starting time of (flat generator). Set negative to stop time. */
+    /** The starting time of (flat generator). Set to negative (as well as timeRate to 0) to disable daylight cycle. */
     val time: Long = 0
 ) {
 
