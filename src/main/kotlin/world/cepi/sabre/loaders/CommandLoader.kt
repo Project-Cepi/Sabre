@@ -16,15 +16,14 @@ object CommandLoader : Loader {
 
         val commandManager = MinecraftServer.getCommandManager()
 
-        commandManager.unknownCommandCallback =
+        if (!Strings.isNullOrEmpty(config.unknownMessage)) {
+            commandManager.unknownCommandCallback =
                 CommandCallback { sender: CommandSender, command: String ->
                     if (!Strings.isNullOrEmpty(command)) {
-                        if (!Strings.isNullOrEmpty(config.unknownMessage)) {
-                            sender.sendMessage(Component.text(config.unknownMessage))
-                        }
+                        sender.sendMessage(Component.text(config.unknownMessage))
                     }
                 }
-
+        }
         commandManager.register(StopCommand)
         commandManager.register(OpCommand)
         commandManager.register(DeopCommand)
