@@ -24,6 +24,7 @@ object CommandLoader : Loader {
                     }
                 }
         }
+        
         commandManager.register(StopCommand)
         commandManager.register(OpCommand)
         commandManager.register(DeopCommand)

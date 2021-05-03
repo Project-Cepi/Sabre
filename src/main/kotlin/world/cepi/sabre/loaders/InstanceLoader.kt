@@ -36,7 +36,7 @@ object InstanceLoader : Loader {
 
                 if (config.useFlatGenerator) {
                     it.respawnPoint = Position(0.0, 64.0, 0.0)
-                    it.addEventCallback(PlayerLoginEvent::class) {
+                    it.addEventCallback<PlayerLoginEvent> {
                         setSpawningInstance(instance!!)
 
                         spawningInstance!!.loadChunk(0, 0)
@@ -45,14 +45,14 @@ object InstanceLoader : Loader {
                     }
                 }
 
-                it.addEventCallback(PlayerLoginEvent::class) {
+                it.addEventCallback<PlayerLoginEvent> {
 
                     // OPs players when they join if they are on the ops list
                     player.permissionLevel = getPermissionLevel(player)
                 }
 
                 if (config.shouldRespawnAtSpawnPoint) {
-                    it.addEventCallback(PlayerSpawnEvent::class) {
+                    it.addEventCallback<PlayerSpawnEvent> {
                         player.teleport(player.respawnPoint)
                     }
                 }
