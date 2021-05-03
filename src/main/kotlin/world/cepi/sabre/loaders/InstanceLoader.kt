@@ -40,6 +40,8 @@ object InstanceLoader : Loader {
                         setSpawningInstance(instance!!)
 
                         spawningInstance!!.loadChunk(0, 0)
+                        spawningInstance!!.timeRate = config.timeRate
+                        spawningInstance!!.time = config.time
                     }
                 }
 

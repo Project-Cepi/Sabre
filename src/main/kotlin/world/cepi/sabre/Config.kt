@@ -58,7 +58,13 @@ class Config(
     val cachePackets: Boolean = true,
 
     /** If the player should respawn at their spawn point */
-    val shouldRespawnAtSpawnPoint: Boolean = true
+    val shouldRespawnAtSpawnPoint: Boolean = true,
+
+    /** How fast time moves (flat generator). Set to 0 to not move. */
+    val timeRate: Int = 1,
+
+    /** The starting time of (flat generator). Set negative to stop time. */
+    val time: Long = 0
 ) {
 
     fun save() = File(Sabre.CONFIG_LOCATION).writeText(format.encodeToString(this))
