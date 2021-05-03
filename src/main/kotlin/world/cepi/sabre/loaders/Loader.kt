@@ -3,7 +3,7 @@ package world.cepi.sabre.loaders
 import net.minestom.server.MinecraftServer
 
 /** Loader interface for making it easier to reference the load function */
-interface Loader {
+sealed interface Loader {
 
     /** Load function that calls in sequential order in the [Loaders] enum. */
     operator fun invoke()
