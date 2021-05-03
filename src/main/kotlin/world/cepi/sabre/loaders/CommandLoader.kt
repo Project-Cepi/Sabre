@@ -19,7 +19,9 @@ object CommandLoader : Loader {
         commandManager.unknownCommandCallback =
                 CommandCallback { sender: CommandSender, command: String ->
                     if (!Strings.isNullOrEmpty(command)) {
-                        sender.sendMessage(Component.text(config.unknownMessage))
+                        if (!Strings.isNullOrEmpty(config.unknownMessage)) {
+                            sender.sendMessage(Component.text(config.unknownMessage))
+                        }
                     }
                 }
 
