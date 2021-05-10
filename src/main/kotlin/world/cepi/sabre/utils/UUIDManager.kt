@@ -44,7 +44,7 @@ fun getUUID(username: String): UUID? {
             && inputStream.read().toChar() == '"'
             && inputStream.read().toChar() == ':'
         ) {
-            inputStream.skip(1)
+            inputStream.skip(1) // skip quote
             idFound = true
         }
     }
