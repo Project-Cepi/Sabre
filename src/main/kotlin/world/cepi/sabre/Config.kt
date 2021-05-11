@@ -92,7 +92,7 @@ internal class Config(
     val opUtilities: Boolean = true,
 
     /** If Sabre should use the default file storage system */
-    val useFileStorageSystem: Boolean = false,
+    val useFileStorageSystem: Boolean = true,
 ) {
 
     fun save(): Config {
