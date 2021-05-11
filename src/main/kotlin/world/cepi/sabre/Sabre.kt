@@ -5,22 +5,22 @@ import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.loaders.loadLoaders
 import kotlin.system.exitProcess
 
-fun main() {
-    try {
+fun main() = try {
 
-        val server = MinecraftServer.init()
+    // Initialize the Minestom server.
+    val server = MinecraftServer.init()
 
-        loadLoaders()
+    // Load the loaders.
+    loadLoaders()
 
-        // The IP and port are currently grabbed from the config file
-
-        server.start(config.ip, config.port)
-    } catch (e: Exception) {
-        // graceful exit that doesn't fall back to bootstrap.
-        e.printStackTrace()
-        exitProcess(1)
-    }
+    // The IP and port are grabbed from the config file
+    server.start(config.ip, config.port)
+} catch (e: Exception) {
+    // graceful exit that doesn't fall back to bootstrap.
+    e.printStackTrace()
+    exitProcess(1)
 }
+
 
 object Sabre {
     const val CONFIG_LOCATION = "./sabre-config.json"

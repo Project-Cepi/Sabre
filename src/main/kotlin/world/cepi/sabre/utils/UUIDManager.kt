@@ -38,13 +38,19 @@ fun getUUID(username: String): UUID? {
     var idFound = false
     while (!idFound) {
         if (
-            inputStream.read().toChar() == '"'
+            // If the stream ended or
+            (inputStream.available() == 0) ||
+            // there is a match for ("id":)
+            (inputStream.read().toChar() == '"'
             && inputStream.read().toChar() == 'i'
             && inputStream.read().toChar() == 'd'
             && inputStream.read().toChar() == '"'
-            && inputStream.read().toChar() == ':'
+            && inputStream.read().toChar() == ':')
         ) {
-            inputStream.skip(1) // skip quote
+            // skip the next quote (")
+            inputStream.skip(1)
+
+            // mark the UUID as found
             idFound = true
         }
     }

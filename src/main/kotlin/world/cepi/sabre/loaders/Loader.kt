@@ -7,7 +7,7 @@ import kotlin.system.exitProcess
 val loaders: Array<() -> Unit> = arrayOf(
     ::storageLoader,
     ::mojangAuthenticationLoader,
-    ::UUIDLoader,
+    ::uuidLoader,
     ::instanceLoader,
     ::commandLoader,
     ::proxyLoader,

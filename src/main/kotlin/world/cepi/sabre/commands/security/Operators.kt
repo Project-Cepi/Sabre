@@ -13,6 +13,7 @@ import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.EntityType
 import net.minestom.server.entity.Player
 import world.cepi.kstom.command.addSyntax
+import world.cepi.kstom.command.default
 import world.cepi.sabre.Config.Companion.config
 import world.cepi.sabre.Sabre
 import world.cepi.sabre.utils.getUUID
@@ -21,7 +22,7 @@ import java.util.*
 
 object OpCommand: Command("op") {
     init {
-        setDefaultExecutor { sender, _ ->
+        default { sender, _ ->
             sender.sendMessage(Component.text("Usage: /op <player> <level>"))
         }
 
@@ -34,10 +35,12 @@ object OpCommand: Command("op") {
             if (sender is Player && (sender.permissionLevel < 3 || sender.permissionLevel < config.opLevel)) {
                 sender.sendMessage(Component.text("You don't have permission to add an op at the default level (${config.opLevel})", NamedTextColor.RED))
             } else {
+
                 Operators.add(targetId, config.opLevel)
                 sender.sendMessage(Component.text(args.get(target))
                     .hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId))
                     .append(Component.text(" was made a level ${config.opLevel} operator")))
+
             }
         }
 
@@ -45,11 +48,16 @@ object OpCommand: Command("op") {
             val targetLevel = args.get(level)
             val targetId = getUUID(args.get(target)) ?: return@addSyntax
 
-            if ((source is Player && source.permissionLevel >= targetLevel && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
+            if (
+                (source is Player && source.permissionLevel >= targetLevel && source.permissionLevel >= targetLevel)
+                || source is ConsoleSender
+            ) {
+
                 Operators.add(targetId, targetLevel)
                 source.sendMessage(Component.text(args.get(target))
                     .hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId))
                     .append(Component.text(" was made a level $targetLevel operator")))
+
             } else source.sendMessage(Component.text("You don't have permission to add an op at level $targetLevel!", NamedTextColor.RED))
         }
     }

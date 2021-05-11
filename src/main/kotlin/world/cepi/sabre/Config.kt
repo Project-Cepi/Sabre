@@ -49,10 +49,12 @@ internal class Config(
         FlatLayer(Block.GRASS_BLOCK, 1)
     ),
 
-    /** Fixes a crash with old Optifine clients by registering certain biomes.
-         * If you specifically do not want these biomes to be registered, set to false.
-         * But be aware that older Optifine clients will crash when they connect to the server
-         * unless you specify them */
+    /**
+     * Fixes a crash with old Optifine clients by registering certain biomes.
+     * If you specifically do not want these biomes to be registered, set to false.
+     * But be aware that older Optifine clients will crash when they connect to the server
+     * unless you specify them
+     */
     val optifineSupport: Boolean = true,
 
     /** The unknown message for an unknown command. */
@@ -61,7 +63,11 @@ internal class Config(
     /** Uses Minestom's vanilla block rules to place blocks correctly. */
     val useBlockRules: Boolean = true,
 
-    /** The compression threshold for the network. Useful to set if you're behind a proxy. Set to -1 to disable. */
+    /**
+     * The compression threshold for the network.
+     * Useful to set if you're behind a proxy.
+     * Set to -1 to disable.
+     */
     val compressionThreshold: Int = 256,
 
     /** If the server should cache packets. */
@@ -70,10 +76,16 @@ internal class Config(
     /** If the player should respawn at their spawn point. */
     val shouldRespawnAtSpawnPoint: Boolean = true,
 
-    /** How fast time moves (flat generator). Set to 0 to not move. (will look laggy unless time is set to negative) */
+    /**
+     * How fast time moves (flat generator).
+     * Set to 0 to not move. (will look laggy unless time is set to negative)
+     */
     val timeRate: Int = 1,
 
-    /** The starting time of (flat generator). Set to negative (as well as timeRate to 0) to disable daylight cycle. */
+    /**
+     * The starting time of (flat generator).
+     * Set to negative (as well as timeRate to 0) to disable daylight cycle.
+     */
     val time: Long = 0,
 
     /** If the OP command and loader should be used. */
@@ -88,7 +100,7 @@ internal class Config(
         return this
     }
 
-    companion object {
+    internal companion object {
 
         @Contextual
         val format = Json {
