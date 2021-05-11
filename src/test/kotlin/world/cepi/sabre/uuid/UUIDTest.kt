@@ -1,6 +1,6 @@
 package world.cepi.sabre.uuid
 
-import org.junit.jupiter.api.RepeatedTest
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.cepi.sabre.utils.getUUID
 import world.cepi.sabre.utils.toValidUuid
@@ -14,15 +14,15 @@ class UUIDTest {
         val uuid = UUID.randomUUID()
         val uuidAsString = uuid.toString().replace("-", "")
 
-        assert(uuid == toValidUuid(uuidAsString))
+        assertEquals(uuid, toValidUuid(uuidAsString))
 
     }
 
     @Test
     fun `verify UUID connection to http`() {
-        assert(toValidUuid("45f50155c09f4fdcb5cee30af2ebd1f0") == getUUID("_jeb"))
+        assertEquals(toValidUuid("45f50155c09f4fdcb5cee30af2ebd1f0"), getUUID("_jeb"))
 
-        assert(toValidUuid("f7c77d999f154a66a87dc4a51ef30d19") == getUUID("hypixel"))
+        assertEquals(toValidUuid("f7c77d999f154a66a87dc4a51ef30d19"), getUUID("hypixel"))
     }
 
 }

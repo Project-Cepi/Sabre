@@ -2,7 +2,7 @@ package world.cepi.sabre
 
 import net.minestom.server.MinecraftServer
 import world.cepi.sabre.Config.Companion.config
-import world.cepi.sabre.loaders.load
+import world.cepi.sabre.loaders.loadLoaders
 import kotlin.system.exitProcess
 
 fun main() {
@@ -10,7 +10,7 @@ fun main() {
 
         val server = MinecraftServer.init()
 
-        load()
+        loadLoaders()
 
         // The IP and port are currently grabbed from the config file
 

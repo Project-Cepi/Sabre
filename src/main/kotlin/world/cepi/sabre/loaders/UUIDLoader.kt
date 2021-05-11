@@ -1,18 +1,13 @@
 package world.cepi.sabre.loaders
 
-import net.minestom.server.MinecraftServer
+import world.cepi.kstom.Manager
 import world.cepi.sabre.utils.getUUID
 
-object UUIDLoader : Loader {
+internal fun UUIDLoader() {
 
-    override fun invoke() {
-
-        val connectionManager = MinecraftServer.getConnectionManager()
-
-        // We have to set a different UUID provider because Mojang's API is not used by default
-        connectionManager.setUuidProvider { _, username ->
-            return@setUuidProvider getUUID(username)
-        }
+    // We have to set a different UUID provider because Mojang's API is not used by default
+    Manager.connection.setUuidProvider { _, username ->
+        return@setUuidProvider getUUID(username)
     }
 
 }

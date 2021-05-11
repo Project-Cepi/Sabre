@@ -10,14 +10,9 @@ enum class Forwarder {
     NONE
 }
 
-object VelocityLoader : Loader {
-    override fun invoke() {
-        if (config.proxy == Forwarder.VELOCITY) VelocityProxy.enable(config.velocitySecret)
-    }
-}
-
-object BungeeLoader : Loader {
-    override fun invoke() {
-        if (config.proxy == Forwarder.BUNGEE) BungeeCordProxy.enable()
+internal fun proxyLoader() {
+    when (config.proxy) {
+        Forwarder.VELOCITY -> VelocityProxy.enable(config.velocitySecret)
+        Forwarder.BUNGEE -> BungeeCordProxy.enable()
     }
 }

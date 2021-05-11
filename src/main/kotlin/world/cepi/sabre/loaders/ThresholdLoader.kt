@@ -3,11 +3,9 @@ package world.cepi.sabre.loaders
 import net.minestom.server.MinecraftServer
 import world.cepi.sabre.Config.Companion.config
 
-object ThresholdLoader : Loader {
+internal fun thresholdLoader() {
 
-    override fun invoke() {
-        MinecraftServer.setCompressionThreshold(config.compressionThreshold)
-        MinecraftServer.setPacketCaching(config.cachePackets)
-    }
+    MinecraftServer.setCompressionThreshold(config.compressionThreshold)
+    MinecraftServer.setPacketCaching(config.cachePackets)
 
 }

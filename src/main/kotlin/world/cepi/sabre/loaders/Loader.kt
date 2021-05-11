@@ -1,37 +1,29 @@
 package world.cepi.sabre.loaders
 
 import net.minestom.server.MinecraftServer
-
-/** Loader interface for making it easier to reference the load function */
-sealed interface Loader {
-
-    /** Load function that calls in sequential order in the [Loaders] enum. */
-    operator fun invoke()
-}
+import kotlin.system.exitProcess
 
 /** Array of all loaders, act independently from eachother.*/
-val loaders: Array<Loader> = arrayOf(
-    StorageLoader,
-    MojangAuthenticationLoader,
-    UUIDLoader,
-    InstanceLoader,
-    CommandLoader,
-    VelocityLoader,
-    BungeeLoader,
-    OptifineLoader,
-    BlockPlacementLoader,
-    ThresholdLoader,
-    ViewLoader
+val loaders: Array<() -> Unit> = arrayOf(
+    ::storageLoader,
+    ::mojangAuthenticationLoader,
+    ::UUIDLoader,
+    ::instanceLoader,
+    ::commandLoader,
+    ::proxyLoader,
+    ::optifineLoader,
+    ::blockPlacementLoader,
+    ::thresholdLoader,
+    ::viewLoader
 )
 
 /** Loads all the loaders from the loader package. */
-fun load() {
-    loaders.forEach {
-        try {
-            it()
-        } catch (e: Exception) {
-            e.printStackTrace()
-            MinecraftServer.LOGGER.warn("Logger ${it.javaClass.simpleName} failed to load.")
-        }
+fun loadLoaders() = loaders.forEach {
+    try {
+        it()
+    } catch (e: Exception) {
+        e.printStackTrace()
+        MinecraftServer.LOGGER.error("Logger ${it.javaClass.simpleName} failed to load. Please file an issue on the Sabre github.")
+        exitProcess(1)
     }
 }

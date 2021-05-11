@@ -5,13 +5,15 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import net.minestom.server.instance.block.Block
+import world.cepi.sabre.instances.generators.flat.FlatLayer
 import world.cepi.sabre.loaders.Forwarder
 import java.io.File
 
 
 /** This class represents Sabre's config, and contains all the properties that can be configured in Sabre */
 @Serializable
-class Config(
+internal class Config(
     /** The IP that Minestom is hosted on -- For local hosting, feel free to use `0.0.0.0` or `localhost` */
     val ip: String = "0.0.0.0",
 
@@ -39,6 +41,14 @@ class Config(
     /** Use the built in Dynamic flat generator */
     val useFlatGenerator: Boolean = true,
 
+    /** The flat layers the flat generator should use */
+    val flatLayers: Array<FlatLayer> = arrayOf(
+        FlatLayer(Block.BEDROCK, 1),
+        FlatLayer(Block.STONE, 25),
+        FlatLayer(Block.DIRT, 7),
+        FlatLayer(Block.GRASS_BLOCK, 1)
+    ),
+
     /** Fixes a crash with old Optifine clients by registering certain biomes.
          * If you specifically do not want these biomes to be registered, set to false.
          * But be aware that older Optifine clients will crash when they connect to the server
@@ -64,10 +74,19 @@ class Config(
     val timeRate: Int = 1,
 
     /** The starting time of (flat generator). Set to negative (as well as timeRate to 0) to disable daylight cycle. */
-    val time: Long = 0
+    val time: Long = 0,
+
+    /** If the OP command and loader should be used. */
+    val opUtilities: Boolean = true,
+
+    /** If Sabre should use the default file storage system */
+    val useFileStorageSystem: Boolean = false,
 ) {
 
-    fun save() = File(Sabre.CONFIG_LOCATION).writeText(format.encodeToString(this))
+    fun save(): Config {
+        File(Sabre.CONFIG_LOCATION).writeText(format.encodeToString(this))
+        return this
+    }
 
     companion object {
 
@@ -81,17 +100,11 @@ class Config(
         }
 
         /** Configuration object acting as a singleton */
-        val config: Config
-
-        init {
-            // If it already exists, parse as normal
-            if (exists()) {
-                config = format.decodeFromString(File(Sabre.CONFIG_LOCATION).readText())
-            } else {
-                // Create a new config and save it.
-                config = Config()
-                config.save()
-            }
+        val config: Config = if (exists()) {
+            format.decodeFromString(File(Sabre.CONFIG_LOCATION).readText())
+        } else {
+            // Create a new config and save it.
+            Config().save()
         }
 
         private fun exists(): Boolean = File(Sabre.CONFIG_LOCATION).exists()

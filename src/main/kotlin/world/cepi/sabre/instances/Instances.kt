@@ -4,6 +4,7 @@ import net.minestom.server.MinecraftServer
 import net.minestom.server.instance.ChunkGenerator
 import net.minestom.server.instance.InstanceContainer
 import net.minestom.server.storage.StorageLocation
+import world.cepi.kstom.Manager
 import world.cepi.sabre.Sabre
 
 /**
@@ -19,9 +20,9 @@ object Instances {
             generator: ChunkGenerator,
             storeChunks: Boolean = false,
             storageLocation: StorageLocation? =
-                    MinecraftServer.getStorageManager().getLocation(Sabre.INSTANCE_STORAGE_LOCATION)
+                    Manager.storage.getLocation(Sabre.INSTANCE_STORAGE_LOCATION)
     ): InstanceContainer {
-        val instanceManager = MinecraftServer.getInstanceManager()
+        val instanceManager = Manager.instance
         val instance: InstanceContainer = if (storeChunks)
             instanceManager.createInstanceContainer(storageLocation)
         else

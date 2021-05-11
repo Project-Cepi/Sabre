@@ -12,8 +12,7 @@ object StopCommand : SimpleCommand("stop") {
         return true
     }
 
-    override fun hasAccess(sender: CommandSender, commandString: String?): Boolean {
-        return sender.hasPermission("sabre.stop") || (sender is Player && sender.permissionLevel >= 4) || (sender is ConsoleSender)
-    }
+    override fun hasAccess(sender: CommandSender, commandString: String?) =
+        sender.hasPermission("sabre.stop") || (sender is Player && sender.permissionLevel >= 4) || (sender is ConsoleSender)
 
 }

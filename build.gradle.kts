@@ -74,6 +74,11 @@ tasks {
 
     build { dependsOn(shadowJar) }
 
+    withType<AbstractArchiveTask> {
+        isPreserveFileTimestamps = false
+        isReproducibleFileOrder = true
+    }
+
 }
 
 configure<SourceSetContainer> {

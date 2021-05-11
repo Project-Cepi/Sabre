@@ -21,15 +21,15 @@ class Flat(
         for (x in 0 until Chunk.CHUNK_SIZE_X) for (z in 0 until Chunk.CHUNK_SIZE_Z) {
             var y = 0
             for (layer in layers) for (yLoop in y until y + layer.thickness) {
-                batch.setBlockStateId(x, y, z, layer.block.blockId, null)
+                batch.setBlock(x, y, z, layer.block)
                 y++
             }
         }
     }
 
-    override fun fillBiomes(biomes: Array<Biome>, chunkX: Int, chunkZ: Int) {
+    override fun fillBiomes(biomes: Array<Biome>, chunkX: Int, chunkZ: Int) =
         Arrays.fill(biomes, MinecraftServer.getBiomeManager().getById(0))
-    }
+
 
     override fun getPopulators() = chunkPopulators
 }

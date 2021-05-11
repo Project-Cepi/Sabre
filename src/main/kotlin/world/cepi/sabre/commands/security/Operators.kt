@@ -107,7 +107,7 @@ object Operators {
 }
 
 /**
- * Get a player's permission level.
+ * Get a player's permission level from the OP file.
  *
  * @param player The target player for this function
  *
