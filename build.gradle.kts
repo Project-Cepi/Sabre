@@ -55,6 +55,8 @@ dependencies {
 
     // Log4j Jul
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
+
+    implementation("commons-lang:commons-lang:2.6")
 }
 
 tasks {
