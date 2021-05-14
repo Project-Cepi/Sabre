@@ -197,3 +197,5 @@ sabre-config.json
 instances/
 .minestom_tmp
 .idea
+
+.mixin.out

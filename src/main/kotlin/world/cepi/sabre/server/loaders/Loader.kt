@@ -1,4 +1,4 @@
-package world.cepi.sabre.loaders
+package world.cepi.sabre.server.loaders
 
 import net.minestom.server.MinecraftServer
 import kotlin.system.exitProcess

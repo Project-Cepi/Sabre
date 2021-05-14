@@ -1,4 +1,4 @@
-package world.cepi.sabre.commands.security
+package world.cepi.sabre.server.commands.security
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
 import kotlinx.serialization.builtins.MapSerializer
@@ -14,9 +14,9 @@ import net.minestom.server.entity.EntityType
 import net.minestom.server.entity.Player
 import world.cepi.kstom.command.addSyntax
 import world.cepi.kstom.command.default
-import world.cepi.sabre.Config.Companion.config
-import world.cepi.sabre.Sabre
-import world.cepi.sabre.utils.getUUID
+import world.cepi.sabre.server.Config.Companion.config
+import world.cepi.sabre.server.Sabre
+import world.cepi.sabre.server.utils.getUUID
 import java.io.File
 import java.util.*
 

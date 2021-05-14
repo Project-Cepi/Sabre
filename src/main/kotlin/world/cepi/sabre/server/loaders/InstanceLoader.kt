@@ -1,15 +1,13 @@
-package world.cepi.sabre.loaders
+package world.cepi.sabre.server.loaders
 
 import net.minestom.server.MinecraftServer
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
-import net.minestom.server.instance.block.Block
 import net.minestom.server.utils.Position
-import world.cepi.sabre.commands.security.getPermissionLevel
-import world.cepi.sabre.Config.Companion.config
-import world.cepi.sabre.instances.Instances
-import world.cepi.sabre.instances.generators.flat.Flat
-import world.cepi.sabre.instances.generators.flat.FlatLayer
+import world.cepi.kstom.Manager
+import world.cepi.sabre.server.commands.security.getPermissionLevel
+import world.cepi.sabre.server.Config.Companion.config
+import world.cepi.sabre.server.flatgenerator.Flat
 import world.cepi.kstom.addEventCallback
 
 internal fun instanceLoader() {
@@ -17,9 +15,11 @@ internal fun instanceLoader() {
     val connectionManager = MinecraftServer.getConnectionManager()
 
     val instance = if (config.useFlatGenerator) {
-        Instances.createInstanceContainer(
-            Flat(*config.flatLayers)
-        )
+        val instanceManager = Manager.instance
+        val instance = instanceManager.createInstanceContainer()
+        instance.chunkGenerator = Flat(*config.flatLayers)
+        instance.enableAutoChunkLoad(true)
+        instance
     } else {
         null
     }

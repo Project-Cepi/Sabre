@@ -1,4 +1,4 @@
-package world.cepi.sabre.instances.generators.flat
+package world.cepi.sabre.server.flatgenerator
 
 import net.minestom.server.MinecraftServer
 import net.minestom.server.instance.Chunk
@@ -10,11 +10,11 @@ import java.util.*
 
 /** Flat world generation based off of [ChunkGenerator] */
 class Flat(
-        /** List of [FlatLayer]s used to generate the flat world. */
-        private vararg val layers: FlatLayer,
+    /** List of [FlatLayer]s used to generate the flat world. */
+    private vararg val layers: FlatLayer,
 
-        /** List of chunk populaters to be used for chunk generation. */
-        private val chunkPopulators: List<ChunkPopulator> = listOf()
+    /** List of chunk populaters to be used for chunk generation. */
+    private val chunkPopulators: List<ChunkPopulator> = listOf()
 ) : ChunkGenerator {
 
     override fun generateChunkData(batch: ChunkBatch, chunkX: Int, chunkZ: Int) {

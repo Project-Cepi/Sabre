@@ -1,8 +1,8 @@
-package world.cepi.sabre.loaders
+package world.cepi.sabre.server.loaders
 
 import net.minestom.server.extras.bungee.BungeeCordProxy
 import net.minestom.server.extras.velocity.VelocityProxy
-import world.cepi.sabre.Config.Companion.config
+import world.cepi.sabre.server.Config.Companion.config
 
 enum class Forwarder {
     BUNGEE,

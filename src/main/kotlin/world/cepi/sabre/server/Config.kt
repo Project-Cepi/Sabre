@@ -1,4 +1,4 @@
-package world.cepi.sabre
+package world.cepi.sabre.server
 
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
@@ -6,14 +6,13 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import net.minestom.server.instance.block.Block
-import world.cepi.sabre.instances.generators.flat.FlatLayer
-import world.cepi.sabre.loaders.Forwarder
+import world.cepi.sabre.server.flatgenerator.FlatLayer
+import world.cepi.sabre.server.loaders.Forwarder
 import java.io.File
-
 
 /** This class represents Sabre's config, and contains all the properties that can be configured in Sabre */
 @Serializable
-internal class Config(
+class Config(
     /** The IP that Minestom is hosted on -- For local hosting, feel free to use `0.0.0.0` or `localhost` */
     val ip: String = "0.0.0.0",
 

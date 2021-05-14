@@ -2,8 +2,8 @@ package world.cepi.sabre.uuid
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import world.cepi.sabre.utils.getUUID
-import world.cepi.sabre.utils.toValidUuid
+import world.cepi.sabre.server.utils.getUUID
+import world.cepi.sabre.server.utils.toValidUuid
 import java.util.*
 
 class UUIDTest {

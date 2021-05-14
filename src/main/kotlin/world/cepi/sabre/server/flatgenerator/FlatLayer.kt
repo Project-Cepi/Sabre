@@ -1,4 +1,4 @@
-package world.cepi.sabre.instances.generators.flat
+package world.cepi.sabre.server.flatgenerator
 
 import kotlinx.serialization.Serializable
 import net.minestom.server.instance.block.Block

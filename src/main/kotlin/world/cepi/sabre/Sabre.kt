@@ -1,29 +1,5 @@
 package world.cepi.sabre
 
-import net.minestom.server.MinecraftServer
-import world.cepi.sabre.Config.Companion.config
-import world.cepi.sabre.loaders.loadLoaders
-import kotlin.system.exitProcess
+import world.cepi.sabre.server.Sabre
 
-fun main() = try {
-
-    // Initialize the Minestom server.
-    val server = MinecraftServer.init()
-
-    // Load the loaders.
-    loadLoaders()
-
-    // The IP and port are grabbed from the config file
-    server.start(config.ip, config.port)
-} catch (e: Exception) {
-    // graceful exit that doesn't fall back to bootstrap.
-    e.printStackTrace()
-    exitProcess(1)
-}
-
-
-object Sabre {
-    const val CONFIG_LOCATION = "./sabre-config.json"
-    const val INSTANCE_STORAGE_LOCATION = "./instances"
-    const val OP_LOCATION = "./ops.json"
-}
+fun main() = Sabre.boot()

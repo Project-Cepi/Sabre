@@ -1,11 +1,11 @@
-package world.cepi.sabre.utils
+package world.cepi.sabre.server.utils
 
 import java.lang.Long.parseUnsignedLong
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.UUID
 
-const val uuidRadix = 16
+internal const val uuidRadix = 16
 
 /**
  * Turns a UUID with no hyphens (`-`) to a UUID containing hyphens
@@ -18,6 +18,8 @@ fun toValidUuid(string: String) = UUID(
     parseUnsignedLong(string.substring(0, uuidRadix), uuidRadix),
     parseUnsignedLong(string.substring(uuidRadix), uuidRadix)
 )
+
+private const val commaChar = ','.code
 
 /**
  * Gets a UUID from a [net.minestom.server.entity.Player]'s username
@@ -37,18 +39,13 @@ fun getUUID(username: String): UUID? {
 
     var idFound = false
     while (!idFound) {
-        if (
-            // If the stream ended or
-            (inputStream.available() == 0) ||
-            // there is a match for ("id":)
-            (inputStream.read().toChar() == '"'
-            && inputStream.read().toChar() == 'i'
-            && inputStream.read().toChar() == 'd'
-            && inputStream.read().toChar() == '"'
-            && inputStream.read().toChar() == ':')
-        ) {
-            // skip the next quote (")
-            inputStream.skip(1)
+
+        if (inputStream.available() == 0) return null
+
+        // find the first comma
+        if (inputStream.read() == commaChar) {
+            // skip the next quote ("id":")
+            inputStream.skip(6)
 
             // mark the UUID as found
             idFound = true
