@@ -9,7 +9,7 @@ import net.minestom.server.entity.Player
 import world.cepi.kstom.command.default
 import kotlin.system.exitProcess
 
-object StopCommand : Command("stop") {
+internal object StopCommand : Command("stop") {
     init {
         setCondition { sender, _ ->
             sender.hasPermission("sabre.stop")

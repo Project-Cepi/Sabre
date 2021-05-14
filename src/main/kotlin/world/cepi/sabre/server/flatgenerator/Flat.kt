@@ -11,10 +11,7 @@ import java.util.*
 /** Flat world generation based off of [ChunkGenerator] */
 class Flat(
     /** List of [FlatLayer]s used to generate the flat world. */
-    private vararg val layers: FlatLayer,
-
-    /** List of chunk populaters to be used for chunk generation. */
-    private val chunkPopulators: List<ChunkPopulator> = listOf()
+    private vararg val layers: FlatLayer
 ) : ChunkGenerator {
 
     override fun generateChunkData(batch: ChunkBatch, chunkX: Int, chunkZ: Int) {
@@ -31,5 +28,5 @@ class Flat(
         Arrays.fill(biomes, MinecraftServer.getBiomeManager().getById(0))
 
 
-    override fun getPopulators() = chunkPopulators
+    override fun getPopulators() = emptyList<ChunkPopulator>()
 }

@@ -20,7 +20,7 @@ import world.cepi.sabre.server.utils.getUUID
 import java.io.File
 import java.util.*
 
-object OpCommand: Command("op") {
+internal object OpCommand: Command("op") {
     init {
         default { sender, _ ->
             sender.sendMessage(Component.text("Usage: /op <player> <level>"))
@@ -63,7 +63,7 @@ object OpCommand: Command("op") {
     }
 }
 
-object DeopCommand: Command("deop") {
+internal object DeopCommand: Command("deop") {
     init {
         setDefaultExecutor { sender, _ -> sender.sendMessage(Component.text("Usage: /deop <player")) }
 
