@@ -20,89 +20,88 @@ import kotlin.reflect.jvm.javaMethod
 import kotlin.reflect.jvm.kotlinFunction
 
 /**
- * Bootstrap wrapper for Minestom. Written in java to prevent Kotlin Bootstrap errors
+ * Bootstrap wrapper for Minestom. Written in java to prevent Kotlin Bootstrap errors.
  */
-class SabreLoader @ApiStatus.Internal constructor() {
+object SabreLoader {
+    private fun bootstrap(config: Config? = null, args: Array<String>) {
+        // make the new class loader
+        val classLoader = MinestomRootClassLoader.getInstance()
 
-    companion object {
-        private fun bootstrap(config: Config? = null, args: Array<String>) {
-            // make the new class loader
-            val classLoader = MinestomRootClassLoader.getInstance()
-
-            // attempt to inject mixins into class loader.
-            run {
-                startMixin(args)
-                try {
-                    MinestomRootClassLoader.getInstance().addCodeModifier(MixinCodeModifier())
-                } catch (e: RuntimeException) {
-                    e.printStackTrace()
-                    System.err.println("Failed to add MixinCodeModifier, mixins will not be injected. Check the log entries above to debug.")
-                }
-                ExtensionManager.loadCodeModifiersEarly()
-                MixinServiceMinestom.gotoPreinitPhase()
+        // attempt to inject mixins into class loader.
+        run {
+            startMixin(args)
+            try {
+                MinestomRootClassLoader.getInstance().addCodeModifier(MixinCodeModifier())
+            } catch (e: RuntimeException) {
+                e.printStackTrace()
+                System.err.println("Failed to add MixinCodeModifier, mixins will not be injected. Check the log entries above to debug.")
             }
-
-            // ensure extensions are loaded when starting the server
-            run {
-                val serverClass = classLoader.loadClass("net.minestom.server.MinecraftServer")
-                val init = serverClass.getMethod("init")
-                init.invoke(null)
-
-                MixinServiceMinestom.gotoInitPhase()
-                MixinServiceMinestom.gotoDefaultPhase()
-            }
-
-            // call the main class
-            run {
-                val mainClass = classLoader.loadClass("world.cepi.sabre.server.Sabre").kotlin
-
-                val main = mainClass.functions.firstOrNull {
-                    it.name == "boot"
-                } ?: throw IllegalArgumentException("Main method not found. Report to Sabre.")
-
-                main.javaMethod!!.invoke(null, null) // TODO actually add config
-            }
+            ExtensionManager.loadCodeModifiersEarly()
+            MixinServiceMinestom.gotoPreinitPhase()
         }
 
-        private fun startMixin(args: Array<String>) {
-            // hacks required to pass custom arguments
-            val start = MixinBootstrap::class.java.getDeclaredMethod("start")
-            start.isAccessible = true
-            try {
-                if (!(start.invoke(null) as Boolean)) {
-                    return
-                }
-            } catch (e: ServiceNotAvailableError) {
-                e.printStackTrace()
-                System.err.println("Failed to load Mixin, see error above.")
-                System.err.println(
-                    "It is possible you simply have two files with identical names inside your server jar. " +
-                            "Check your META-INF/services directory inside your Minestom implementation and merge files with identical names inside META-INF/services."
-                )
+        // ensure extensions are loaded when starting the server
+        run {
+            val serverClass = classLoader.loadClass("net.minestom.server.MinecraftServer")
+            val init = serverClass.getMethod("init")
+            init.invoke(null)
+
+            MixinServiceMinestom.gotoInitPhase()
+            MixinServiceMinestom.gotoDefaultPhase()
+        }
+
+        // call the main class
+        run {
+            val mainClass = classLoader.loadClass("world.cepi.sabre.server.Sabre").kotlin
+
+            val main = mainClass.functions.firstOrNull {
+                it.name == "boot"
+            } ?: throw IllegalArgumentException("Main method not found. Report to Sabre.")
+
+            main.javaMethod!!.invoke(null, null) // TODO actually add config
+        }
+    }
+
+    private fun startMixin(args: Array<String>) {
+        // hacks required to pass custom arguments
+        val start = MixinBootstrap::class.java.getDeclaredMethod("start")
+        start.isAccessible = true
+        try {
+            if (!(start.invoke(null) as Boolean)) {
                 return
             }
-            val doInit =
-                MixinBootstrap::class.java.getDeclaredMethod("doInit", CommandLineOptions::class.java)
-            doInit.isAccessible = true
-            doInit.invoke(null, CommandLineOptions.ofArgs(listOf(*args)))
-            MixinBootstrap.getPlatform().inject()
-            Mixins.getConfigs().forEach { c ->
-                MinestomRootClassLoader.getInstance().protectedPackages.add(
-                    c.config.mixinPackage
-                )
-            }
+        } catch (e: ServiceNotAvailableError) {
+            e.printStackTrace()
+            System.err.println("Failed to load Mixin, see error above.")
+            System.err.println(
+                "It is possible you simply have two files with identical names inside your server jar. " +
+                        "Check your META-INF/services directory inside your Minestom implementation and merge files with identical names inside META-INF/services."
+            )
+            return
         }
-
-        /**
-         * Boots Sabre with the bootstrap loader.
-         */
-        fun boot(config: Config? = null, args: Array<String> = arrayOf()) {
-            System.setProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager")
-            bootstrap(config, args)
+        val doInit =
+            MixinBootstrap::class.java.getDeclaredMethod("doInit", CommandLineOptions::class.java)
+        doInit.isAccessible = true
+        doInit.invoke(null, CommandLineOptions.ofArgs(listOf(*args)))
+        MixinBootstrap.getPlatform().inject()
+        Mixins.getConfigs().forEach { c ->
+            MinestomRootClassLoader.getInstance().protectedPackages.add(
+                c.config.mixinPackage
+            )
         }
-
-        @JvmStatic
-        fun main(args: Array<String>) = boot(null, args)
     }
+
+    /**
+     * Boots Sabre with the bootstrap loader.
+     */
+    fun boot(config: Config? = null, args: Array<String> = arrayOf()) {
+        System.setProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager")
+        bootstrap(config, args)
+    }
+
+    @JvmStatic
+    fun main(args: Array<String>) = boot(null, args)
+
+
 
 }
