@@ -9,6 +9,8 @@ import net.minestom.server.instance.block.Block
 import world.cepi.sabre.server.flatgenerator.FlatLayer
 import world.cepi.sabre.server.loaders.Forwarder
 import java.io.File
+import java.lang.IllegalArgumentException
+import kotlin.system.exitProcess
 
 /** This class represents Sabre's config, and contains all the properties that can be configured in Sabre */
 @Serializable
@@ -99,7 +101,7 @@ class Config(
         return this
     }
 
-    internal companion object {
+    companion object {
 
         @Contextual
         val format = Json {
@@ -110,15 +112,20 @@ class Config(
             isLenient = true
         }
 
-        /** Configuration object acting as a singleton */
-        val config: Config = if (exists()) {
-            format.decodeFromString(File(Sabre.CONFIG_LOCATION).readText())
-        } else {
-            // Create a new config and save it.
-            Config().save()
-        }
+        fun internalObjectInitialized() = _config != null
 
-        private fun exists(): Boolean = File(Sabre.CONFIG_LOCATION).exists()
+        // Allows for custom config setting during boot.
+        private var _config: Config? = null
+
+        var config: Config
+            get() = _config ?: run {
+                throw IllegalArgumentException("Config does not exist! Set it correctly or boot from a file.")
+            }
+            set(value) {
+                _config = value
+            }
+
+        fun fileExists(): Boolean = File(Sabre.CONFIG_LOCATION).exists()
     }
 
 }

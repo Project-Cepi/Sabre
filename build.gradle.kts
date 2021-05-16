@@ -61,7 +61,7 @@ tasks {
     named<ShadowJar>("shadowJar") {
         manifest {
             attributes (
-                    "Main-Class" to "world.cepi.sabre.BootstrapWrapper",
+                    "Main-Class" to "world.cepi.sabre.SabreLoader",
                     "Multi-Release" to true
             )
         }
