@@ -4,7 +4,7 @@ import net.minestom.server.MinecraftServer
 import kotlin.system.exitProcess
 
 /** Array of all loaders, act independently from eachother.*/
-val loaders: Array<() -> Unit> = arrayOf(
+internal val loaders: Array<() -> Unit> = arrayOf(
     ::storageLoader,
     ::mojangAuthenticationLoader,
     ::uuidLoader,
@@ -18,7 +18,7 @@ val loaders: Array<() -> Unit> = arrayOf(
 )
 
 /** Loads all the loaders from the loader package. */
-fun loadLoaders() = loaders.forEach {
+internal fun loadLoaders() = loaders.forEach {
     try {
         it()
     } catch (e: Exception) {
