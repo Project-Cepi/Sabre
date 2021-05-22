@@ -103,7 +103,6 @@ class Config(
 
     companion object {
 
-        @Contextual
         val format = Json {
             encodeDefaults = true
             prettyPrint = true
@@ -111,8 +110,6 @@ class Config(
             coerceInputValues = true
             isLenient = true
         }
-
-        fun internalObjectInitialized() = _config != null
 
         // Allows for custom config setting during boot.
         private var _config: Config? = null
@@ -124,8 +121,6 @@ class Config(
             set(value) {
                 _config = value
             }
-
-        fun fileExists(): Boolean = File(Sabre.CONFIG_LOCATION).exists()
     }
 
 }

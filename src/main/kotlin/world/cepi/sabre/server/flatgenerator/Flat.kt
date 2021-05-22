@@ -25,8 +25,7 @@ class Flat(
     }
 
     override fun fillBiomes(biomes: Array<Biome>, chunkX: Int, chunkZ: Int) =
-        Arrays.fill(biomes, MinecraftServer.getBiomeManager().getById(0))
-
-
+        biomes.fill(MinecraftServer.getBiomeManager().getById(0))
+    
     override fun getPopulators() = emptyList<ChunkPopulator>()
 }
