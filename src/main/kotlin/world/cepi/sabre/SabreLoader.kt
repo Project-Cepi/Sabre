@@ -23,6 +23,8 @@ import kotlin.reflect.jvm.kotlinFunction
  * Bootstrap wrapper for Minestom. Written in java to prevent Kotlin Bootstrap errors.
  */
 object SabreLoader {
+
+    // TODO use config prop
     private fun bootstrap(config: Config? = null, args: Array<String>) {
         // make the new class loader
         val classLoader = MinestomRootClassLoader.getInstance()

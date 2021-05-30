@@ -19,6 +19,10 @@ import world.cepi.sabre.server.Sabre
 import world.cepi.sabre.server.utils.getUUID
 import java.io.File
 import java.util.*
+import kotlin.io.path.createFile
+import kotlin.io.path.exists
+import kotlin.io.path.readText
+import kotlin.io.path.writeText
 
 internal object OpCommand: Command("op") {
     init {
@@ -84,14 +88,14 @@ internal object DeopCommand: Command("deop") {
 }
 
 object Operators {
-    private val operatorFile = File(Sabre.OP_LOCATION)
+    private val operatorPath = Sabre.OP_PATH
     val operators = Object2IntOpenHashMap<UUID>()
 
     private val serilalizer = MapSerializer(String.serializer(), Int.serializer())
 
     init {
         try {
-            operators.putAll(Json.decodeFromString(serilalizer, operatorFile.readText()).mapKeys { UUID.fromString(it.key) })
+            operators.putAll(Json.decodeFromString(serilalizer, operatorPath.readText()).mapKeys { UUID.fromString(it.key) })
         } catch (e: Exception) {
 
         }
@@ -108,9 +112,9 @@ object Operators {
     }
 
     private fun save() {
-        if (!operatorFile.exists())
-            operatorFile.createNewFile()
-        operatorFile.writeText(Json.encodeToString(serilalizer, operators.mapKeys { it.key.toString() } ))
+        if (!operatorPath.exists())
+            operatorPath.createFile()
+        operatorPath.writeText(Json.encodeToString(serilalizer, operators.mapKeys { it.key.toString() } ))
     }
 }
 

@@ -1,16 +1,13 @@
 package world.cepi.sabre.server
 
-import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import net.minestom.server.instance.block.Block
 import world.cepi.sabre.server.flatgenerator.FlatLayer
 import world.cepi.sabre.server.loaders.Forwarder
-import java.io.File
 import java.lang.IllegalArgumentException
-import kotlin.system.exitProcess
+import kotlin.io.path.writeText
 
 /** This class represents Sabre's config, and contains all the properties that can be configured in Sabre */
 @Serializable
@@ -95,11 +92,6 @@ class Config(
     /** If Sabre should use the default file storage system */
     val useFileStorageSystem: Boolean = true,
 ) {
-
-    fun save(): Config {
-        File(Sabre.CONFIG_LOCATION).writeText(format.encodeToString(this))
-        return this
-    }
 
     companion object {
 
