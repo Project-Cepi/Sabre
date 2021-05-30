@@ -8,6 +8,7 @@ import java.nio.channels.Channels
 import java.nio.channels.ReadableByteChannel
 import java.io.FileOutputStream
 import java.nio.file.Path
+import kotlin.io.path.createDirectories
 import kotlin.io.path.exists
 
 @Serializable
@@ -35,6 +36,10 @@ class ImportMap(val imports: List<Import> = listOf()) {
             }
 
         fun loadExtensions() {
+
+            val extensionPath = Path.of("./extensions")
+
+            if (!extensionPath.exists()) extensionPath.createDirectories()
 
             val validImports = importMap.imports.filter {
                 !Path.of(it.properFile).exists()
