@@ -1,13 +1,10 @@
 package world.cepi.sabre.server
 
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import net.minestom.server.instance.block.Block
 import world.cepi.sabre.server.flatgenerator.FlatLayer
 import world.cepi.sabre.server.loaders.Forwarder
 import java.lang.IllegalArgumentException
-import kotlin.io.path.writeText
 
 /** This class represents Sabre's config, and contains all the properties that can be configured in Sabre */
 @Serializable
@@ -94,14 +91,6 @@ class Config(
 ) {
 
     companion object {
-
-        val format = Json {
-            encodeDefaults = true
-            prettyPrint = true
-            ignoreUnknownKeys = true
-            coerceInputValues = true
-            isLenient = true
-        }
 
         // Allows for custom config setting during boot.
         private var _config: Config? = null

@@ -12,6 +12,13 @@ import kotlin.io.path.writeText
 
 object Sabre {
 
+    inline fun <reified T : Any> initConfigFile(path: Path, emptyObj: T): T {
+        return if (path.exists()) ConfigurationHelper.format.decodeFromString(path.readText()) else run {
+            path.writeText(ConfigurationHelper.format.encodeToString(emptyObj))
+            emptyObj
+        }
+    }
+
     /**
      * Internal method for booting sabre without a bootloader.
      * @see world.cepi.sabre.SabreLoader.boot
@@ -19,13 +26,11 @@ object Sabre {
     @ApiStatus.Internal
     @JvmStatic
     fun boot(config: Config? = null) {
-        val server = MinecraftServer.init()
 
         // Initialize config
-        Config.config = config ?: if (CONFIG_PATH.exists()) Config.format.decodeFromString(CONFIG_PATH.readText()) else run {
-            CONFIG_PATH.writeText(Config.format.encodeToString(Config()))
-            Config()
-        }
+        Config.config = config ?: initConfigFile(CONFIG_PATH, Config())
+
+        val server = MinecraftServer.init()
 
         // Load the loaders.
         loadLoaders()
@@ -37,5 +42,7 @@ object Sabre {
     val CONFIG_PATH: Path = Path.of("./sabre-config.json")
 
     val OP_PATH: Path = Path.of("./ops.json")
+
+    val IMPORT_PATH: Path = Path.of("./import-map.json")
 
 }
