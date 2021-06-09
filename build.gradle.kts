@@ -16,11 +16,9 @@ repositories {
     mavenCentral()
 
     listOf(
-            "repo1.maven.org/maven2",
             "repo.spongepowered.org/maven",
-            "libraries.minecraft.net",
+            "repo.minestom.com/repository/maven-public/",
             "jitpack.io",
-            "jcenter.bintray.com",
             "repo.velocitypowered.com/snapshots"
     ).forEach { maven(url = "https://$it") } // require https for all dependencies
 }
