@@ -5,10 +5,10 @@ import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
 import net.minestom.server.utils.Position
 import world.cepi.kstom.Manager
+import world.cepi.kstom.event.listenOnly
 import world.cepi.sabre.server.commands.security.getPermissionLevel
 import world.cepi.sabre.server.Config.Companion.config
 import world.cepi.sabre.server.flatgenerator.Flat
-import world.cepi.kstom.addEventCallback
 
 internal fun instanceLoader() {
 
@@ -24,30 +24,35 @@ internal fun instanceLoader() {
         null
     }
 
-    connectionManager.addPlayerInitialization {
-        if (config.useFlatGenerator) {
+    val node = Manager.globalEvent
+
+    if (config.useFlatGenerator) {
+
+        connectionManager.addPlayerInitialization {
             it.respawnPoint = Position(0.0, 64.0, 0.0)
-            it.addEventCallback<PlayerLoginEvent> {
-                setSpawningInstance(instance!!)
-
-                spawningInstance!!.loadChunk(0, 0)
-                spawningInstance!!.timeRate = config.timeRate
-                spawningInstance!!.time = config.time
-            }
         }
 
-        if (config.opUtilities) {
-            it.addEventCallback<PlayerLoginEvent> {
+        node.listenOnly<PlayerLoginEvent> {
+            setSpawningInstance(instance!!)
 
-                // OPs players when they join if they are on the ops list
-                player.permissionLevel = getPermissionLevel(player)
-            }
+            spawningInstance!!.loadChunk(0, 0)
+            spawningInstance!!.timeRate = config.timeRate
+            spawningInstance!!.time = config.time
         }
+    }
 
-        if (config.shouldRespawnAtSpawnPoint) {
-            it.addEventCallback<PlayerSpawnEvent> {
-                player.teleport(player.respawnPoint)
-            }
+    if (config.opUtilities) {
+        node.listenOnly<PlayerLoginEvent> {
+
+            // OPs players when they join if they are on the ops list
+            player.permissionLevel = getPermissionLevel(player)
+
+        }
+    }
+
+    if (config.shouldRespawnAtSpawnPoint) {
+        node.listenOnly<PlayerSpawnEvent> {
+            player.teleport(player.respawnPoint)
         }
     }
 

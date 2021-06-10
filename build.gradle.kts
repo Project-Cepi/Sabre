@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.5.0"
+    id("org.jetbrains.kotlin.jvm") version "1.5.10"
     kotlin("plugin.serialization") version "1.4.20"
     id("com.github.johnrengelman.shadow") version "7.0.0"
 
@@ -43,13 +43,10 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
 
     // Compile Minestom into project
-    implementation("com.github.Project-Cepi", "Minestom", "master-SNAPSHOT")
-
-    // org.json
-    implementation("org.json", "json", "20200518")
+    implementation("com.github.Minestom", "Minestom", "78cc392007")
 
     // implement KStom
-    implementation("com.github.Project-Cepi","KStom", "850bc149d8")
+    implementation("com.github.Project-Cepi","KStom", "e115f75350")
 
     // Log4j Jul
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
