@@ -46,7 +46,7 @@ dependencies {
     implementation("com.github.Minestom", "Minestom", "78cc392007")
 
     // implement KStom
-    implementation("com.github.Project-Cepi","KStom", "0129c5cfff")
+    implementation("com.github.Project-Cepi","KStom", "8b9dd64568")
 
     // Log4j Jul
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
