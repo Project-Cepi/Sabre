@@ -43,7 +43,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "f2bf27c86e")
+    implementation("com.github.Minestom", "Minestom", "80d0b8def6")
 
     // implement KStom
     implementation("com.github.Project-Cepi","KStom", "ce64354804")
