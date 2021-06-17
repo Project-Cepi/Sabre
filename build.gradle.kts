@@ -17,7 +17,6 @@ repositories {
 
     listOf(
             "repo.spongepowered.org/maven",
-            "repo.minestom.com/repository/maven-public/",
             "jitpack.io",
             "repo.velocitypowered.com/snapshots"
     ).forEach { maven(url = "https://$it") } // require https for all dependencies
@@ -43,7 +42,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "b51362aa74")
+    implementation("com.github.Minestom", "Minestom", "-SNAPSHOT")
 
     // implement KStom
     implementation("com.github.Project-Cepi","KStom", "ce64354804")
