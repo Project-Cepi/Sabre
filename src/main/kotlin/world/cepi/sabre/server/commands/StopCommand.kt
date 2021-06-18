@@ -12,7 +12,7 @@ import kotlin.system.exitProcess
 internal object StopCommand : Command("stop") {
     init {
         setCondition { sender, _ ->
-            sender.hasPermission("sabre.stop")
+            sender.hasPermission("server.stop")
                     || (sender is Player && sender.permissionLevel >= 4)
                     || (sender is ConsoleSender)
         }
