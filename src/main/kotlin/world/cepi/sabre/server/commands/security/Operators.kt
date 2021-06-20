@@ -9,15 +9,13 @@ import net.kyori.adventure.text.event.HoverEvent
 import net.kyori.adventure.text.format.NamedTextColor
 import net.minestom.server.command.ConsoleSender
 import net.minestom.server.command.builder.Command
+import net.minestom.server.command.builder.CommandExecutor
 import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.EntityType
 import net.minestom.server.entity.Player
-import world.cepi.kstom.command.addSyntax
-import world.cepi.kstom.command.default
 import world.cepi.sabre.server.Config.Companion.config
 import world.cepi.sabre.server.Sabre
 import world.cepi.sabre.server.utils.getUUID
-import java.io.File
 import java.util.*
 import kotlin.io.path.createFile
 import kotlin.io.path.exists
@@ -26,14 +24,14 @@ import kotlin.io.path.writeText
 
 internal object OpCommand: Command("op") {
     init {
-        default { sender, _ ->
+        defaultExecutor = CommandExecutor { sender, _ ->
             sender.sendMessage(Component.text("Usage: /op <player> <level>"))
         }
 
         val target = ArgumentType.Word("target")
         val level = ArgumentType.Integer("level")
 
-        addSyntax(target) { sender, args ->
+        addSyntax({ sender, args ->
             val targetId = getUUID(args.get(target)) ?: return@addSyntax
 
             if (sender is Player && (sender.permissionLevel < 3 || sender.permissionLevel < config.opLevel)) {
@@ -46,9 +44,9 @@ internal object OpCommand: Command("op") {
                     .append(Component.text(" was made a level ${config.opLevel} operator")))
 
             }
-        }
+        }, target)
 
-        addSyntax(target, level) { source, args ->
+        addSyntax({ source, args ->
             val targetLevel = args.get(level)
             val targetId = getUUID(args.get(target)) ?: return@addSyntax
 
@@ -63,7 +61,7 @@ internal object OpCommand: Command("op") {
                     .append(Component.text(" was made a level $targetLevel operator")))
 
             } else source.sendMessage(Component.text("You don't have permission to add an op at level $targetLevel!", NamedTextColor.RED))
-        }
+        }, target, level)
     }
 }
 
@@ -73,7 +71,7 @@ internal object DeopCommand: Command("deop") {
 
         val target = ArgumentType.Word("target")
 
-        addSyntax(target) { source, args ->
+        addSyntax({ source, args ->
             val targetId = getUUID(args.get(target)) ?: return@addSyntax
             val targetLevel = Operators.operators.getInt(targetId)
 
@@ -83,7 +81,7 @@ internal object DeopCommand: Command("deop") {
                     .append(Component.text(args.get(target)).hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId)))
                     .append(Component.text("s operator privileges")))
             } else source.sendMessage(Component.text("You don't have permission to revoke a level $targetLevel's privileges", NamedTextColor.RED))
-        }
+        }, target)
     }
 }
 
