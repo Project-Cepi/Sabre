@@ -7,7 +7,7 @@ import net.minestom.server.instance.block.Block
 @Serializable
 data class FlatLayer(
         /** The block enum to use to represent the layer */
-        val block: Block,
+        val block: String,
 
         /** The thickness in blocks */
         val thickness: Int

@@ -5,7 +5,6 @@ import kotlin.system.exitProcess
 
 /** Array of all loaders, act independently from eachother.*/
 internal val loaders: Array<() -> Unit> = arrayOf(
-    ::storageLoader,
     ::mojangAuthenticationLoader,
     ::instanceLoader,
     ::commandLoader,
