@@ -38,10 +38,10 @@ class Config(
 
     /** The flat layers the flat generator should use */
     val flatLayers: Array<FlatLayer> = arrayOf(
-        FlatLayer(Block.BEDROCK, 1),
-        FlatLayer(Block.STONE, 25),
-        FlatLayer(Block.DIRT, 7),
-        FlatLayer(Block.GRASS_BLOCK, 1)
+        FlatLayer("minecraft:bedrock", 1),
+        FlatLayer("minecraft:stone", 25),
+        FlatLayer("minecraft:dirt", 7),
+        FlatLayer("minecraft:grass_block", 1)
     ),
 
     /**

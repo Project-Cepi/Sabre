@@ -4,7 +4,6 @@ import net.minestom.server.MinecraftServer
 import net.minestom.server.coordinate.Pos
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
-import net.minestom.server.utils.Position
 import world.cepi.sabre.server.commands.security.getPermissionLevel
 import world.cepi.sabre.server.Config.Companion.config
 import world.cepi.sabre.server.flatgenerator.Flat
@@ -16,6 +15,7 @@ internal fun instanceLoader() {
         val instance = instanceManager.createInstanceContainer()
         instance.chunkGenerator = Flat(*config.flatLayers)
         instance.enableAutoChunkLoad(true)
+
         instance
     } else {
         null
