@@ -13,7 +13,7 @@ object UpdateCommand : Command("updatesabre") {
 
     init {
         setCondition { sender, _ ->
-            sender.hasPermission("server.update")
+            sender.hasPermission("server.update") || sender.isConsole
         }
 
         setDefaultExecutor { sender, context ->
