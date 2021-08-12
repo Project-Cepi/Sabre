@@ -9,6 +9,7 @@ import world.cepi.sabre.server.commands.security.DeopCommand
 import world.cepi.sabre.server.commands.security.OpCommand
 import world.cepi.sabre.server.Config.Companion.config
 import world.cepi.sabre.server.commands.StopCommand
+import world.cepi.sabre.server.commands.UpdateCommand
 
 internal fun commandLoader() {
 
@@ -22,6 +23,7 @@ internal fun commandLoader() {
     }
 
     MinecraftServer.getCommandManager().register(StopCommand)
+    MinecraftServer.getCommandManager().register(UpdateCommand)
 
     if (config.opUtilities) {
         MinecraftServer.getCommandManager().register(OpCommand)
