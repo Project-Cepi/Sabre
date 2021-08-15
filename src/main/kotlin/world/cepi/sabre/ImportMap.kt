@@ -1,5 +1,6 @@
 package world.cepi.sabre
 
+import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
 import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
@@ -21,6 +22,8 @@ class ImportMap(val imports: List<Import> = listOf()) {
     }
 
     companion object {
+
+        private val ioScope = CoroutineScope(Dispatchers.IO + Job())
 
         val logger = LoggerFactory.getLogger(ImportMap::class.java)
 
@@ -48,22 +51,29 @@ class ImportMap(val imports: List<Import> = listOf()) {
             if (validImports.isEmpty())
                 return
 
-            logger.info("Starting download of non-existant extensions")
+            logger.info("Starting download of non-existent import-map extensions")
 
-            validImports.forEach {
-                val readableByteChannel: ReadableByteChannel = Channels.newChannel(URL(it.url).openStream())
+            ioScope.launch {
+                supervisorScope {
 
-                val fileOutputStream = FileOutputStream("./extensions/${it.output}.jar")
-                val fileChannel = fileOutputStream.channel
+                    val deferredList = ArrayList<Deferred<*>>()
 
-                logger.info("Downloading ${it.output} jar...")
+                    validImports.forEach {
+                        deferredList.add(async {
+                            try {
+                                URL(it.url).openStream().copyTo(FileOutputStream("./extensions/${it.output}.jar"))
+                                logger.info("Downloaded ${it.output} jar...")
+                            } catch(exception: Exception) {
+                                logger.info("Failed to download ${it.output}")
+                            }
+                        })
+                    }
 
-                fileChannel
-                    .transferFrom(readableByteChannel, 0, Long.MAX_VALUE);
+                    deferredList.joinAll()
 
+                    logger.info("Finished downloading jars from import map!")
+                }
             }
-
-            logger.info("Finished downloading jars from import map!")
         }
 
     }
