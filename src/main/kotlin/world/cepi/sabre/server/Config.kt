@@ -82,9 +82,6 @@ class Config(
 
     /** If the OP command and loader should be used. */
     val opUtilities: Boolean = false,
-
-    /** If Sabre should use the default file storage system */
-    val useFileStorageSystem: Boolean = true,
 ) {
 
     companion object {
