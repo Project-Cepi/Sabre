@@ -65,9 +65,6 @@ class Config(
      */
     val compressionThreshold: Int = 256,
 
-    /** If the server should cache packets. */
-    val cachePackets: Boolean = true,
-
     /** If the player should respawn at their spawn point. */
     val shouldRespawnAtSpawnPoint: Boolean = true,
 

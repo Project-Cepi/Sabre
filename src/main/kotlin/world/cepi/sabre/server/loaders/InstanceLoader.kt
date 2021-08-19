@@ -1,9 +1,9 @@
 package world.cepi.sabre.server.loaders
 
 import net.minestom.server.MinecraftServer
+import net.minestom.server.coordinate.Pos
 import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
-import net.minestom.server.utils.Position
 import world.cepi.sabre.server.commands.security.getPermissionLevel
 import world.cepi.sabre.server.Config.Companion.config
 import world.cepi.sabre.server.flatgenerator.Flat
@@ -25,7 +25,7 @@ internal fun instanceLoader() {
     if (config.useFlatGenerator) {
 
         node.addListener(PlayerLoginEvent::class.java) {
-            it.player.respawnPoint = Position(0.0, 64.0, 0.0)
+            it.player.respawnPoint = Pos(0.0, 64.0, 0.0)
             it.setSpawningInstance(instance!!)
 
             it.spawningInstance!!.loadChunk(0, 0)
