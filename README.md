@@ -1,18 +1,18 @@
 # Sabre
-Sabre is a server jar wrapper using the Minestom API as a community-maintained groundwork library.
+Sabre is a server JAR wrapper using the Minestom API as a community-maintained groundwork library.
 
 ## Installation
 
-Download the jar from [Sabre releases](https://github.com/Project-Cepi/Sabre/releases)
-OR compile it yourself. Instructions to do so are in Compile header
+Download the JAR from [Sabre releases](https://github.com/Project-Cepi/Sabre/releases)
+or compile it yourself. Instructions to do so are in Compile header.
 
-Create a run script OR run it from the terminal using 
+Create a run script or run it from the terminal using 
 
 `java -Xms2000m -Xmx2000m -jar Sabre.jar`
 
-With `-Xms` being the minimum amount of ram you want to use,
+With `-Xms` being the minimum amount of RAM you want to use,
 
-`-Xmx` being the max amount of ram you want to use.
+and `-Xmx` being the max amount of RAM you want to use.
 
 ## Compile
 
