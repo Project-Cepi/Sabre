@@ -26,7 +26,7 @@ object UpdateCommand : Command("updatesabre") {
                     ).openStream()
                         .copyTo(this::class.java.protectionDomain.codeSource.location.toURI().toPath().outputStream())
 
-                    println("Download successful!")
+                    sender.sendMessage("Download successful!")
                 } catch (exception: Exception) {
                     exception.printStackTrace()
                     sender.sendMessage("Download failed. Check console for more info.")
