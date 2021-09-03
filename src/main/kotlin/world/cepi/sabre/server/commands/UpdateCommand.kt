@@ -7,7 +7,7 @@ import kotlin.concurrent.thread
 import kotlin.io.path.outputStream
 import kotlin.io.path.toPath
 
-object UpdateCommand : Command("updatesabre") {
+object UpdateCommand : Command("updateserver") {
 
     val sabreInfoURL = URL("https://raw.githubusercontent.com/Project-Cepi/Sabre/master/minestom.json")
 
