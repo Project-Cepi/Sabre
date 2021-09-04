@@ -7,6 +7,7 @@ import net.minestom.server.entity.Player
 import org.jetbrains.annotations.ApiStatus
 import world.cepi.sabre.server.loaders.loadLoaders
 import java.nio.file.Path
+import kotlin.concurrent.thread
 import kotlin.io.path.exists
 import kotlin.io.path.readText
 import kotlin.io.path.writeText
@@ -41,7 +42,9 @@ object Sabre {
         // The IP and port are grabbed from the config file
         server.start(Config.config.ip, Config.config.port)
 
-        SabreTerminal.start()
+        thread(start = true, isDaemon = true, name = "Console") {
+            SabreTerminal.start()
+        }
 
         // Resend commands
         MinecraftServer.getConnectionManager().onlinePlayers.forEach(Player::refreshCommands)
