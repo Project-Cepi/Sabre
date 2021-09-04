@@ -1,6 +1,14 @@
 # Sabre
 Sabre is a server JAR wrapper using the Minestom API as a community-maintained groundwork library.
 
+## Features
+
+* Fully featured configuration
+* Stop, update, and operator commands.
+* Colored terminal
+* Built-in flat generator for testing
+* [Import map](https://github.com/Project-Cepi/import-map) for easy setup
+
 ## Installation
 
 Download the JAR from [Sabre releases](https://github.com/Project-Cepi/Sabre/releases)
