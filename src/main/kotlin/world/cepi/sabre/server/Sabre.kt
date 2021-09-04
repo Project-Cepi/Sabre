@@ -3,6 +3,7 @@ package world.cepi.sabre.server
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import net.minestom.server.MinecraftServer
+import net.minestom.server.entity.Player
 import org.jetbrains.annotations.ApiStatus
 import world.cepi.sabre.server.loaders.loadLoaders
 import java.nio.file.Path
@@ -30,6 +31,8 @@ object Sabre {
         // Initialize config
         Config.config = config ?: initConfigFile(CONFIG_PATH, Config())
 
+        MinecraftServer.setTerminalEnabled(false)
+
         val server = MinecraftServer.init()
 
         // Load the loaders.
@@ -37,6 +40,11 @@ object Sabre {
 
         // The IP and port are grabbed from the config file
         server.start(Config.config.ip, Config.config.port)
+
+        SabreTerminal.start()
+
+        // Resend commands
+        MinecraftServer.getConnectionManager().onlinePlayers.forEach(Player::refreshCommands)
     }
 
     val CONFIG_PATH: Path = Path.of("./sabre-config.json")

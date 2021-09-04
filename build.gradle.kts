@@ -45,6 +45,15 @@ dependencies {
 
     // Log4j Jul
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
+
+    // JLine
+    implementation("org.jline:jline:3.9.0")
+
+    // TerminalConsoleAppender
+    implementation("net.minecrell:terminalconsoleappender:1.3.0")
+
+    // Jansi
+    implementation("org.jline:jline-terminal-jansi:3.20.0")
 }
 
 tasks {
@@ -55,6 +64,8 @@ tasks {
                     "Multi-Release" to true
             )
         }
+
+        transform(com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer::class.java)
 
         mergeServiceFiles()
 

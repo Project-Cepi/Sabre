@@ -1,14 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN" strict="true" name="Minestom">
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config" status="INFO" packages="net.minecrell.terminalconsole" shutdownHook="disable">
   <Appenders>
-    <Appender type="Console" name="STDOUT">
-      <Layout type="PatternLayout" pattern="[%d{HH:mm:ss} %p] [%t] %m%n"/>
-    </Appender>
+    <TerminalConsole name="CONSOLE">
+      <PatternLayout noConsoleNoAnsi="true" pattern="%green{%d{HH:mm:ss}} %highlight{%level}{STYLE=Logback} %cyan{%logger{0}} %minecraftFormatting{%msg}%n" />
+    </TerminalConsole>
+    <RollingRandomAccessFile name="File" filePattern="logs/%d{yyyy-MM-dd}-%i.log.gz" fileName="logs/latest.log">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} [%thread] %level %logger{0} - %minecraftFormatting{%msg}{strip}%n" />
+      <Policies>
+        <TimeBasedTriggeringPolicy />
+        <OnStartupTriggeringPolicy />
+      </Policies>
+      <DefaultRolloverStrategy max="1000" />
+    </RollingRandomAccessFile>
   </Appenders>
-
   <Loggers>
     <Root level="info">
-      <AppenderRef ref="STDOUT" level="info"/>
+      <AppenderRef ref="CONSOLE" />
+      <AppenderRef ref="File" />
     </Root>
   </Loggers>
 </Configuration>

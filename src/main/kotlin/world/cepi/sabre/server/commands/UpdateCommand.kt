@@ -16,7 +16,7 @@ object UpdateCommand : Command("updateserver") {
             sender.hasPermission("server.update") || sender.isConsole
         }
 
-        setDefaultExecutor { sender, context ->
+        setDefaultExecutor { sender, _ ->
 
             thread {
                 try {
