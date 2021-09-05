@@ -2,9 +2,8 @@ package world.cepi.sabre.server
 
 import net.minecrell.terminalconsole.SimpleTerminalConsole
 import net.minestom.server.MinecraftServer
-import net.minestom.server.terminal.MinestomTerminal
-import org.jline.reader.LineReader
 import org.jline.reader.LineReaderBuilder
+import org.slf4j.LoggerFactory
 
 object SabreTerminal : SimpleTerminalConsole() {
 

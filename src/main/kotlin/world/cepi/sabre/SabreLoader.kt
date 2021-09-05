@@ -8,6 +8,7 @@ import org.spongepowered.asm.launch.MixinBootstrap
 import org.spongepowered.asm.launch.platform.CommandLineOptions
 import org.spongepowered.asm.mixin.Mixins
 import org.spongepowered.asm.service.ServiceNotAvailableError
+import uk.org.lidalia.sysoutslf4j.context.SysOutOverSLF4J
 import world.cepi.sabre.server.Config
 import world.cepi.sabre.server.Sabre
 import java.lang.IllegalArgumentException
@@ -98,6 +99,9 @@ object SabreLoader {
      */
     fun boot(config: Config? = null, importMap: ImportMap? = null, args: Array<String> = arrayOf()) {
         System.setProperty("java.util.logging.manager", "org.apache.logging.log4j.jul.LogManager")
+        SysOutOverSLF4J.registerLoggingSystem("org.slf4j");
+        SysOutOverSLF4J.registerLoggingSystem("org.apache.logging.slf4j")
+        SysOutOverSLF4J.sendSystemOutAndErrToSLF4J();
         bootstrap(config, importMap, args)
     }
 

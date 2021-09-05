@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Configuration xmlns="http://logging.apache.org/log4j/2.0/config" status="INFO" packages="net.minecrell.terminalconsole" shutdownHook="disable">
+<Configuration status="INFO">
   <Appenders>
-    <TerminalConsole name="CONSOLE">
+    <TerminalConsole name="Console">
       <PatternLayout noConsoleNoAnsi="true" pattern="%green{%d{HH:mm:ss}} %highlight{%level}{STYLE=Logback} %cyan{%logger{0}} %minecraftFormatting{%msg}%n" />
     </TerminalConsole>
     <RollingRandomAccessFile name="File" filePattern="logs/%d{yyyy-MM-dd}-%i.log.gz" fileName="logs/latest.log">
@@ -15,7 +15,7 @@
   </Appenders>
   <Loggers>
     <Root level="info">
-      <AppenderRef ref="CONSOLE" />
+      <AppenderRef ref="Console" />
       <AppenderRef ref="File" />
     </Root>
   </Loggers>
