@@ -18,6 +18,8 @@ object UpdateCommand : Command("updateserver") {
 
         setDefaultExecutor { sender, _ ->
 
+            println(this::class.java.protectionDomain.codeSource.location)
+
             thread {
                 try {
                     URL(

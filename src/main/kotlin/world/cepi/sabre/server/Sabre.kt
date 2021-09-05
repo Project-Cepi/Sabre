@@ -4,8 +4,9 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import net.minestom.server.MinecraftServer
 import net.minestom.server.entity.Player
+import net.minestom.server.exception.ExceptionHandler
 import org.jetbrains.annotations.ApiStatus
-import uk.org.lidalia.sysoutslf4j.context.SysOutOverSLF4J
+import org.slf4j.LoggerFactory
 import world.cepi.sabre.server.loaders.loadLoaders
 import java.nio.file.Path
 import kotlin.concurrent.thread
@@ -21,6 +22,8 @@ object Sabre {
             emptyObj
         }
     }
+
+    val logger = LoggerFactory.getLogger("Sabre")
 
     /**
      * Internal method for booting sabre without a bootloader.
@@ -42,6 +45,10 @@ object Sabre {
 
         // The IP and port are grabbed from the config file
         server.start(Config.config.ip, Config.config.port)
+
+        MinecraftServer.getExceptionManager().exceptionHandler = ExceptionHandler {
+            logger.error("An error has occurred", it)
+        }
 
         thread(start = true, isDaemon = true, name = "Console") {
             SabreTerminal.start()

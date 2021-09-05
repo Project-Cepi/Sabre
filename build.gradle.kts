@@ -45,8 +45,6 @@ dependencies {
 
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
 
-    implementation("uk.org.lidalia:sysout-over-slf4j:1.0.2")
-
     // JLine
     implementation("org.jline:jline:3.20.0")
 
