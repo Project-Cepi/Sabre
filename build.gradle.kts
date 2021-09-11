@@ -41,7 +41,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter:5.7.2")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "d7a116c144")
+    implementation("com.github.Minestom", "Minestom", "e77e32889b")
 
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
 
