@@ -1,0 +1,10 @@
+pull_request_rules:
+  - name: Automatic merge for renovate pull requests
+    conditions:
+      - author=renovate[bot]
+      - title~=(dependency|plugin)
+      - -merged
+      - check-success~=CI
+    actions:
+      merge:
+        method: merge
