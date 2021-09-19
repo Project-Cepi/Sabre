@@ -14,9 +14,9 @@ internal const val uuidRadix = 16
  *
  * @return A valid UUID
  */
-fun toValidUuid(string: String) = UUID(
-    parseUnsignedLong(string.substring(0, uuidRadix), uuidRadix),
-    parseUnsignedLong(string.substring(uuidRadix), uuidRadix)
+fun String.toValidUuid() = UUID(
+    parseUnsignedLong(substring(0, uuidRadix), uuidRadix),
+    parseUnsignedLong(substring(uuidRadix), uuidRadix)
 )
 
 private const val commaChar = ','.code
@@ -53,5 +53,5 @@ fun getUUID(username: String): UUID? {
     }
 
     // Can break at any time.
-    return toValidUuid(String(inputStream.readNBytes(uuidRadix * 2))) // reads the length of the UUID
+    return String(inputStream.readNBytes(uuidRadix * 2)).toValidUuid() // reads the length of the UUID
 }

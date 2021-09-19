@@ -37,8 +37,9 @@ dependencies {
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
 
-    // Use the JUpiter test library.
-    testImplementation("org.junit.jupiter:junit-jupiter:5.8.0")
+    // Use the kotlin test library
+    testImplementation("io.kotest:kotest-assertions-core:4.6.3")
+    testImplementation("io.kotest:kotest-runner-junit5:4.6.3")
 
     // Compile Minestom into project
     implementation("com.github.Minestom", "Minestom", "872a49d371")
