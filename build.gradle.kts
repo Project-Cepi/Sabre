@@ -35,7 +35,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
 
     // import kotlinx serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.2.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
 
     // Use the kotlin test library
     testImplementation("io.kotest:kotest-assertions-core:4.6.3")
