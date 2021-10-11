@@ -1,4 +1,7 @@
 # Sabre
+[![license](https://img.shields.io/github/license/Project-Cepi/Sabre?style=for-the-badge&color=b2204c)](../LICENSE)
+[![discord-banner](https://img.shields.io/discord/706185253441634317?label=discord&style=for-the-badge&color=7289da)](https://discord.cepi.world/8K8WMGV)
+
 Sabre is a server JAR wrapper using the Minestom API as a community-maintained groundwork library.
 
 ## Features
