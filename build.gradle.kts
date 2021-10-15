@@ -6,9 +6,16 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.5.31"
     kotlin("plugin.serialization") version "1.5.31"
     id("com.github.johnrengelman.shadow") version "7.1.0"
+	id("io.gitlab.arturbosch.detekt") version "1.18.1"
 
     // Apply the application plugin to add support for building a jar
     java
+}
+
+detekt {
+    toolVersion = "1.18.1"
+    config = files("config/detekt/detekt.yml")
+    buildUponDefaultConfig = true
 }
 
 repositories {
