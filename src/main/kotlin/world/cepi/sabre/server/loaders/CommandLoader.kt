@@ -29,6 +29,4 @@ internal fun commandLoader() {
         MinecraftServer.getCommandManager().register(OpCommand)
         MinecraftServer.getCommandManager().register(DeopCommand)
     }
-
-
 }

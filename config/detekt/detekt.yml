@@ -1,0 +1,5 @@
+build:
+  maxIssues: 50 # Temporary
+style:
+  WildcardImport:
+    active: false

@@ -17,7 +17,6 @@ object BlockSerializer : KSerializer<Block> {
             element<String>("id")
         }
 
-
     override fun serialize(encoder: Encoder, value: Block) {
         encoder.encodeStructure(descriptor) {
             encodeIntElement(descriptor, 0, value.id())
@@ -29,10 +28,10 @@ object BlockSerializer : KSerializer<Block> {
         decoder.decodeStructure(descriptor) {
             var id = 0
 
-            if(decodeSequentially()) {
+            if (decodeSequentially()) {
                 id = decodeIntElement(descriptor, 0)
             } else while (true) {
-                when(val index = decodeElementIndex((descriptor))) {
+                when (val index = decodeElementIndex((descriptor))) {
                     0 -> id = decodeIntElement(descriptor, 0)
                     CompositeDecoder.DECODE_DONE -> break
                     else -> error("Unexpected index: $index")
@@ -40,5 +39,4 @@ object BlockSerializer : KSerializer<Block> {
             }
             Block.fromBlockId(id) ?: error("Bad ID")
         }
-
 }

@@ -41,6 +41,9 @@ dependencies {
     // Add support for kotlinx courotines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
 
+    // Add intergration
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.5.2")
+
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.0")
 

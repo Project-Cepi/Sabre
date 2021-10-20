@@ -39,7 +39,6 @@ internal fun instanceLoader() {
 
             // OPs players when they join if they are on the ops list
             it.player.permissionLevel = getPermissionLevel(it.player)
-
         }
     }
 
@@ -48,5 +47,4 @@ internal fun instanceLoader() {
             it.player.teleport(it.player.respawnPoint)
         }
     }
-
 }

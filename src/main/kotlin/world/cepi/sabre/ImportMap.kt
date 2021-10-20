@@ -4,16 +4,17 @@ import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
 import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
-import java.net.URL
-import java.nio.channels.Channels
-import java.nio.channels.ReadableByteChannel
-import java.io.FileOutputStream
+import kotlinx.coroutines.future.await
+import java.net.URI
+import java.net.http.HttpClient
+import java.net.http.HttpRequest
+import java.net.http.HttpResponse
 import java.nio.file.Path
 import kotlin.io.path.createDirectories
 import kotlin.io.path.exists
 
 @Serializable
-class ImportMap(val imports: List<Import> = listOf()) {
+data class ImportMap(val imports: List<Import> = listOf()) {
 
     @Serializable
     class Import(val url: String, val output: String) {
@@ -48,8 +49,7 @@ class ImportMap(val imports: List<Import> = listOf()) {
                 !Path.of(it.properFile).exists()
             }
 
-            if (validImports.isEmpty())
-                return
+            if (validImports.isEmpty()) return
 
             logger.info("Starting download of non-existent import-map extensions")
 
@@ -61,10 +61,10 @@ class ImportMap(val imports: List<Import> = listOf()) {
                     validImports.forEach {
                         deferredList.add(async {
                             try {
-                                URL(it.url).openStream().copyTo(FileOutputStream("./extensions/${it.output}.jar"))
+                                downloadURL(it.url, it.output)
                                 logger.info("Downloaded ${it.output} jar...")
-                            } catch(exception: Exception) {
-                                logger.info("Failed to download ${it.output}")
+                            } catch (exception: Exception) {
+                                logger.error("Failed to download ${it.output}", exception)
                             }
                         })
                     }
@@ -74,6 +74,16 @@ class ImportMap(val imports: List<Import> = listOf()) {
                     logger.info("Finished downloading jars from import map!")
                 }
             }
+        }
+
+        suspend fun downloadURL(url: String, output: String) {
+            val client = HttpClient.newHttpClient()
+            val request = HttpRequest.newBuilder().uri(URI.create(url)).build()
+            val futureResponse = client.sendAsync(
+                request,
+                HttpResponse.BodyHandlers.ofFile(Path.of("./extensions/$output"))
+            )
+            futureResponse.await()
         }
 
     }

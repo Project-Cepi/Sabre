@@ -11,8 +11,8 @@ internal object StopCommand : Command("stop") {
     init {
         setCondition { sender, _ ->
             sender.hasPermission("server.stop")
-                    || (sender is Player && sender.permissionLevel >= 4)
-                    || (sender is ConsoleSender)
+                    || sender is Player && sender.permissionLevel >= 4
+                    || sender is ConsoleSender
         }
 
         defaultExecutor = CommandExecutor { _, _ ->

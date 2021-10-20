@@ -1,6 +1,7 @@
 package world.cepi.sabre.server.commands.security
 
 import it.unimi.dsi.fastutil.objects.Object2IntOpenHashMap
+import kotlinx.serialization.SerializationException
 import kotlinx.serialization.builtins.MapSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.json.Json
@@ -13,16 +14,14 @@ import net.minestom.server.command.builder.CommandExecutor
 import net.minestom.server.command.builder.arguments.ArgumentType
 import net.minestom.server.entity.EntityType
 import net.minestom.server.entity.Player
+import org.slf4j.LoggerFactory
 import world.cepi.sabre.server.Config.Companion.config
 import world.cepi.sabre.server.Sabre
 import world.cepi.sabre.server.utils.getUUID
 import java.util.*
-import kotlin.io.path.createFile
-import kotlin.io.path.exists
-import kotlin.io.path.readText
-import kotlin.io.path.writeText
+import kotlin.io.path.*
 
-internal object OpCommand: Command("op") {
+internal object OpCommand : Command("op") {
     init {
         defaultExecutor = CommandExecutor { sender, _ ->
             sender.sendMessage(Component.text("Usage: /op <player> <level>"))
@@ -35,14 +34,16 @@ internal object OpCommand: Command("op") {
             val targetId = getUUID(args.get(target)) ?: return@addSyntax
 
             if (sender is Player && (sender.permissionLevel < 3 || sender.permissionLevel < config.opLevel)) {
-                sender.sendMessage(Component.text("You don't have permission to add an op at the default level (${config.opLevel})", NamedTextColor.RED))
+                sender.sendMessage(Component.text(
+                    "You don't have permission to add an op at the default level (${config.opLevel})",
+                    NamedTextColor.RED)
+                )
             } else {
 
                 Operators.add(targetId, config.opLevel)
                 sender.sendMessage(Component.text(args.get(target))
                     .hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId))
                     .append(Component.text(" was made a level ${config.opLevel} operator")))
-
             }
         }, target)
 
@@ -50,22 +51,22 @@ internal object OpCommand: Command("op") {
             val targetLevel = args.get(level)
             val targetId = getUUID(args.get(target)) ?: return@addSyntax
 
-            if (
-                (source is Player && source.permissionLevel >= targetLevel && source.permissionLevel >= targetLevel)
-                || source is ConsoleSender
-            ) {
+            if ((source is Player && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
 
                 Operators.add(targetId, targetLevel)
                 source.sendMessage(Component.text(args.get(target))
                     .hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId))
                     .append(Component.text(" was made a level $targetLevel operator")))
-
-            } else source.sendMessage(Component.text("You don't have permission to add an op at level $targetLevel!", NamedTextColor.RED))
+            } else {
+                source.sendMessage(
+                    Component.text("You don't have permission to add an op at level $targetLevel!", NamedTextColor.RED)
+                )
+            }
         }, target, level)
     }
 }
 
-internal object DeopCommand: Command("deop") {
+internal object DeopCommand : Command("deop") {
     init {
         setDefaultExecutor { sender, _ -> sender.sendMessage(Component.text("Usage: /deop <player")) }
 
@@ -78,27 +79,36 @@ internal object DeopCommand: Command("deop") {
             if ((source is Player && source.permissionLevel >= targetLevel) || source is ConsoleSender) {
                 Operators.remove(targetId)
                 source.sendMessage(Component.text("Revoked ")
-                    .append(Component.text(args.get(target)).hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId)))
+                    .append(Component.text(args.get(target))
+                        .hoverEvent(HoverEvent.showEntity(EntityType.PLAYER, targetId)))
                     .append(Component.text("s operator privileges")))
-            } else source.sendMessage(Component.text("You don't have permission to revoke a level $targetLevel's privileges", NamedTextColor.RED))
+            } else {
+                source.sendMessage(
+                    Component.text("You don't have permission to revoke a level $targetLevel's privileges",
+                        NamedTextColor.RED)
+                )
+            }
         }, target)
     }
 }
 
 object Operators {
     private val operatorPath = Sabre.OP_PATH
-    val operators = Object2IntOpenHashMap<UUID>()
 
-    private val serilalizer = MapSerializer(String.serializer(), Int.serializer())
+    val logger = LoggerFactory.getLogger(Operators::class.java)
 
-    init {
+    val operators = Object2IntOpenHashMap<UUID>().also { map ->
+
+        if (operatorPath.notExists()) return@also
         try {
-            operators.putAll(Json.decodeFromString(serilalizer, operatorPath.readText())
-				.mapKeys { UUID.fromString(it.key) })
-        } catch (e: Exception) {
-
+            map.putAll(Json.decodeFromString(serilalizer, operatorPath.readText())
+                .mapKeys { UUID.fromString(it.key) })
+        } catch (exception: SerializationException) {
+            logger.error("Could not serialize ${operatorPath.fileName}:", exception)
         }
     }
+
+    private val serilalizer = MapSerializer(String.serializer(), Int.serializer())
 
     fun add(id: UUID, opLevel: Int) {
         operators[id] = opLevel
@@ -111,9 +121,8 @@ object Operators {
     }
 
     private fun save() {
-        if (!operatorPath.exists())
-            operatorPath.createFile()
-        operatorPath.writeText(Json.encodeToString(serilalizer, operators.mapKeys { it.key.toString() } ))
+        if (!operatorPath.exists()) operatorPath.createFile()
+        operatorPath.writeText(Json.encodeToString(serilalizer, operators.mapKeys { it.key.toString() }))
     }
 }
 

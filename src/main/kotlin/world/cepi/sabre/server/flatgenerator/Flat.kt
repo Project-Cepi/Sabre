@@ -6,9 +6,8 @@ import net.minestom.server.instance.ChunkGenerator
 import net.minestom.server.instance.ChunkPopulator
 import net.minestom.server.instance.batch.ChunkBatch
 import net.minestom.server.world.biomes.Biome
-import java.util.*
 
-/** Flat world generation based off of [ChunkGenerator] */
+/** Flat world generation based off of [ChunkGenerator]. */
 class Flat(
     /** List of [FlatLayer]s used to generate the flat world. */
     private vararg val layers: FlatLayer

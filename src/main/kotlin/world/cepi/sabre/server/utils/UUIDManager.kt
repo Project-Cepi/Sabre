@@ -8,7 +8,7 @@ import java.util.UUID
 internal const val UUID_RADIX = 16
 
 /**
- * Turns a UUID with no hyphens (`-`) to a UUID containing hyphens
+ * Turns a UUID with no hyphens (`-`) to a UUID containing hyphens.
  *
  * @param string The UUID as a String
  *
@@ -19,11 +19,11 @@ fun String.toValidUuid() = UUID(
     parseUnsignedLong(substring(UUID_RADIX), UUID_RADIX)
 )
 
-/** Comma character */
+/** Comma character. */
 private const val COMMA_CHARACTER = ','.code
 
-/** HTTP Success char */
-private const val SUCCESS_CODE = 200;
+/** HTTP Success char, */
+private const val SUCCESS_CODE = 200
 
 /**
  * Gets a UUID from a [net.minestom.server.entity.Player]'s username
@@ -33,7 +33,8 @@ private const val SUCCESS_CODE = 200;
  * @return A [UUID] retrieved from the `Mojang` API.
  */
 fun getUUID(username: String): UUID? {
-    val connection = URL("https://api.mojang.com/users/profiles/minecraft/$username").openConnection() as HttpURLConnection
+    val connection = URL("https://api.mojang.com/users/profiles/minecraft/$username")
+        .openConnection() as HttpURLConnection
 
     val inputStream = if (connection.responseCode == SUCCESS_CODE) {
         connection.inputStream

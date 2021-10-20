@@ -1,7 +1,9 @@
 package world.cepi.sabre.server.loaders
 
-import net.minestom.server.MinecraftServer
+import org.slf4j.LoggerFactory
 import kotlin.system.exitProcess
+
+private val logger = LoggerFactory.getLogger("SabreLoaders")
 
 /** Array of all loaders, act independently from eachother.*/
 internal val loaders: Array<() -> Unit> = arrayOf(
@@ -20,8 +22,7 @@ internal fun loadLoaders() = loaders.forEach {
     try {
         it()
     } catch (e: Exception) {
-        e.printStackTrace()
-        MinecraftServer.LOGGER.error("Logger ${it.javaClass.simpleName} failed to load. Please file an issue on the Sabre github.")
+        logger.error("Logger ${it.javaClass.simpleName} failed to load. Please file an issue on the Sabre github.", e)
         exitProcess(1)
     }
 }

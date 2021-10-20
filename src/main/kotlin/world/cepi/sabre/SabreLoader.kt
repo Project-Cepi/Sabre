@@ -4,6 +4,7 @@ import net.minestom.server.extensions.ExtensionManager
 import net.minestom.server.extras.selfmodification.MinestomRootClassLoader
 import net.minestom.server.extras.selfmodification.mixins.MixinCodeModifier
 import net.minestom.server.extras.selfmodification.mixins.MixinServiceMinestom
+import org.slf4j.LoggerFactory
 import org.spongepowered.asm.launch.MixinBootstrap
 import org.spongepowered.asm.launch.platform.CommandLineOptions
 import org.spongepowered.asm.mixin.Mixins
@@ -18,6 +19,8 @@ import kotlin.reflect.jvm.javaMethod
  * Bootstrap wrapper for Minestom. Written in java to prevent Kotlin Bootstrap errors.
  */
 object SabreLoader {
+
+    val logger = LoggerFactory.getLogger(SabreLoader::class.java)
 
     // TODO use config property
     private fun bootstrap(config: Config? = null, importMap: ImportMap? = null, args: Array<String>) {
@@ -35,8 +38,7 @@ object SabreLoader {
             try {
                 MinestomRootClassLoader.getInstance().addCodeModifier(MixinCodeModifier())
             } catch (e: RuntimeException) {
-                e.printStackTrace()
-                System.err.println("Failed to add MixinCodeModifier, mixins will not be injected. Check the log entries above to debug.")
+                logger.error("Failed to add MixinCodeModifier, mixins will not be injected.", e)
             }
             ExtensionManager.loadCodeModifiersEarly()
             MixinServiceMinestom.gotoPreinitPhase()
@@ -73,18 +75,13 @@ object SabreLoader {
                 return
             }
         } catch (e: ServiceNotAvailableError) {
-            e.printStackTrace()
-            System.err.println("Failed to load Mixin, see error above.")
-            System.err.println(
-                "It is possible you simply have two files with identical names inside your server jar. " +
-                        "Check your META-INF/services directory inside your Minestom implementation and merge files with identical names inside META-INF/services."
-            )
+            logger.error("Failed to load Mixin", e)
             return
         }
         val doInit =
             MixinBootstrap::class.java.getDeclaredMethod("doInit", CommandLineOptions::class.java)
         doInit.isAccessible = true
-        doInit.invoke(null, CommandLineOptions.ofArgs(listOf(*args)))
+        doInit.invoke(null, CommandLineOptions.ofArgs(args.toList()))
         MixinBootstrap.getPlatform().inject()
         Mixins.getConfigs().forEach { c ->
             MinestomRootClassLoader.getInstance().protectedPackages.add(
