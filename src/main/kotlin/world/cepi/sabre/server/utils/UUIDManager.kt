@@ -23,7 +23,7 @@ fun String.toValidUuid() = UUID(
 private const val COMMA_CHARACTER = ','.code
 
 /** HTTP Success char */
-private const val successCode = 200;
+private const val SUCCESS_CODE = 200;
 
 /**
  * Gets a UUID from a [net.minestom.server.entity.Player]'s username
@@ -35,7 +35,7 @@ private const val successCode = 200;
 fun getUUID(username: String): UUID? {
     val connection = URL("https://api.mojang.com/users/profiles/minecraft/$username").openConnection() as HttpURLConnection
 
-    val inputStream = if (connection.responseCode == successCode) {
+    val inputStream = if (connection.responseCode == SUCCESS_CODE) {
         connection.inputStream
     } else {
         return null

@@ -93,7 +93,8 @@ object Operators {
 
     init {
         try {
-            operators.putAll(Json.decodeFromString(serilalizer, operatorPath.readText()).mapKeys { UUID.fromString(it.key) })
+            operators.putAll(Json.decodeFromString(serilalizer, operatorPath.readText())
+				.mapKeys { UUID.fromString(it.key) })
         } catch (e: Exception) {
 
         }
