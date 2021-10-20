@@ -5,7 +5,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.UUID
 
-internal const val uuidRadix = 16
+internal const val UUID_RADIX = 16
 
 /**
  * Turns a UUID with no hyphens (`-`) to a UUID containing hyphens
@@ -15,11 +15,15 @@ internal const val uuidRadix = 16
  * @return A valid UUID
  */
 fun String.toValidUuid() = UUID(
-    parseUnsignedLong(substring(0, uuidRadix), uuidRadix),
-    parseUnsignedLong(substring(uuidRadix), uuidRadix)
+    parseUnsignedLong(substring(0, UUID_RADIX), UUID_RADIX),
+    parseUnsignedLong(substring(UUID_RADIX), UUID_RADIX)
 )
 
-private const val commaChar = ','.code
+/** Comma character */
+private const val COMMA_CHARACTER = ','.code
+
+/** HTTP Success char */
+private const val successCode = 200;
 
 /**
  * Gets a UUID from a [net.minestom.server.entity.Player]'s username
@@ -31,7 +35,7 @@ private const val commaChar = ','.code
 fun getUUID(username: String): UUID? {
     val connection = URL("https://api.mojang.com/users/profiles/minecraft/$username").openConnection() as HttpURLConnection
 
-    val inputStream = if (connection.responseCode == 200) {
+    val inputStream = if (connection.responseCode == successCode) {
         connection.inputStream
     } else {
         return null
@@ -43,7 +47,7 @@ fun getUUID(username: String): UUID? {
         if (inputStream.available() == 0) return null
 
         // find the first comma
-        if (inputStream.read() == commaChar) {
+        if (inputStream.read() == COMMA_CHARACTER) {
             // skip the next quote ("id":")
             inputStream.skip(6)
 
@@ -53,5 +57,5 @@ fun getUUID(username: String): UUID? {
     }
 
     // Can break at any time.
-    return String(inputStream.readNBytes(uuidRadix * 2)).toValidUuid() // reads the length of the UUID
+    return String(inputStream.readNBytes(UUID_RADIX * 2)).toValidUuid() // reads the length of the UUID
 }
