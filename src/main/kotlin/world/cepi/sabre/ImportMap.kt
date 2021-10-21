@@ -12,6 +12,7 @@ import java.net.http.HttpResponse
 import java.nio.file.Path
 import kotlin.io.path.createDirectories
 import kotlin.io.path.exists
+import kotlin.io.path.outputStream
 
 @Serializable
 data class ImportMap(val imports: List<Import> = listOf()) {
@@ -81,9 +82,10 @@ data class ImportMap(val imports: List<Import> = listOf()) {
             val request = HttpRequest.newBuilder().uri(URI.create(url)).build()
             val futureResponse = client.sendAsync(
                 request,
-                HttpResponse.BodyHandlers.ofFile(Path.of("./extensions/$output"))
+                HttpResponse.BodyHandlers.ofInputStream()
             )
-            futureResponse.await()
+
+            futureResponse.await().body().copyTo(Path.of("./extensions/$output.jar").outputStream())
         }
 
     }
