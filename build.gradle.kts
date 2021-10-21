@@ -57,7 +57,7 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
 
     // JLine
-    implementation("org.jline:jline:3.20.0")
+    implementation("org.jline:jline:3.21.0")
 
     // TerminalConsoleAppender
     implementation("net.minecrell:terminalconsoleappender:1.3.0")
