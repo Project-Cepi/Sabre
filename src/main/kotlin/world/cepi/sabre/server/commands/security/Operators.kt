@@ -97,6 +97,8 @@ object Operators {
 
     val logger = LoggerFactory.getLogger(Operators::class.java)
 
+    private val serilalizer = MapSerializer(String.serializer(), Int.serializer())
+
     val operators = Object2IntOpenHashMap<UUID>().also { map ->
 
         if (operatorPath.notExists()) return@also
@@ -107,8 +109,6 @@ object Operators {
             logger.error("Could not serialize ${operatorPath.fileName}:", exception)
         }
     }
-
-    private val serilalizer = MapSerializer(String.serializer(), Int.serializer())
 
     fun add(id: UUID, opLevel: Int) {
         operators[id] = opLevel
