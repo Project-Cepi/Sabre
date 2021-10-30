@@ -52,7 +52,7 @@ dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:4.6.3")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "85d9256fa8")
+    implementation("com.github.Minestom", "Minestom", "50a0c13120")
 
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
 
@@ -102,12 +102,6 @@ configure<SourceSetContainer> {
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(17))
-    }
-}
-
-configurations.all {
-    resolutionStrategy {
-        cacheChangingModulesFor(0, TimeUnit.SECONDS)
     }
 }
 
