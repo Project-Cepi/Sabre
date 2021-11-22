@@ -1,18 +1,23 @@
 package world.cepi.sabre
 
+import io.ktor.client.*
+import io.ktor.client.call.*
+import io.ktor.client.engine.cio.*
+import io.ktor.client.features.*
+import io.ktor.client.request.*
+import io.ktor.client.statement.*
+import io.ktor.http.*
 import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
 import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
 import kotlinx.coroutines.future.await
-import java.net.URI
-import java.net.http.HttpClient
-import java.net.http.HttpRequest
-import java.net.http.HttpResponse
+import java.io.FileNotFoundException
 import java.nio.file.Path
 import kotlin.io.path.createDirectories
 import kotlin.io.path.exists
 import kotlin.io.path.outputStream
+import kotlin.io.path.writeBytes
 
 @Serializable
 data class ImportMap(val imports: List<Import> = listOf()) {
@@ -57,13 +62,15 @@ data class ImportMap(val imports: List<Import> = listOf()) {
             ioScope.launch {
                 supervisorScope {
 
-                    val deferredList = ArrayList<Deferred<*>>()
+                    val deferredList = mutableListOf<Deferred<*>>()
 
                     validImports.forEach {
                         deferredList.add(async {
                             try {
-                                downloadURL(it.url, it.output)
+                                downloadURL(HttpClient(CIO), it.url, it.output)
                                 logger.info("Downloaded ${it.output} jar...")
+                            } catch (exception: FileNotFoundException) {
+                                logger.error("No file found at url ${exception.message!!}")
                             } catch (exception: Exception) {
                                 logger.error("Failed to download ${it.output}", exception)
                             }
@@ -77,15 +84,17 @@ data class ImportMap(val imports: List<Import> = listOf()) {
             }
         }
 
-        suspend fun downloadURL(url: String, output: String) {
-            val client = HttpClient.newHttpClient()
-            val request = HttpRequest.newBuilder().uri(URI.create(url)).build()
-            val futureResponse = client.sendAsync(
-                request,
-                HttpResponse.BodyHandlers.ofInputStream()
-            )
+        suspend fun downloadURL(client: HttpClient, url: String, output: String) {
+            val response: HttpResponse = client.get(url) {
+                method = HttpMethod.Get
+            }
 
-            futureResponse.await().body().copyTo(Path.of("./extensions/$output.jar").outputStream())
+            if (response.status == HttpStatusCode.NotFound) {
+                throw FileNotFoundException(url)
+            }
+
+            val responseBody: ByteArray = response.receive()
+            Path.of(output).writeBytes(responseBody)
         }
 
     }
