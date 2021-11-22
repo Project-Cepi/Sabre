@@ -1,5 +1,6 @@
 package world.cepi.sabre
 
+import kotlinx.coroutines.runBlocking
 import net.minestom.server.extensions.ExtensionManager
 import net.minestom.server.extras.selfmodification.MinestomRootClassLoader
 import net.minestom.server.extras.selfmodification.mixins.MixinCodeModifier
@@ -26,8 +27,10 @@ object SabreLoader {
     private fun bootstrap(config: Config? = null, importMap: ImportMap? = null, args: Array<String>) {
 
         // Initialize import map
-        ImportMap.importMap = importMap ?: Sabre.initConfigFile(Sabre.IMPORT_PATH, ImportMap())
-        ImportMap.loadExtensions()
+        runBlocking {
+            ImportMap.importMap = importMap ?: Sabre.initConfigFile(Sabre.IMPORT_PATH, ImportMap())
+            ImportMap.loadExtensions()
+        }
 
         // make the new class loader
         val classLoader = MinestomRootClassLoader.getInstance()
