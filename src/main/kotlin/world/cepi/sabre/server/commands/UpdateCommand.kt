@@ -1,6 +1,7 @@
 package world.cepi.sabre.server.commands
 
 import com.google.gson.JsonParser
+import net.minestom.server.command.ConsoleSender
 import net.minestom.server.command.builder.Command
 import java.net.URL
 import kotlin.concurrent.thread
@@ -13,7 +14,7 @@ object UpdateCommand : Command("updateserver") {
 
     init {
         setCondition { sender, _ ->
-            sender.hasPermission("server.update") || sender.isConsole
+            sender.hasPermission("server.update") || sender is ConsoleSender
         }
 
         setDefaultExecutor { sender, _ ->
