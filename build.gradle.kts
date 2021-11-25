@@ -53,7 +53,7 @@ dependencies {
 
     // Use the kotlin test library
     testImplementation("io.kotest:kotest-assertions-core:4.6.3")
-    testImplementation("io.kotest:kotest-runner-junit5:4.6.3")
+    testImplementation("io.kotest:kotest-runner-junit5:5.0.0")
 
     // Compile Minestom into project
     implementation("com.github.Minestom", "Minestom", "7889400e5b")
