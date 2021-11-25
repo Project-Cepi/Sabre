@@ -52,7 +52,7 @@ dependencies {
     implementation("io.ktor:ktor-client-cio:1.6.5")
 
     // Use the kotlin test library
-    testImplementation("io.kotest:kotest-assertions-core:4.6.3")
+    testImplementation("io.kotest:kotest-assertions-core:5.0.0")
     testImplementation("io.kotest:kotest-runner-junit5:5.0.0")
 
     // Compile Minestom into project
