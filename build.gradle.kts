@@ -49,7 +49,7 @@ dependencies {
 
     // Add Ktor
     implementation("io.ktor:ktor-client-core:1.6.5")
-    implementation("io.ktor:ktor-client-cio:1.6.5")
+    implementation("io.ktor:ktor-client-cio:1.6.6")
 
     // Use the kotlin test library
     testImplementation("io.kotest:kotest-assertions-core:5.0.0")
