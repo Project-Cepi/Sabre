@@ -17,7 +17,7 @@ internal object StopCommand : Command("stop") {
 
         defaultExecutor = CommandExecutor { _, _ ->
             MinecraftServer.stopCleanly()
-            exitProcess(1)
+            exitProcess(0)
         }
     }
 

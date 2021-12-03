@@ -1,9 +1,10 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.5.31"
+    id("org.jetbrains.kotlin.jvm") version "1.6.0"
     kotlin("plugin.serialization") version "1.6.0"
     id("com.github.johnrengelman.shadow") version "7.1.0"
 	id("io.gitlab.arturbosch.detekt") version "1.19.0"
@@ -13,7 +14,7 @@ plugins {
 }
 
 detekt {
-    toolVersion = "1.18.1"
+    toolVersion = "1.19.0"
     config = files("config/detekt/detekt.yml")
     buildUponDefaultConfig = true
 }
@@ -56,7 +57,7 @@ dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:5.0.1")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "ade57cb57f")
+    implementation("com.github.Minestom", "Minestom", "8410de18d2")
 
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
 
@@ -79,7 +80,7 @@ tasks {
             )
         }
 
-        transform(com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer::class.java)
+        transform(Log4j2PluginsCacheFileTransformer::class.java)
 
         mergeServiceFiles()
 
@@ -103,13 +104,7 @@ configure<SourceSetContainer> {
     }
 }
 
-java {
-    toolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
-    }
-}
-
-tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "16" }
+tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString() }
 
 sourceSets.create("demo") {
     java.srcDir("src/demo/java")

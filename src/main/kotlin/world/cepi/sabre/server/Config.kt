@@ -24,7 +24,7 @@ class Config(
     /** Whether or not the server should use forwarding. */
     val proxy: Forwarder = Forwarder.NONE,
 
-    /** The secret for velocity. Not used if bungeecord is set as the proxy value. */
+    /** The secret for velocity. Unused if BungeeCord is set as the forwarder. */
     val velocitySecret: String = "",
 
     /** The base view distance of all chunks. */
@@ -33,7 +33,7 @@ class Config(
     /** How far the player can see entities. */
     val entityDistance: Int = 8,
 
-    /** Use the built in Dynamic flat generator */
+    /** Use the built-in Dynamic flat generator */
     val useFlatGenerator: Boolean = true,
 
     /** The flat layers the flat generator should use */
@@ -53,7 +53,7 @@ class Config(
     val optifineSupport: Boolean = true,
 
     /** The unknown message for an unknown command. */
-    val unknownMessage: String = "Unknown command.",
+    val unknownMessage: String = "Unknown command",
 
     /** Uses Minestom's vanilla block rules to place blocks correctly. */
     val useBlockRules: Boolean = true,
@@ -76,7 +76,6 @@ class Config(
 
     /**
      * The starting time of (flat generator).
-     * Set to negative (as well as timeRate to 0) to disable daylight cycle.
      */
     val time: Long = 0,
 

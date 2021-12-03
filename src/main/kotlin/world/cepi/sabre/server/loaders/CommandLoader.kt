@@ -2,6 +2,7 @@ package world.cepi.sabre.server.loaders
 
 import com.google.common.base.Strings
 import net.kyori.adventure.text.Component
+import net.kyori.adventure.text.format.NamedTextColor
 import net.minestom.server.MinecraftServer
 import net.minestom.server.command.CommandSender
 import net.minestom.server.utils.callback.CommandCallback
@@ -17,7 +18,7 @@ internal fun commandLoader() {
         MinecraftServer.getCommandManager().unknownCommandCallback =
             CommandCallback { sender: CommandSender, command: String ->
                 if (!Strings.isNullOrEmpty(command)) {
-                    sender.sendMessage(Component.text(config.unknownMessage))
+                    sender.sendMessage(Component.text(config.unknownMessage, NamedTextColor.RED))
                 }
             }
     }
