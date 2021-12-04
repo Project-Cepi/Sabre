@@ -56,7 +56,7 @@ dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:5.0.1")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "ade57cb57f")
+    implementation("com.github.Minestom", "Minestom", "3843cacef5")
 
     implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
 
