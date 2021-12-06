@@ -12,7 +12,7 @@ object SabreTerminal : SimpleTerminalConsole() {
     override fun buildReader(builder: LineReaderBuilder) =
         builder
             .appName("Minestom")
-            .completer { reader, parsedLine, list ->
+            .completer { _, parsedLine, list ->
                 list.addAll(MinecraftServer.getCommandManager().dispatcher.commands
                     .filter {
                         parsedLine.line().contains(it.name) ||
