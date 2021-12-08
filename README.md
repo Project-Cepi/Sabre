@@ -16,7 +16,7 @@ Sabre is a server JAR wrapper using the Minestom API as a community-maintained g
 ## Installation
 
 Download the JAR from [Sabre releases](https://github.com/Project-Cepi/Sabre/releases)
-or compile it yourself. Instructions to do so are in Compile header.
+ [or compile it yourself](#Compile).
 
 Create a run script or run it from the terminal using 
 
