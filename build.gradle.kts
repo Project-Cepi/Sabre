@@ -48,7 +48,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
 
     // Add Ktor
-    implementation("io.ktor:ktor-client-core:1.6.6")
+    implementation("io.ktor:ktor-client-core:1.6.7")
     implementation("io.ktor:ktor-client-cio:1.6.6")
 
     // Use the kotlin test library
