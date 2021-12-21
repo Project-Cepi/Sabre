@@ -2,6 +2,7 @@
 
 # download jar
 wget https://github.com/Project-Cepi/Sabre/releases/download/latest/sabre-1.0.0-all.jar -O sabre.jar
+wget https://raw.githubusercontent.com/Project-Cepi/Sabre/master/install.sh -O update.sh
 
 echo "#!/bin/bash
 java -Xmx2024M -Xms2024M -jar sabre.jar" > run.sh
