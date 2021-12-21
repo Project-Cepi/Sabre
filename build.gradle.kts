@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.5.31"
+    id("org.jetbrains.kotlin.jvm") version "1.6.0"
     kotlin("plugin.serialization") version "1.6.10"
     id("com.github.johnrengelman.shadow") version "7.1.1"
 	id("io.gitlab.arturbosch.detekt") version "1.19.0"
@@ -46,6 +46,9 @@ dependencies {
 
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+
+	// Add MiniMessage
+    implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
 
     // Add Ktor
     implementation("io.ktor:ktor-client-core:1.6.7")
@@ -109,7 +112,7 @@ java {
     }
 }
 
-tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "16" }
+tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
 
 sourceSets.create("demo") {
     java.srcDir("src/demo/java")
