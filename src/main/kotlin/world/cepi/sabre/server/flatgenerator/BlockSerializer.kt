@@ -22,8 +22,7 @@ object BlockSerializer : KSerializer<Block> {
             encodeIntElement(descriptor, 0, value.id())
         }
     }
-
-    @ExperimentalSerializationApi
+	
     override fun deserialize(decoder: Decoder): Block =
         decoder.decodeStructure(descriptor) {
             var id = 0

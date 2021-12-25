@@ -1,12 +1,11 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.6.0"
-    kotlin("plugin.serialization") version "1.6.0"
-    id("com.github.johnrengelman.shadow") version "7.1.0"
+    id("org.jetbrains.kotlin.jvm") version "1.6.10"
+    kotlin("plugin.serialization") version "1.6.10"
+    id("com.github.johnrengelman.shadow") version "7.1.1"
 	id("io.gitlab.arturbosch.detekt") version "1.19.0"
 
     // Apply the application plugin to add support for building a jar
@@ -14,7 +13,7 @@ plugins {
 }
 
 detekt {
-    toolVersion = "1.19.0"
+    toolVersion = "1.18.1"
     config = files("config/detekt/detekt.yml")
     buildUponDefaultConfig = true
 }
@@ -40,26 +39,29 @@ dependencies {
     implementation(kotlin("reflect"))
 
     // Add support for kotlinx courotines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
 
     // Add intergration
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.5.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.0")
 
     // import kotlinx serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+
+	// Add MiniMessage
+    implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
 
     // Add Ktor
-    implementation("io.ktor:ktor-client-core:1.6.6")
-    implementation("io.ktor:ktor-client-cio:1.6.6")
+    implementation("io.ktor:ktor-client-core:1.6.7")
+    implementation("io.ktor:ktor-client-cio:1.6.7")
 
     // Use the kotlin test library
-    testImplementation("io.kotest:kotest-assertions-core:5.0.1")
-    testImplementation("io.kotest:kotest-runner-junit5:5.0.1")
+    testImplementation("io.kotest:kotest-assertions-core:5.0.3")
+    testImplementation("io.kotest:kotest-runner-junit5:5.0.3")
 
     // Compile Minestom into project
     implementation("com.github.Minestom", "Minestom", "3843cacef5")
-    
-    implementation("org.apache.logging.log4j:log4j-jul:2.14.1")
+
+    implementation("org.apache.logging.log4j:log4j-jul:2.17.0")
 
     // JLine
     implementation("org.jline:jline:3.21.0")
@@ -80,7 +82,7 @@ tasks {
             )
         }
 
-        transform(Log4j2PluginsCacheFileTransformer::class.java)
+        transform(com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer::class.java)
 
         mergeServiceFiles()
 
@@ -104,7 +106,13 @@ configure<SourceSetContainer> {
     }
 }
 
-tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString() }
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
+}
+
+tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
 
 sourceSets.create("demo") {
     java.srcDir("src/demo/java")

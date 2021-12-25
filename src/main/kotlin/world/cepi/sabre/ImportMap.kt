@@ -27,7 +27,7 @@ data class ImportMap(val imports: List<Import> = listOf()) {
 
     companion object {
 
-        private val ioScope = CoroutineScope(Dispatchers.IO + Job())
+        val ioScope = CoroutineScope(Dispatchers.IO + Job())
 
         val logger = LoggerFactory.getLogger(ImportMap::class.java)
 
