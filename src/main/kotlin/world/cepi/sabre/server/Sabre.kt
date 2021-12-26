@@ -36,11 +36,15 @@ object Sabre {
     @JvmStatic
     fun boot(config: Config? = null) {
 
-        // Import map
-        ImportMap.importMap = ConfigurationHelper.format.decodeFromString(IMPORT_PATH.readText())
+        if (IMPORT_PATH.exists()) {
 
-        runBlocking {
-            ImportMap.loadExtensions()
+            // Import map
+            ImportMap.importMap = ConfigurationHelper.format.decodeFromString(IMPORT_PATH.readText())
+
+            runBlocking {
+                ImportMap.loadExtensions()
+            }
+
         }
 
         // Initialize config
