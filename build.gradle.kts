@@ -61,7 +61,7 @@ dependencies {
     // Compile Minestom into project
     implementation("com.github.Minestom", "Minestom", "9041250ce8")
 
-    implementation("org.apache.logging.log4j:log4j-jul:2.17.0")
+    implementation("org.apache.logging.log4j:log4j-jul:2.17.1")
 
     // JLine
     implementation("org.jline:jline:3.21.0")
