@@ -50,9 +50,9 @@ object Sabre {
         // Initialize config
         Config.config = config ?: initConfigFile(CONFIG_PATH, Config())
 
-        MinecraftServer.setTerminalEnabled(false)
-
         val server = MinecraftServer.init()
+
+        MinecraftServer.setTerminalEnabled(false)
 
         // Load the loaders.
         loadLoaders()
@@ -64,7 +64,7 @@ object Sabre {
             logger.error("An error has occurred", it)
         }
 
-        thread(start = true, isDaemon = true, name = "Console") {
+        thread(start = true, isDaemon = true, name = "SabreConsole") {
             SabreTerminal.start()
         }
 

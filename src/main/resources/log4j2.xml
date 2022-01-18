@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Configuration status="INFO">
   <Appenders>
-    <TerminalConsole name="Console">
+    <TerminalConsole name="SabreConsole">
       <PatternLayout noConsoleNoAnsi="true" pattern="%green{%d{HH:mm:ss}} %highlight{%level}{STYLE=Logback} %cyan{%logger{0}} %minecraftFormatting{%msg}%n" />
     </TerminalConsole>
     <RollingRandomAccessFile name="File" filePattern="logs/%d{yyyy-MM-dd}-%i.log.gz" fileName="logs/latest.log">
