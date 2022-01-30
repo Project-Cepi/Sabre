@@ -13,6 +13,7 @@ import java.lang.IllegalArgumentException
 import java.io.FileNotFoundException
 import java.net.URI
 import java.nio.file.Path
+import java.nio.file.Paths
 import kotlin.io.path.createDirectories
 import kotlin.io.path.exists
 import kotlin.io.path.writeBytes
@@ -21,7 +22,7 @@ import kotlin.io.path.writeBytes
 data class ImportMap(val imports: List<Import> = listOf()) {
 
     @Serializable
-    class Import(val url: String, val output: String = Path.of(URI.create(url)).fileName.toString()) {
+    class Import(val url: String, val output: String = Paths.get(URI(url).path).fileName.toString()) {
         val properFile: String
             get() = "./extensions/$output.jar"
     }
