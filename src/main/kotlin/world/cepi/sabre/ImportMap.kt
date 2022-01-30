@@ -11,6 +11,7 @@ import kotlinx.serialization.Serializable
 import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
 import java.io.FileNotFoundException
+import java.net.URI
 import java.nio.file.Path
 import kotlin.io.path.createDirectories
 import kotlin.io.path.exists
@@ -20,7 +21,7 @@ import kotlin.io.path.writeBytes
 data class ImportMap(val imports: List<Import> = listOf()) {
 
     @Serializable
-    class Import(val url: String, val output: String = Path.of(url).fileName.toString()) {
+    class Import(val url: String, val output: String = Path.of(URI.create(url)).fileName.toString()) {
         val properFile: String
             get() = "./extensions/$output.jar"
     }

@@ -11,7 +11,7 @@ object SabreTerminal : SimpleTerminalConsole() {
 
     override fun buildReader(builder: LineReaderBuilder) =
         builder
-            .appName("Minestom")
+            .appName("SabreConsole")
             .completer { _, parsedLine, list ->
                 list.addAll(MinecraftServer.getCommandManager().dispatcher.commands
                     .filter {
