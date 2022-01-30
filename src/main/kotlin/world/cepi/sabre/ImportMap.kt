@@ -22,7 +22,7 @@ import kotlin.io.path.writeBytes
 data class ImportMap(val imports: List<Import> = listOf()) {
 
     @Serializable
-    class Import(val url: String, val output: String = Paths.get(URI(url).path).fileName.toString()) {
+    class Import(val url: String, val output: String = url.substring(url.lastIndexOf('/') + 1, url.length)) {
         val properFile: String
             get() = "./extensions/$output.jar"
     }
