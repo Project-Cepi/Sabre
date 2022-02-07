@@ -1,11 +1,9 @@
 package world.cepi.sabre.server.flatgenerator
 
-import net.minestom.server.MinecraftServer
 import net.minestom.server.instance.Chunk
 import net.minestom.server.instance.ChunkGenerator
 import net.minestom.server.instance.ChunkPopulator
 import net.minestom.server.instance.batch.ChunkBatch
-import net.minestom.server.world.biomes.Biome
 
 /** Flat world generation based off of [ChunkGenerator]. */
 class Flat(

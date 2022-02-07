@@ -1,6 +1,5 @@
 package world.cepi.sabre.server
 
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -12,7 +11,6 @@ import org.slf4j.LoggerFactory
 import world.cepi.sabre.ImportMap
 import world.cepi.sabre.server.loaders.loadLoaders
 import java.nio.file.Path
-import kotlin.concurrent.thread
 import kotlin.io.path.exists
 import kotlin.io.path.readText
 import kotlin.io.path.writeText
@@ -62,10 +60,6 @@ object Sabre {
 
         MinecraftServer.getExceptionManager().exceptionHandler = ExceptionHandler {
             logger.error("An error has occurred", it)
-        }
-
-        thread(start = true, isDaemon = true, name = "SabreConsole") {
-            SabreTerminal.start()
         }
 
         // Resend commands
