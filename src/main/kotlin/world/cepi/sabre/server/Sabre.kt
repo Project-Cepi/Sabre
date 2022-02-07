@@ -46,16 +46,16 @@ object Sabre {
 
         }
 
-        thread(start = true, isDaemon = true, name = "SabreConsole") {
-            SabreTerminal.start()
-        }
-
         // Initialize config
         Config.config = config ?: initConfigFile(CONFIG_PATH, Config())
 
         val server = MinecraftServer.init()
 
         MinecraftServer.setTerminalEnabled(false)
+
+        thread(start = true, isDaemon = true, name = "SabreConsole") {
+            SabreTerminal.start()
+        }
 
         // Load the loaders.
         loadLoaders()
