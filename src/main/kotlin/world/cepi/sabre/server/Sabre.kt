@@ -53,10 +53,6 @@ object Sabre {
 
         MinecraftServer.setTerminalEnabled(false)
 
-        thread(start = true, isDaemon = true, name = "SabreConsole") {
-            SabreTerminal.start()
-        }
-
         // Load the loaders.
         loadLoaders()
 
@@ -65,6 +61,10 @@ object Sabre {
 
         MinecraftServer.getExceptionManager().exceptionHandler = ExceptionHandler {
             logger.error("An error has occurred", it)
+        }
+
+        thread(start = true, isDaemon = true, name = "SabreConsole") {
+            SabreTerminal.start()
         }
 
         // Resend commands
