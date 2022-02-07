@@ -63,6 +63,15 @@ dependencies {
 
     // Add colored tinylog
     implementation("com.github.tobiasrm", "tinylog-coloredconsole", "1.3.1")
+
+    // JLine
+    implementation("org.jline:jline:3.21.0")
+
+    // TerminalConsoleAppender
+    implementation("net.minecrell:terminalconsoleappender:1.3.0")
+
+    // Jansi
+    implementation("org.jline:jline-terminal-jansi:3.21.0")
 }
 
 tasks {

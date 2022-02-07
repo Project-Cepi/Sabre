@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory
 import world.cepi.sabre.ImportMap
 import world.cepi.sabre.server.loaders.loadLoaders
 import java.nio.file.Path
+import kotlin.concurrent.thread
 import kotlin.io.path.exists
 import kotlin.io.path.readText
 import kotlin.io.path.writeText
@@ -43,6 +44,10 @@ object Sabre {
                 ImportMap.loadExtensions()
             }
 
+        }
+
+        thread(start = true, isDaemon = true, name = "SabreConsole") {
+            SabreTerminal.start()
         }
 
         // Initialize config
