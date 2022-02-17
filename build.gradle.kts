@@ -41,6 +41,10 @@ dependencies {
     // Add support for kotlinx courotines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
 
+    // Add tinylog
+    implementation("org.tinylog:tinylog-api-kotlin:2.4.1")
+    implementation("org.tinylog:tinylog-impl:2.4.1")
+
     // Add intergration
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.0")
 

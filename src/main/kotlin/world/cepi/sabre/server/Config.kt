@@ -58,6 +58,9 @@ class Config(
     /** Uses Minestom's vanilla block rules to place blocks correctly. */
     val useBlockRules: Boolean = true,
 
+    /** Whether ClassName.MethodName should print for info errors */
+    val detailedConsole: Boolean = true,
+
     /**
      * The compression threshold for the network.
      * Useful to set if you're behind a proxy.
