@@ -6,6 +6,7 @@ import org.tinylog.Level
 import org.tinylog.core.LogEntry
 import org.tinylog.core.LogEntryValue
 import org.tinylog.writers.Writer
+import world.cepi.sabre.server.Config
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -44,9 +45,19 @@ class SabreWriter(properties: Map<String?, String>) : Writer {
                 .fgBlack().a(" [").reset()
                 .a(logEntry.thread.name)
                 .fgBlack().a("]").reset()
-                .a(" ${
-                    packageRegex.find(logEntry.className)?.value ?: logEntry.className
-                }.${logEntry.methodName}")
+                .let {
+                    if (try {
+                            Config.config.detailedConsole && logEntry.level.ordinal >= Level.INFO.ordinal
+                    } catch (e: Exception) {
+                      false
+                    }) {
+                        it.a(" ${
+                            packageRegex.find(logEntry.className)?.value ?: logEntry.className
+                        }.${logEntry.methodName}")
+                    } else {
+                        it
+                    }
+                }
                 .a(" - ${logEntry.message}")
         )
     }

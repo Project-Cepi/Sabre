@@ -59,7 +59,7 @@ class Config(
     val useBlockRules: Boolean = true,
 
     /** Whether ClassName.MethodName should print for info errors */
-    val detailedConsole: Boolean = true,
+    val detailedConsole: Boolean = false,
 
     /**
      * The compression threshold for the network.
