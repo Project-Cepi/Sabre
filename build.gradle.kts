@@ -61,9 +61,6 @@ dependencies {
     // Compile Minestom into project
     implementation("com.github.Minestom", "Minestom", "4a976a3333")
 
-    // Add colored tinylog
-    implementation("com.github.tobiasrm", "tinylog-coloredconsole", "1.3.1")
-
     // JLine
     implementation("org.jline:jline:3.21.0")
 
