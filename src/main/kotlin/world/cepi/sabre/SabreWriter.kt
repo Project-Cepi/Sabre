@@ -39,6 +39,7 @@ class SabreWriter(properties: Map<String?, String>) : Writer {
     val packageRegex = Regex("\\w+(?!.)")
 
     override fun write(logEntry: LogEntry) {
+        if (logEntry.level.ordinal < Level.INFO.ordinal) return
         println(
             formatLog(logEntry.level)
                 .bg(Ansi.Color.BLACK).a(" " + dateFormat.format(logEntry.timestamp.toDate()) + " ").reset()
