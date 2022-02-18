@@ -35,7 +35,7 @@ class SabreWriter(properties: Map<String?, String>) : Writer {
         }
     }
 
-    val dateFormat = SimpleDateFormat("HH-mm-ss")
+    val dateFormat = SimpleDateFormat("HH:mm:ss")
     val packageRegex = Regex("\\w+(?!.)")
 
     override fun write(logEntry: LogEntry) {
