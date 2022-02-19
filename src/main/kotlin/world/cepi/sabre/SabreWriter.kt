@@ -21,17 +21,17 @@ class SabreWriter(properties: Map<String?, String>) : Writer {
         )
     }
 
-    fun formatLog(log: Level): Ansi {
+    fun formatLog(log: Level, ansi: Ansi): Ansi {
         val name = log.name.lowercase()
         val paddedName = name.padEnd(Level.values().maxOf { it.name.length } + 1, ' ')
 
         return when(log) {
-            Level.INFO -> ansi().fgBlue().a(paddedName).reset()
-            Level.WARN -> ansi().fgYellow().a(paddedName).reset()
-            Level.ERROR -> ansi().fgRed().a(paddedName).reset()
-            Level.TRACE -> ansi().fgCyan().a(paddedName).reset()
-            Level.DEBUG -> ansi().fgGreen().a(paddedName).reset()
-            Level.OFF -> ansi()
+            Level.INFO -> ansi.fgBlue().a(paddedName).reset()
+            Level.WARN -> ansi.fgYellow().a(paddedName).reset()
+            Level.ERROR -> ansi.fgRed().a(paddedName).reset()
+            Level.TRACE -> ansi.fgCyan().a(paddedName).reset()
+            Level.DEBUG -> ansi.fgGreen().a(paddedName).reset()
+            Level.OFF -> ansi
         }
     }
 
@@ -40,8 +40,8 @@ class SabreWriter(properties: Map<String?, String>) : Writer {
 
     override fun write(logEntry: LogEntry) {
         if (logEntry.level.ordinal < Level.INFO.ordinal) return
-        println(
-            formatLog(logEntry.level)
+        print(
+            formatLog(logEntry.level, ansi().cursorToColumn(0).eraseLine(Ansi.Erase.ALL))
                 .bg(Ansi.Color.BLACK).a(" " + dateFormat.format(logEntry.timestamp.toDate()) + " ").reset()
                 .fgBlack().a(" [").reset()
                 .a(logEntry.thread.name)
@@ -60,6 +60,8 @@ class SabreWriter(properties: Map<String?, String>) : Writer {
                     }
                 }
                 .a(" - ${logEntry.message}")
+                .newline()
+                .a("> ")
         )
     }
 

@@ -63,7 +63,7 @@ object Sabre {
             logger.error("An error has occurred", it)
         }
 
-        thread(start = true, isDaemon = true, name = "SabreConsole") {
+        thread(start = true, isDaemon = false, name = "SabreConsole") {
             SabreTerminal.start()
         }
 
