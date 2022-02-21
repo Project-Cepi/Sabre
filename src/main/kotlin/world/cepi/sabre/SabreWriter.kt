@@ -73,6 +73,5 @@ class SabreWriter(properties: Map<String?, String>) : Writer {
     override fun close() {
         Sabre.terminalThread?.interrupt()
         println()
-        println("tertetwetetetet2t32")
     }
 }
