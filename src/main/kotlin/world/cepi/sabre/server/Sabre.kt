@@ -25,6 +25,8 @@ object Sabre {
         }
     }
 
+    var terminalThread: Thread? = null
+
     val logger = LoggerFactory.getLogger("Sabre")
 
     /**
@@ -63,7 +65,7 @@ object Sabre {
             logger.error("An error has occurred", it)
         }
 
-        thread(start = true, isDaemon = false, name = "SabreConsole") {
+        terminalThread = thread(start = true, isDaemon = true, name = "SabreConsole") {
             SabreTerminal.start()
         }
 

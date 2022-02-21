@@ -6,6 +6,7 @@ import org.jline.terminal.Terminal
 import org.jline.terminal.TerminalBuilder
 import org.tinylog.Logger
 import java.io.IOException
+import kotlin.system.exitProcess
 
 object SabreTerminal {
     fun processInput(input: String) {
@@ -59,9 +60,8 @@ object SabreTerminal {
                 }
                 processInput(line)
             }
-            terminal.close()
         } catch (e: UserInterruptException) {
-            MinecraftServer.stopCleanly()
+            exitProcess(0)
         } finally {
             terminal.close()
         }
