@@ -83,6 +83,16 @@ class Config(
      */
     val time: Long = 0,
 
+    /**
+     * If the server should open to lan.
+     *
+     * Great for quick development or sharing with local friends.
+     */
+    val lan: Boolean = false,
+
+    val lanPingDelay: Double = 1.5,
+    val lanEventDelay: Double = 30.0,
+
     /** If the OP command and loader should be used. */
     val opUtilities: Boolean = false,
 ) {
