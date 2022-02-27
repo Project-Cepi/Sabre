@@ -41,7 +41,7 @@ class SabreWriter(properties: Map<String?, String>) : Writer {
 
     override fun write(logEntry: LogEntry) {
         if (logEntry.level.ordinal < Level.INFO.ordinal) return
-        print(
+        println(
             formatLog(logEntry.level, ansi().cursorToColumn(0).eraseLine(Ansi.Erase.ALL))
                 .bg(Ansi.Color.BLACK).a(" " + dateFormat.format(logEntry.timestamp.toDate()) + " ").reset()
                 .fgBlack().a(" [").reset()
@@ -61,9 +61,9 @@ class SabreWriter(properties: Map<String?, String>) : Writer {
                     }
                 }
                 .a(" - ${logEntry.message}")
-                .newline()
-                .a("> ")
         )
+        if (logEntry.exception != null) logEntry.exception.printStackTrace()
+        print("> ")
     }
 
     override fun flush() {
