@@ -55,7 +55,7 @@ dependencies {
     implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
 
     // Add Ktor
-    implementation("io.ktor:ktor-client-core:1.6.7")
+    implementation("io.ktor:ktor-client-core:1.6.8")
     implementation("io.ktor:ktor-client-cio:1.6.8")
 
     // Use the kotlin test library
