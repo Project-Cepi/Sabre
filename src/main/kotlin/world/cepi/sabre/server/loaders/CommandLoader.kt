@@ -17,7 +17,7 @@ internal fun commandLoader() {
         MinecraftServer.getCommandManager().unknownCommandCallback =
             CommandCallback { sender: CommandSender, command: String ->
                 if (command != "") {
-                    sender.sendMessage(MiniMessage.get().parse(config.unknownMessage))
+                    sender.sendMessage(MiniMessage.miniMessage().deserialize(config.unknownMessage))
                 }
             }
     }
