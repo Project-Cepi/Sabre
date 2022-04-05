@@ -1,17 +1,24 @@
 package world.cepi.sabre.server
 
-import net.minecrell.terminalconsole.SimpleTerminalConsole
 import net.minestom.server.MinecraftServer
-import org.jline.reader.Candidate
-import org.jline.reader.LineReaderBuilder
+import org.jline.reader.*
+import org.jline.terminal.Terminal
+import org.jline.terminal.TerminalBuilder
+import org.tinylog.Logger
+import java.io.IOException
+import kotlin.system.exitProcess
 
-object SabreTerminal : SimpleTerminalConsole() {
+object SabreTerminal {
+    fun processInput(input: String) {
+        val command = input.trim { it <= ' ' }
+        if (!command.isEmpty()) {
+            MinecraftServer.getCommandManager().execute(MinecraftServer.getCommandManager().consoleSender, command)
+        }
+    }
 
-    override fun isRunning() = !MinecraftServer.isStopping()
-
-    override fun buildReader(builder: LineReaderBuilder) =
-        builder
-            .appName("Minestom")
+    fun buildReader(builder: LineReaderBuilder): LineReader {
+        val reader = builder
+            .appName("SabreConsole")
             .completer { _, parsedLine, list ->
                 list.addAll(MinecraftServer.getCommandManager().dispatcher.commands
                     .filter {
@@ -24,13 +31,39 @@ object SabreTerminal : SimpleTerminalConsole() {
                             .map { Candidate(it) }
                     }.flatten())
             }.build()
-
-    override fun runCommand(command: String) {
-        MinecraftServer.getCommandManager().execute(MinecraftServer.getCommandManager().consoleSender, command)
+        reader.setOpt(LineReader.Option.DISABLE_EVENT_EXPANSION)
+        reader.unsetOpt(LineReader.Option.INSERT_TAB)
+        return reader
     }
 
-    override fun shutdown() {
-        MinecraftServer.stopCleanly()
+    fun start() {
+        try {
+            readCommands(TerminalBuilder.builder().system(true).build())
+        } catch (e: IOException) {
+            Logger.error("Failed to read console input", e)
+        }
     }
 
+    private fun readCommands(terminal: Terminal) {
+        val reader = buildReader(LineReaderBuilder.builder().terminal(terminal))
+        try {
+            var line: String?
+            while (!MinecraftServer.isStopping()) {
+                line = try {
+                    reader.readLine("")
+                } catch (ignored: EndOfFileException) {
+                    // Continue reading after EOT
+                    continue
+                }
+                if (line == null) {
+                    break
+                }
+                processInput(line)
+            }
+        } catch (e: UserInterruptException) {
+            exitProcess(0)
+        } finally {
+            terminal.close()
+        }
+    }
 }

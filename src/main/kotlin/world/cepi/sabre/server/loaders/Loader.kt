@@ -14,7 +14,8 @@ internal val loaders: Array<() -> Unit> = arrayOf(
     ::optifineLoader,
     ::blockPlacementLoader,
     ::thresholdLoader,
-    ::viewLoader
+    ::viewLoader,
+    ::lanLoader
 )
 
 /** Loads all the loaders from the loader package. */

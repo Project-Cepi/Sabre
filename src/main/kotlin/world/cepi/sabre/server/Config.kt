@@ -58,6 +58,9 @@ class Config(
     /** Uses Minestom's vanilla block rules to place blocks correctly. */
     val useBlockRules: Boolean = true,
 
+    /** Whether ClassName.MethodName should print for info errors */
+    val detailedConsole: Boolean = false,
+
     /**
      * The compression threshold for the network.
      * Useful to set if you're behind a proxy.
@@ -78,6 +81,16 @@ class Config(
      * The starting time of (flat generator).
      */
     val time: Long = 0,
+
+    /**
+     * If the server should open to lan.
+     *
+     * Great for quick development or sharing with local friends.
+     */
+    val lan: Boolean = false,
+
+    val lanPingDelay: Double = 1.5,
+    val lanEventDelay: Double = 30.0,
 
     /** If the OP command and loader should be used. */
     val opUtilities: Boolean = false,

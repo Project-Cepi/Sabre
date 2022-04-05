@@ -3,9 +3,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     // Apply the Kotlin JVM plugin to add support for Kotlin.
-    id("org.jetbrains.kotlin.jvm") version "1.6.10"
-    kotlin("plugin.serialization") version "1.6.10"
-    id("com.github.johnrengelman.shadow") version "7.1.1"
+    id("org.jetbrains.kotlin.jvm") version "1.6.20"
+    kotlin("plugin.serialization") version "1.6.20"
+    id("com.github.johnrengelman.shadow") version "7.1.2"
 	id("io.gitlab.arturbosch.detekt") version "1.19.0"
 
     // Apply the application plugin to add support for building a jar
@@ -41,6 +41,10 @@ dependencies {
     // Add support for kotlinx courotines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
 
+    // Add tinylog
+    implementation("org.tinylog:tinylog-api-kotlin:2.4.1")
+    implementation("org.tinylog:tinylog-impl:2.4.1")
+
     // Add intergration
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.0")
 
@@ -48,26 +52,21 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
 
 	// Add MiniMessage
-    implementation("net.kyori:adventure-text-minimessage:4.1.0-SNAPSHOT")
+    implementation("net.kyori:adventure-text-minimessage:4.10.1")
 
     // Add Ktor
-    implementation("io.ktor:ktor-client-core:1.6.7")
-    implementation("io.ktor:ktor-client-cio:1.6.7")
+    implementation("io.ktor:ktor-client-core:1.6.8")
+    implementation("io.ktor:ktor-client-cio:1.6.8")
 
     // Use the kotlin test library
-    testImplementation("io.kotest:kotest-assertions-core:5.0.3")
-    testImplementation("io.kotest:kotest-runner-junit5:5.0.3")
+    testImplementation("io.kotest:kotest-assertions-core:5.2.2")
+    testImplementation("io.kotest:kotest-runner-junit5:5.2.2")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "3843cacef5")
-
-    implementation("org.apache.logging.log4j:log4j-jul:2.17.0")
+    implementation("com.github.LeoDog896", "Minestom", "feb29c7912")
 
     // JLine
     implementation("org.jline:jline:3.21.0")
-
-    // TerminalConsoleAppender
-    implementation("net.minecrell:terminalconsoleappender:1.3.0")
 
     // Jansi
     implementation("org.jline:jline-terminal-jansi:3.21.0")

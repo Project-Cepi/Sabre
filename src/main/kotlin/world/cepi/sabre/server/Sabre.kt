@@ -1,6 +1,5 @@
 package world.cepi.sabre.server
 
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -26,6 +25,8 @@ object Sabre {
         }
     }
 
+    var terminalThread: Thread? = null
+
     val logger = LoggerFactory.getLogger("Sabre")
 
     /**
@@ -36,19 +37,23 @@ object Sabre {
     @JvmStatic
     fun boot(config: Config? = null) {
 
-        // Import map
-        ImportMap.importMap = ConfigurationHelper.format.decodeFromString(IMPORT_PATH.readText())
+        if (IMPORT_PATH.exists()) {
 
-        runBlocking {
-            ImportMap.loadExtensions()
+            // Import map
+            ImportMap.importMap = ConfigurationHelper.format.decodeFromString(IMPORT_PATH.readText())
+
+            runBlocking {
+                ImportMap.loadExtensions()
+            }
+
         }
 
         // Initialize config
         Config.config = config ?: initConfigFile(CONFIG_PATH, Config())
 
-        MinecraftServer.setTerminalEnabled(false)
-
         val server = MinecraftServer.init()
+
+        MinecraftServer.setTerminalEnabled(false)
 
         // Load the loaders.
         loadLoaders()
@@ -60,7 +65,7 @@ object Sabre {
             logger.error("An error has occurred", it)
         }
 
-        thread(start = true, isDaemon = true, name = "Console") {
+        terminalThread = thread(start = true, isDaemon = true, name = "SabreConsole") {
             SabreTerminal.start()
         }
 
