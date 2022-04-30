@@ -1,8 +1,6 @@
 package world.cepi.sabre.server
 
 import kotlinx.serialization.Serializable
-import net.minestom.server.instance.block.Block
-import world.cepi.sabre.server.flatgenerator.FlatLayer
 import world.cepi.sabre.server.loaders.Forwarder
 import java.lang.IllegalArgumentException
 
@@ -14,9 +12,6 @@ class Config(
 
     /** The port the server is hosted on. The universal default is `25565` */
     val port: Int = 25565,
-
-    /** Default op level. Defaults to 4 */
-    val opLevel: Int = 4,
 
     /** If the server should use Mojang Authentication or not. */
     val onlineMode: Boolean = true,
@@ -33,30 +28,11 @@ class Config(
     /** How far the player can see entities. */
     val entityDistance: Int = 8,
 
-    /** Use the built-in Dynamic flat generator */
-    val useFlatGenerator: Boolean = true,
-
-    /** The flat layers the flat generator should use */
-    val flatLayers: Array<FlatLayer> = arrayOf(
-        FlatLayer(Block.BEDROCK, 1),
-        FlatLayer(Block.STONE, 25),
-        FlatLayer(Block.DIRT, 7),
-        FlatLayer(Block.GRASS_BLOCK, 1)
-    ),
-
-    /**
-     * Fixes a crash with old Optifine clients by registering certain biomes.
-     * If you specifically do not want these biomes to be registered, set to false.
-     * But be aware that older Optifine clients will crash when they connect to the server
-     * unless you specify them
-     */
-    val optifineSupport: Boolean = true,
-
     /** The unknown message for an unknown command. */
     val unknownMessage: String = "Unknown command",
 
     /** Uses Minestom's vanilla block rules to place blocks correctly. */
-    val useBlockRules: Boolean = true,
+    val useBlockRules: Boolean = false,
 
     /** Whether ClassName.MethodName should print for info errors */
     val detailedConsole: Boolean = false,
@@ -64,36 +40,12 @@ class Config(
     /**
      * The compression threshold for the network.
      * Useful to set if you're behind a proxy.
-     * Set to -1 to disable.
+     * Set to 0 to disable.
      */
     val compressionThreshold: Int = 256,
 
     /** If the player should respawn at their spawn point. */
     val shouldRespawnAtSpawnPoint: Boolean = true,
-
-    /**
-     * How fast time moves (flat generator).
-     * Set to 0 to not move. (will look laggy unless time is set to negative)
-     */
-    val timeRate: Int = 1,
-
-    /**
-     * The starting time of (flat generator).
-     */
-    val time: Long = 0,
-
-    /**
-     * If the server should open to lan.
-     *
-     * Great for quick development or sharing with local friends.
-     */
-    val lan: Boolean = false,
-
-    val lanPingDelay: Double = 1.5,
-    val lanEventDelay: Double = 30.0,
-
-    /** If the OP command and loader should be used. */
-    val opUtilities: Boolean = false,
 ) {
 
     companion object {

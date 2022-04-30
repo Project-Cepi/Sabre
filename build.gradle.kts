@@ -6,16 +6,9 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version "1.6.20"
     kotlin("plugin.serialization") version "1.6.20"
     id("com.github.johnrengelman.shadow") version "7.1.2"
-	id("io.gitlab.arturbosch.detekt") version "1.19.0"
 
     // Apply the application plugin to add support for building a jar
     java
-}
-
-detekt {
-    toolVersion = "1.18.1"
-    config = files("config/detekt/detekt.yml")
-    buildUponDefaultConfig = true
 }
 
 repositories {
@@ -24,8 +17,6 @@ repositories {
 
     maven(url = "https://repo.spongepowered.org/maven")
     maven(url = "https://jitpack.io")
-    maven(url = "https://repo.velocitypowered.com/snapshots")
-    maven(url = "https://repo.minestom.com/repository/maven-public/")
 }
 
 dependencies {
@@ -39,14 +30,14 @@ dependencies {
     implementation(kotlin("reflect"))
 
     // Add support for kotlinx courotines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
 
     // Add tinylog
     implementation("org.tinylog:tinylog-api-kotlin:2.4.1")
     implementation("org.tinylog:tinylog-impl:2.4.1")
 
     // Add intergration
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.1")
 
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
@@ -55,15 +46,15 @@ dependencies {
     implementation("net.kyori:adventure-text-minimessage:4.10.1")
 
     // Add Ktor
-    implementation("io.ktor:ktor-client-core:1.6.8")
-    implementation("io.ktor:ktor-client-cio:1.6.8")
+    //implementation("io.ktor:ktor-client-core:1.6.8")
+    //implementation("io.ktor:ktor-client-cio:1.6.8")
 
     // Use the kotlin test library
-    testImplementation("io.kotest:kotest-assertions-core:5.2.2")
-    testImplementation("io.kotest:kotest-runner-junit5:5.2.2")
+    ///testImplementation("io.kotest:kotest-assertions-core:5.2.2")
+    //testImplementation("io.kotest:kotest-runner-junit5:5.2.2")
 
     // Compile Minestom into project
-    implementation("com.github.LeoDog896", "Minestom", "feb29c7912")
+    implementation("com.github.Minestom", "Minestom", "afddb6f549")
 
     // JLine
     implementation("org.jline:jline:3.21.0")
@@ -88,8 +79,6 @@ tasks {
         archiveBaseName.set("sabre")
     }
 
-    test { useJUnitPlatform() }
-
     build { dependsOn(shadowJar) }
 
     withType<AbstractArchiveTask> {
@@ -112,11 +101,3 @@ java {
 }
 
 tasks.withType<KotlinCompile> { kotlinOptions.jvmTarget = "17" }
-
-sourceSets.create("demo") {
-    java.srcDir("src/demo/java")
-    java.srcDir("build/generated/source/apt/demo")
-    resources.srcDir("src/demo/resources")
-    compileClasspath += sourceSets.main.get().output + sourceSets.main.get().compileClasspath
-    runtimeClasspath += sourceSets.main.get().output + sourceSets.main.get().runtimeClasspath
-}
