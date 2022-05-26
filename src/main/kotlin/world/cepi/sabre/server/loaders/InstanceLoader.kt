@@ -6,14 +6,14 @@ import net.minestom.server.event.player.PlayerLoginEvent
 import net.minestom.server.event.player.PlayerSpawnEvent
 import world.cepi.sabre.server.commands.security.getPermissionLevel
 import world.cepi.sabre.server.Config.Companion.config
-import world.cepi.sabre.server.flatgenerator.Flat
+import world.cepi.sabre.server.flatgenerator.flat
 
 internal fun instanceLoader() {
 
     val instance = if (config.useFlatGenerator) {
         val instanceManager = MinecraftServer.getInstanceManager()
         val instance = instanceManager.createInstanceContainer()
-        instance.chunkGenerator = Flat(*config.flatLayers)
+        instance.setGenerator { flat(it, *config.flatLayers) }
         instance.enableAutoChunkLoad(true)
         instance
     } else {

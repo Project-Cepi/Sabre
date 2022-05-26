@@ -63,7 +63,7 @@ dependencies {
     testImplementation("io.kotest:kotest-runner-junit5:5.3.0")
 
     // Compile Minestom into project
-    implementation("com.github.LeoDog896", "Minestom", "feb29c7912")
+    implementation("com.github.Minestom", "Minestom", "7867313290")
 
     // JLine
     implementation("org.jline:jline:3.21.0")
