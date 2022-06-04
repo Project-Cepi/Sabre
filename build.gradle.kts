@@ -2,21 +2,16 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    // Apply the Kotlin JVM plugin to add support for Kotlin.
     id("org.jetbrains.kotlin.jvm") version "1.6.20"
     kotlin("plugin.serialization") version "1.6.20"
     id("com.github.johnrengelman.shadow") version "7.1.2"
 
-    // Apply the application plugin to add support for building a jar
     java
 }
 
 repositories {
-    // maven central
     mavenCentral()
-
-    maven(url = "https://repo.spongepowered.org/maven")
-    maven(url = "https://jitpack.io")
+    maven("https://jitpack.io")
 }
 
 dependencies {
@@ -40,7 +35,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.1")
 
     // import kotlinx serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
 
 	// Add MiniMessage
     implementation("net.kyori:adventure-text-minimessage:4.10.1")
@@ -51,7 +46,7 @@ dependencies {
 
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "afddb6f549")
+    implementation("com.github.Minestom", "Minestom", "58b6e90142")
 
     // JLine
     implementation("org.jline:jline:3.21.0")
