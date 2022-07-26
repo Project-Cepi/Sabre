@@ -8,12 +8,11 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import kotlinx.coroutines.*
 import kotlinx.serialization.Serializable
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
 import java.io.FileNotFoundException
-import java.net.URI
 import java.nio.file.Path
-import java.nio.file.Paths
 import kotlin.io.path.createDirectories
 import kotlin.io.path.exists
 import kotlin.io.path.writeBytes
@@ -29,9 +28,7 @@ data class ImportMap(val imports: List<Import> = listOf()) {
 
     companion object {
 
-        val ioScope = CoroutineScope(Dispatchers.IO + Job())
-
-        val logger = LoggerFactory.getLogger(ImportMap::class.java)
+        private val logger: Logger = LoggerFactory.getLogger(ImportMap::class.java)
 
         // Allows for custom import maps during boot.
         private var _importMap: ImportMap? = null
@@ -48,7 +45,7 @@ data class ImportMap(val imports: List<Import> = listOf()) {
 
             val extensionPath = Path.of("./extensions")
 
-            if (!extensionPath.exists()) extensionPath.createDirectories()
+            extensionPath.createDirectories()
 
             val validImports = importMap.imports.filter {
                 !Path.of(it.properFile).exists()
@@ -92,7 +89,7 @@ data class ImportMap(val imports: List<Import> = listOf()) {
                 throw FileNotFoundException(url)
             }
 
-            val responseBody: ByteArray = response.receive()
+            val responseBody: ByteArray = response.body()
             Path.of("./extensions/$output").writeBytes(responseBody)
         }
 

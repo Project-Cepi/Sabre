@@ -10,8 +10,6 @@ internal const val UUID_RADIX = 16
 /**
  * Turns a UUID with no hyphens (`-`) to a UUID containing hyphens.
  *
- * @param string The UUID as a String
- *
  * @return A valid UUID
  */
 fun String.toValidUuid() = UUID(

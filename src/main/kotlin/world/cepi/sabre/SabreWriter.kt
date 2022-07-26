@@ -12,7 +12,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class SabreWriter(properties: Map<String?, String>) : Writer {
+class SabreWriter(_properties: Map<String?, String>) : Writer {
 
     override fun getRequiredLogEntryValues(): Collection<LogEntryValue> {
         return EnumSet.of(

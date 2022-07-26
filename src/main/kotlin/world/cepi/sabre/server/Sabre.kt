@@ -7,6 +7,7 @@ import net.minestom.server.MinecraftServer
 import net.minestom.server.entity.Player
 import net.minestom.server.exception.ExceptionHandler
 import org.jetbrains.annotations.ApiStatus
+import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import world.cepi.sabre.ImportMap
 import world.cepi.sabre.server.loaders.loadLoaders
@@ -19,18 +20,18 @@ import kotlin.io.path.writeText
 object Sabre {
 
     inline fun <reified T : Any> initConfigFile(path: Path, emptyObj: T): T {
-        return if (path.exists()) ConfigurationHelper.format.decodeFromString(path.readText()) else run {
-            path.writeText(ConfigurationHelper.format.encodeToString(emptyObj))
+        return if (path.exists()) format.decodeFromString(path.readText()) else run {
+            path.writeText(format.encodeToString(emptyObj))
             emptyObj
         }
     }
 
     var terminalThread: Thread? = null
 
-    val logger = LoggerFactory.getLogger("Sabre")
+    private val logger: Logger = LoggerFactory.getLogger("Sabre")
 
     /**
-     * Internal method for booting sabre without a bootloader.
+     * Internal method for booting sabre.
      * @see world.cepi.sabre.SabreLoader.boot
      */
     @ApiStatus.Internal
@@ -40,7 +41,7 @@ object Sabre {
         if (IMPORT_PATH.exists()) {
 
             // Import map
-            ImportMap.importMap = ConfigurationHelper.format.decodeFromString(IMPORT_PATH.readText())
+            ImportMap.importMap = format.decodeFromString(IMPORT_PATH.readText())
 
             runBlocking {
                 ImportMap.loadExtensions()

@@ -7,7 +7,7 @@ fun flat(
     /** List of [FlatLayer]s used to generate the flat world. */
     vararg layers: FlatLayer
 ) {
-    var y = 0;
+    var y = 0
     layers.forEach {
         unit.modifier().fillHeight(y, y + it.thickness, it.block)
         y += it.thickness

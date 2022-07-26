@@ -5,7 +5,7 @@ import kotlin.system.exitProcess
 
 private val logger = LoggerFactory.getLogger("SabreLoaders")
 
-/** Array of all loaders, act independently from eachother.*/
+/** Array of all loaders, act independently of each other.*/
 internal val loaders: Array<() -> Unit> = arrayOf(
     ::mojangAuthenticationLoader,
     ::instanceLoader,

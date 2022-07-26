@@ -1,7 +1,6 @@
 package world.cepi.sabre.server.loaders
 
 import net.kyori.adventure.text.minimessage.MiniMessage
-import net.kyori.adventure.text.Component
 import net.minestom.server.MinecraftServer
 import net.minestom.server.command.CommandSender
 import net.minestom.server.utils.callback.CommandCallback

@@ -11,7 +11,7 @@ import kotlin.system.exitProcess
 object SabreTerminal {
     fun processInput(input: String) {
         val command = input.trim { it <= ' ' }
-        if (!command.isEmpty()) {
+        if (command.isNotEmpty()) {
             MinecraftServer.getCommandManager().execute(MinecraftServer.getCommandManager().consoleSender, command)
         }
     }

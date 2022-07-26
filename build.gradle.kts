@@ -13,7 +13,7 @@ plugins {
 }
 
 detekt {
-    toolVersion = "1.18.1"
+    toolVersion = "1.21.0"
     config = files("config/detekt/detekt.yml")
     buildUponDefaultConfig = true
 }
@@ -55,8 +55,8 @@ dependencies {
     implementation("net.kyori:adventure-text-minimessage:4.11.0")
 
     // Add Ktor
-    implementation("io.ktor:ktor-client-core:1.6.8")
-    implementation("io.ktor:ktor-client-cio:1.6.8")
+    implementation("io.ktor:ktor-client-core:2.0.2")
+    implementation("io.ktor:ktor-client-cio:2.0.2")
 
     // Use the kotlin test library
     testImplementation("io.kotest:kotest-assertions-core:5.4.0")
