@@ -2,7 +2,6 @@ package world.cepi.sabre.server
 
 import kotlinx.serialization.Serializable
 import world.cepi.sabre.server.loaders.Forwarder
-import java.lang.IllegalArgumentException
 
 /** This class represents Sabre's config, and contains all the properties that can be configured in Sabre */
 @Serializable
@@ -32,10 +31,12 @@ class Config(
     val unknownMessage: String = "Unknown command",
 
     /** Uses Minestom's vanilla block rules to place blocks correctly. */
-    val useBlockRules: Boolean = false,
+    val useBlockRules: Boolean = true,
 
     /** Whether ClassName.MethodName should print for info errors */
-    val detailedConsole: Boolean = false,
+    val detailedConsole: Boolean = true,
+
+    val tps: Int = 20,
 
     /**
      * The compression threshold for the network.
