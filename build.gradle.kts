@@ -42,7 +42,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     // Add tinylog
-    implementation("org.tinylog:tinylog-api-kotlin:2.4.1")
+    implementation("org.tinylog:tinylog-api-kotlin:2.5.0")
     implementation("org.tinylog:tinylog-impl:2.5.0")
 
     // Add intergration
