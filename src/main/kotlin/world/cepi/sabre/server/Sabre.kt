@@ -3,7 +3,6 @@ package world.cepi.sabre.server
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import net.minestom.server.MinecraftServer
-import net.minestom.server.entity.Player
 import net.minestom.server.exception.ExceptionHandler
 import org.jetbrains.annotations.ApiStatus
 import org.slf4j.LoggerFactory
@@ -39,7 +38,13 @@ object Sabre {
 
         val server = MinecraftServer.init()
 
+//
+//        System.setProperty("debug", "true")
+//        System.setProperty("debuggame", "lobby")
+
+        System.setProperty("minestom.tps", (config?.tps).toString())
         MinecraftServer.setTerminalEnabled(false)
+        MinecraftServer.setBrandName("§dMinestom ${MinecraftServer.VERSION_NAME}")
 
         // Load the loaders.
         loadLoaders()
@@ -54,9 +59,6 @@ object Sabre {
         terminalThread = thread(start = true, isDaemon = true, name = "SabreConsole") {
             SabreTerminal.start()
         }
-
-        // Resend commands
-        MinecraftServer.getConnectionManager().onlinePlayers.forEach(Player::refreshCommands)
     }
 
     val CONFIG_PATH: Path = Path.of("./sabre-config.json")

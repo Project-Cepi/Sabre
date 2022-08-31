@@ -14,6 +14,7 @@ object SabreTerminal {
         if (!command.isEmpty()) {
             MinecraftServer.getCommandManager().execute(MinecraftServer.getCommandManager().consoleSender, command)
         }
+        MinecraftServer.getPacketListenerManager()
     }
 
     fun buildReader(builder: LineReaderBuilder): LineReader {

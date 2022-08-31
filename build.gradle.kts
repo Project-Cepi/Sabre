@@ -25,20 +25,27 @@ dependencies {
     implementation(kotlin("reflect"))
 
     // Add support for kotlinx courotines
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     // Add tinylog
-    implementation("org.tinylog:tinylog-api-kotlin:2.4.1")
-    implementation("org.tinylog:tinylog-impl:2.4.1")
+    implementation("org.tinylog:tinylog-api-kotlin:2.5.0")
+    implementation("org.tinylog:tinylog-impl:2.5.0")
+
+    // Storage dependencies
+    implementation("org.redisson:redisson:3.17.6")
+//    implementation("io.lettuce:lettuce-core:6.2.0.RELEASE")
+    implementation("org.litote.kmongo:kmongo-coroutine-serialization:4.7.0")
+    implementation("mysql:mysql-connector-java:8.0.30")
+    implementation("com.zaxxer:HikariCP:5.0.1")
 
     // Add intergration
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.4")
 
     // import kotlinx serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
 
 	// Add MiniMessage
-    implementation("net.kyori:adventure-text-minimessage:4.10.1")
+    implementation("net.kyori:adventure-text-minimessage:4.11.0")
 
     // Add Ktor
     //implementation("io.ktor:ktor-client-core:1.6.8")
@@ -46,7 +53,7 @@ dependencies {
 
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "58b6e90142")
+    implementation("com.github.Minestom", "Minestom", "c2db82a934")
 
     // JLine
     implementation("org.jline:jline:3.21.0")
@@ -67,7 +74,7 @@ tasks {
         transform(com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer::class.java)
 
         mergeServiceFiles()
-
+        relocate("com.zaxxer.hikari", "dev.emortal.datadependency.libs.hikari")
         archiveBaseName.set("sabre")
     }
 

@@ -1,0 +1,124 @@
+{
+    "gameListings": {
+        "marathon": {
+            "description": [
+                "<gray>An infinitely generating,",
+                "<gray>endless parkour gamemode.",
+                "<gray>See how far you can go!"
+            ],
+            "itemVisible": true,
+            "item": "minecraft:grass_block",
+            "slot": 13,
+            "npcVisible": true,
+            "npcPosition": {
+                "x": 2.5,
+                "y": 69.0,
+                "z": -31.5,
+                "yaw": 0.0,
+                "pitch": 0.0
+            },
+            "npcEntityType": "minecraft:player",
+            "npcTitles": [
+                "<red><bold>Marathon"
+            ],
+            "npcSkinValue": "ewogICJ0aW1lc3RhbXAiIDogMTY0Mjk3NzYxNjg4NCwKICAicHJvZmlsZUlkIiA6ICIwYTUzMDU0MTM4YWI0YjIyOTVhMGNlZmJiMGU4MmFkYiIsCiAgInByb2ZpbGVOYW1lIiA6ICJQX0hpc2lybyIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS84NzhjODZlYTMyYmFiZTAxOGY3MzFlNTNjMDE4MmQ0YzVlNWU3Y2MwOWQ5MzMxOTJkYmY1ZWE1YWRlZTNlZDAiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==",
+            "npcSkinSignature": "U3/TuEu6d7noBtYaQr98/1nI2HqfqNRrymbvVtVZz1dn/Cx4Qr4qiDwbs2buYrPJK1Opv3Cw4/zq5nYE0xc/VYtyGYHUIlE5dbqtYCPfbGYNbBivQXfFhrCndsQjKZbzzjGKVNJPQrvigBKIVV8TP/ylak8eQUtUncTTPOU8K7EjhIbqpwN/qZUgq7aDWvUUZnWV8I6cYwDSETdBZ+UxhoTMzO8+Vnhlo2OzmHtoICLQuZI3qE8ZGPdw35r14oNddPtLdUQ1NGvt7i7dHoeIPDQt68vUq6z6sejqORoXpWgAlIyCvgO5L5yHX58DfqEq7FwECB4q+fXyXVyZLmiiVSDH+wkczyzoUgE2f1hW6ONJ9QiH8n1+PU5Sx37EByTZxOQvOvS+Pj++zYtZHCRzCjcRg6j6u1RnKDteuccywN+bUulCZ7pJavtqMS6XCHd3mQecVUcT8F/jcPmsh2ta27VyueUGQS3ICcM0jiTEaM31ttrVUDszxNqmkmfX1W6MPd2nHXBSaUAWSaXjfdcyKxBOKwV6IxO8Kwjq9SIw5P5KuLdZ2s0m8SgFWIP+sZQI7IsIz0pfxNq9JlHykslQMhux9MOwQNDS29wfI6fGlLCiL1U9xueZAZn4DBp+rIgoXXz4PNxsSkHG7Bvlb5R3v2hK3UZdFDcTkRcU0Io6i2w="
+        },
+        "lazertag": {
+            "description": [
+                "<gray>Battle it out with weird and wacky guns.",
+                "<gray>The first player to 25 kills wins!"
+            ],
+            "itemVisible": true,
+            "item": "minecraft:netherite_hoe",
+            "slot": 11,
+            "npcVisible": false,
+            "npcPosition": {
+                "x": 0.5,
+                "y": 69.0,
+                "z": -31.5,
+                "yaw": 0.0,
+                "pitch": 0.0
+            },
+            "npcEntityType": "minecraft:player",
+            "npcTitles": [
+                "<gradient:gold:yellow><bold>LazerTag"
+            ],
+            "npcSkinValue": "ewogICJ0aW1lc3RhbXAiIDogMTYxNDA3NzE5MzQ4MiwKICAicHJvZmlsZUlkIiA6ICJkMGI4MjE1OThmMTE0NzI1ODBmNmNiZTliOGUxYmU3MCIsCiAgInByb2ZpbGVOYW1lIiA6ICJqYmFydHl5IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlL2E0NjQxMmMzOTgwODZlYzMxMzIxMzlhMTE5NWU0ODNlMGE0OWRmYThiZWMzZWIxNDc0ZjViMTliMTY0NTE4NmUiCiAgICB9CiAgfQp9",
+            "npcSkinSignature": "krIl4GecgEcDkkEG2DpUvZWnIqpxhJRcFhkaWYYG9A35u49mGkM3eHJX1ys60lF042EXiPpujonZt4Kp8NF0Hn1WblxfnJUfu1o97Tv7iI+vfB2M/cIfEAKnqVvagPkWvhf6N9TITF7szQc6j0ksMNrFv+gV0NKDZFoQPgw+q+ADGPicQdDpub0rr6hzPmv1H1kNQxDgLGxwIAV4fzVToGKRqLKLCHSMC64d3/GJkrtxQzsvnWji9nD3WJzilLmKN7yjB8Cs1xAWTfxIdayeT/k6pDADyqlRs9PCfGISEwMQKHz0kOqNBDA5J6UB08q7zhO1uZyW4v3QaIXXQeyp7dWkffFdRedcNovmWpiOLnC4u8XF5kFUySkvZg4nMHvO+Vr20uFhxiZ7EWaNt1syfNMDEwiZ8oqljTtbEPUhpj68n1hViThhbatj1XeEa6zSqB1pmDw36q+QQUKX4Q894uDXMr6Gij/1LNJ00rfNoDN43UXt29XPN/qQ1Pj5TXctJdV8zBVhrK60qDpII8miHlslGTTwwpMKgEh5K0JJ5xWtmk4tY4TON0RsQ4RjD+UxmfrPDgOyAXoRxWnPVeUldODbkFHn8wMnK6M/k5g8AFOGOM5h8CfnjDqUeiyZPYC6EihC0dxK9yzPZxe2av27LiHUYDWDs3P5zKVKXRbFaR8="
+        },
+        "parkourtag": {
+            "description": [
+                "<gray>Chase the goons or flee from taggers",
+                "<gray>before the game ends!"
+            ],
+            "itemVisible": true,
+            "item": "minecraft:name_tag",
+            "slot": 15,
+            "npcVisible": true,
+            "npcPosition": {
+                "x": -1.5,
+                "y": 69.0,
+                "z": -31.5,
+                "yaw": 0.0,
+                "pitch": 0.0
+            },
+            "npcEntityType": "minecraft:cat",
+            "npcTitles": [
+                "<green><bold>ParkourTag"
+            ],
+            "npcSkinValue": "eyJ0aW1lc3RhbXAiOjE1MDY3ODkxOTExNTYsInByb2ZpbGVJZCI6ImNhYjI4ODVkMTUxNjQ1OTNhZmI2MDkwODJlOTE2NmU3IiwicHJvZmlsZU5hbWUiOiJGYW5jeV9MdWR3aWciLCJzaWduYXR1cmVSZXF1aXJlZCI6dHJ1ZSwidGV4dHVyZXMiOnsiU0tJTiI6eyJ1cmwiOiJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzNlZDFhYmE3M2Y2MzlmNGJjNDJiZDQ4MTk2YzcxNTE5N2JlMjcxMmMzYjk2MmM5N2ViZjllOWVkOGVmYTAyNSJ9fX0=",
+            "npcSkinSignature": "V6NRSgch6kpZY3idAHAePHZHQJYnYRIhbFY9b7/hAcn3NCT9+LZ9gHZIeZK90QIQPstQDUIwoDw8rqit1ULq/PCtv7QJxfyh07Wb5cOdDbwEB5B/1TylbQMRkOTknBIjOwKE5imB1CW7SvxlLeAojSoppXfa6raqX7kGkzDBBGgLwUvXPiAE3T4kBEziYmeoSsuqY0SxkW6SU+891b6LEBccv+g9dcECDcqQnJTQmug6YRgUJ3rs0gEbWlgwpRvvvkXedBLSVLzIVLu9PyNlYSG4fUMaXa1oJ+kCX8wUnJpZUyfqvOe4U5qzoIJeh7Qt7X5etzcypJjyaWlYKo/mioCe0zB/BQzpoKlQvaJaCTyZCcSwnid6Rk9wB2tVRyoljHLMFdkqFSuH0cdzdsqfFuT+XC2+2ZkTcjxsw7sCBNK/uf+KvuzE/G7o7stYRWOiKRNJPaysb91YHeF5b+FXQqwDpW+FeV3u65nU3qcLjVo+KoD/NLaTppRFqpTU7fPIMPJUaZpmEYNSGMtNDpJgX3dAQe3yLCs8hgoo2OPbInXQZX5VUDMqNrlhT7OXB/RmVZAeyoQMgt46CMMQ3JI7fnokVnwrYtpgDQCroJc6TU7RIXZzAGaEDSTUdtVIW4uHd6DfeTq8xbKGX37oiTDeb2WHMz3CRvlieCajt7ZaG+E="
+        },
+        "marathonracing": {
+            "description": [
+                "<gray>Race your friends in",
+                "<gray>an infinitely generating,",
+                "<gray>endless parkour gamemode."
+            ],
+            "itemVisible": true,
+            "item": "minecraft:grass_block",
+            "slot": 23,
+            "npcVisible": true,
+            "npcPosition": {
+                "x": 4.5,
+                "y": 69.0,
+                "z": -30.5,
+                "yaw": 45.0,
+                "pitch": 0.0
+            },
+            "npcEntityType": "minecraft:player",
+            "npcTitles": [
+                "<red><bold>Marathon Racing"
+            ],
+            "npcSkinValue": "ewogICJ0aW1lc3RhbXAiIDogMTY0Mjk3NzYxNjg4NCwKICAicHJvZmlsZUlkIiA6ICIwYTUzMDU0MTM4YWI0YjIyOTVhMGNlZmJiMGU4MmFkYiIsCiAgInByb2ZpbGVOYW1lIiA6ICJQX0hpc2lybyIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS84NzhjODZlYTMyYmFiZTAxOGY3MzFlNTNjMDE4MmQ0YzVlNWU3Y2MwOWQ5MzMxOTJkYmY1ZWE1YWRlZTNlZDAiLAogICAgICAibWV0YWRhdGEiIDogewogICAgICAgICJtb2RlbCIgOiAic2xpbSIKICAgICAgfQogICAgfQogIH0KfQ==",
+            "npcSkinSignature": "U3/TuEu6d7noBtYaQr98/1nI2HqfqNRrymbvVtVZz1dn/Cx4Qr4qiDwbs2buYrPJK1Opv3Cw4/zq5nYE0xc/VYtyGYHUIlE5dbqtYCPfbGYNbBivQXfFhrCndsQjKZbzzjGKVNJPQrvigBKIVV8TP/ylak8eQUtUncTTPOU8K7EjhIbqpwN/qZUgq7aDWvUUZnWV8I6cYwDSETdBZ+UxhoTMzO8+Vnhlo2OzmHtoICLQuZI3qE8ZGPdw35r14oNddPtLdUQ1NGvt7i7dHoeIPDQt68vUq6z6sejqORoXpWgAlIyCvgO5L5yHX58DfqEq7FwECB4q+fXyXVyZLmiiVSDH+wkczyzoUgE2f1hW6ONJ9QiH8n1+PU5Sx37EByTZxOQvOvS+Pj++zYtZHCRzCjcRg6j6u1RnKDteuccywN+bUulCZ7pJavtqMS6XCHd3mQecVUcT8F/jcPmsh2ta27VyueUGQS3ICcM0jiTEaM31ttrVUDszxNqmkmfX1W6MPd2nHXBSaUAWSaXjfdcyKxBOKwV6IxO8Kwjq9SIw5P5KuLdZ2s0m8SgFWIP+sZQI7IsIz0pfxNq9JlHykslQMhux9MOwQNDS29wfI6fGlLCiL1U9xueZAZn4DBp+rIgoXXz4PNxsSkHG7Bvlb5R3v2hK3UZdFDcTkRcU0Io6i2w="
+        },
+        "blocksumo": {
+            "description": [
+                "<gray>Fight other players",
+                "<gray>in this totally chaotic,",
+                "<gray>unpredictable gamemode.",
+                "<gray>Last man standing wins!"
+            ],
+            "itemVisible": true,
+            "item": "minecraft:fire_charge",
+            "slot": 21,
+            "npcVisible": true,
+            "npcPosition": {
+                "x": -3.5,
+                "y": 69.0,
+                "z": -30.5,
+                "yaw": 0.0,
+                "pitch": 0.0
+            },
+            "npcEntityType": "minecraft:player",
+            "npcTitles": [
+                "<yellow><bold>★ NEW ★",
+                "<gradient:blue:aqua><bold>Block Sumo"
+            ],
+            "npcSkinValue": "ewogICJ0aW1lc3RhbXAiIDogMTY0ODk0Njk5OTE3OSwKICAicHJvZmlsZUlkIiA6ICI3YmQ1YjQ1OTFlNmI0NzUzODI3NDFmYmQyZmU5YTRkNSIsCiAgInByb2ZpbGVOYW1lIiA6ICJlbW9ydGFsZGV2IiwKICAic2lnbmF0dXJlUmVxdWlyZWQiIDogdHJ1ZSwKICAidGV4dHVyZXMiIDogewogICAgIlNLSU4iIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzkxZDdhOWMwODBlZTdjYTZkZjlhYWJlM2I5NTliYWE4MThkYWUzYjQ1ZWI3YWRjMTMwZmYyNjU1YzlkOTRjY2YiCiAgICB9LAogICAgIkNBUEUiIDogewogICAgICAidXJsIiA6ICJodHRwOi8vdGV4dHVyZXMubWluZWNyYWZ0Lm5ldC90ZXh0dXJlLzIzNDBjMGUwM2RkMjRhMTFiMTVhOGIzM2MyYTdlOWUzMmFiYjIwNTFiMjQ4MWQwYmE3ZGVmZDYzNWNhN2E5MzMiCiAgICB9CiAgfQp9",
+            "npcSkinSignature": "prWY0EtGdAfqt/nc4Vv/sMBcVEb6WMvaRumTk72e/NKe3dUPxmzlDRm6rw/mEE332JND6+sEI9PmDQ4jj/W41cn/XR/uZIBS+1qLE+57slEQA+ds+/kffKt1358JEV5/qyqCnODLVjwsRwazXJstC3eKNByaTQEyZ2jv/mFeAIAOF+0eQqDaaMGgxdIMRvWR8Nj6uIiBFTdCPIw3OYZ5bxqxm8Epr5PppF+sj7ZK0UyQ5/f1UoO9B/YMUt0OW+UlF3NYcMDs5mrg1N8Ajxvqbe8l0X7eWHgSYd0S/FopSCiVVQOQdZHRyhicmzLv6rE+xW03SB8NRfoaEEvSh8+QiLGMcyETeriwdDzdf8H9Iin3vDkVbMyRTAJ5jL/xDkoFDFR5HtNkrwYBRJoVkiWbnWyoBFofAjmmMmGmT5SFABS7I0iWLEoP4EMzqy84zDbpwOOioQz9UFlZV8AqmyEDv8Hx6px20zdR/jPr7tRQgqRhcPyzNsElcNLhkBfHmhpKffkrEPOAaal49rtB+3Jq+nX8Z1VyEZSW4MYnuq91bFZ1ciMzopYulPwP4cZkrGaqV84lxsqStI5+STi105KP4Bws+XDpop1eyPdDuVL/axq3VVkKeRqSoMv+xRYONGZJQgZ1t0WRIsXk7DLsjtx8QgffxqOwjW5CmZR0liSPfYM="
+        }
+    }
+}

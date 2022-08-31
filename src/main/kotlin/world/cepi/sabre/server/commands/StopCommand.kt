@@ -4,7 +4,6 @@ import net.minestom.server.MinecraftServer
 import net.minestom.server.command.ConsoleSender
 import net.minestom.server.command.builder.Command
 import net.minestom.server.command.builder.CommandExecutor
-import net.minestom.server.entity.Player
 import kotlin.system.exitProcess
 
 internal object StopCommand : Command("stop") {

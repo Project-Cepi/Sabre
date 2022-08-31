@@ -1,0 +1,5 @@
+{
+    "serverName": "lobby",
+    "serverPort": 25567,
+    "address": "redis://127.0.0.1:6379"
+}
