@@ -177,6 +177,7 @@ nbs/
 lobby/
 extensions/
 build/
+logs/
 
 # Ignore Gradle GUI config
 gradle-app.setting
