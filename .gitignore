@@ -173,6 +173,9 @@ $RECYCLE.BIN/
 
 ### Gradle ###
 .gradle
+nbs/
+lobby/
+extensions/
 build/
 
 # Ignore Gradle GUI config
