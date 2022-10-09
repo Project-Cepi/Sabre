@@ -2,8 +2,8 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.6.20"
-    kotlin("plugin.serialization") version "1.6.20"
+    id("org.jetbrains.kotlin.jvm") version "1.7.20"
+    kotlin("plugin.serialization") version "1.7.20"
     id("com.github.johnrengelman.shadow") version "7.1.2"
 
     java
@@ -32,9 +32,9 @@ dependencies {
     implementation("org.tinylog:tinylog-impl:2.5.0")
 
     // Storage dependencies
-    implementation("org.redisson:redisson:3.17.6")
+    implementation("org.redisson:redisson:3.17.7")
 //    implementation("io.lettuce:lettuce-core:6.2.0.RELEASE")
-    implementation("org.litote.kmongo:kmongo-coroutine-serialization:4.7.0")
+    implementation("org.litote.kmongo:kmongo-coroutine-serialization:4.7.1")
     implementation("mysql:mysql-connector-java:8.0.30")
     implementation("com.zaxxer:HikariCP:5.0.1")
 
@@ -44,16 +44,8 @@ dependencies {
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
 
-	// Add MiniMessage
-    implementation("net.kyori:adventure-text-minimessage:4.11.0")
-
-    // Add Ktor
-    //implementation("io.ktor:ktor-client-core:1.6.8")
-    //implementation("io.ktor:ktor-client-cio:1.6.8")
-
-
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "c2db82a934")
+    implementation("com.github.Minestom", "Minestom", "17ef1c2f57")
 
     // JLine
     implementation("org.jline:jline:3.21.0")
