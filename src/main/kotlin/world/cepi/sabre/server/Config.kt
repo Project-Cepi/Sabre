@@ -25,13 +25,13 @@ class Config(
     val renderDistance: Int = 8,
 
     /** How far the player can see entities. */
-    val entityDistance: Int = 8,
+    val entityDistance: Int = 5,
 
     /** The unknown message for an unknown command. */
     val unknownMessage: String = "Unknown command",
 
     /** Uses Minestom's vanilla block rules to place blocks correctly. */
-    val useBlockRules: Boolean = true,
+    val useBlockRules: Boolean = false,
 
     /** Whether ClassName.MethodName should print for info errors */
     val detailedConsole: Boolean = true,
@@ -43,10 +43,10 @@ class Config(
      * Useful to set if you're behind a proxy.
      * Set to 0 to disable.
      */
-    val compressionThreshold: Int = 256,
+    val compressionThreshold: Int = 0,
 
     /** If the player should respawn at their spawn point. */
-    val shouldRespawnAtSpawnPoint: Boolean = true,
+    val shouldRespawnAtSpawnPoint: Boolean = false,
 ) {
 
     companion object {

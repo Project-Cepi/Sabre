@@ -12,8 +12,7 @@ internal val loaders: Array<() -> Unit> = arrayOf(
     ::commandLoader,
     ::proxyLoader,
     ::blockPlacementLoader,
-    ::thresholdLoader,
-    ::viewLoader,
+    ::thresholdLoader
 )
 
 /** Loads all the loaders from the loader package. */

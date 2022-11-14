@@ -2,8 +2,8 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.jetbrains.kotlin.jvm") version "1.7.20"
-    kotlin("plugin.serialization") version "1.7.20"
+    id("org.jetbrains.kotlin.jvm") version "1.7.21"
+    kotlin("plugin.serialization") version "1.7.21"
     id("com.github.johnrengelman.shadow") version "7.1.2"
 
     java
@@ -32,20 +32,21 @@ dependencies {
     implementation("org.tinylog:tinylog-impl:2.5.0")
 
     // Storage dependencies
-    implementation("org.redisson:redisson:3.17.7")
+//    implementation("org.redisson:redisson:3.17.7")
+    implementation("redis.clients:jedis:4.3.1")
 //    implementation("io.lettuce:lettuce-core:6.2.0.RELEASE")
-    implementation("org.litote.kmongo:kmongo-coroutine-serialization:4.7.1")
-    implementation("mysql:mysql-connector-java:8.0.30")
-    implementation("com.zaxxer:HikariCP:5.0.1")
+    implementation("org.litote.kmongo:kmongo-coroutine-serialization:4.7.2")
+//    implementation("mysql:mysql-connector-java:8.0.30")
+//    implementation("com.zaxxer:HikariCP:5.0.1")
 
     // Add intergration
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.4")
 
     // import kotlinx serialization
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
 
     // Compile Minestom into project
-    implementation("com.github.Minestom", "Minestom", "17ef1c2f57")
+    implementation("com.github.Minestom", "Minestom", "1a013728fd")
 
     // JLine
     implementation("org.jline:jline:3.21.0")
@@ -58,7 +59,7 @@ tasks {
     named<ShadowJar>("shadowJar") {
         manifest {
             attributes (
-                    "Main-Class" to "world.cepi.sabre.SabreLoader",
+                    "Main-Class" to "world.cepi.sabre.server.SabreKt",
                     "Multi-Release" to true
             )
         }
@@ -66,7 +67,6 @@ tasks {
         transform(com.github.jengelman.gradle.plugins.shadow.transformers.Log4j2PluginsCacheFileTransformer::class.java)
 
         mergeServiceFiles()
-        relocate("com.zaxxer.hikari", "dev.emortal.datadependency.libs.hikari")
         archiveBaseName.set("sabre")
     }
 

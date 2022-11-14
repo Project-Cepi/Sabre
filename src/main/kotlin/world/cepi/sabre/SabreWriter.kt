@@ -7,7 +7,7 @@ import org.tinylog.core.LogEntry
 import org.tinylog.core.LogEntryValue
 import org.tinylog.writers.Writer
 import world.cepi.sabre.server.Config
-import world.cepi.sabre.server.Sabre
+import world.cepi.sabre.server.terminalThread
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -71,7 +71,7 @@ class SabreWriter(properties: Map<String?, String>) : Writer {
     }
 
     override fun close() {
-        Sabre.terminalThread?.interrupt()
+        terminalThread?.interrupt()
         println()
     }
 }
