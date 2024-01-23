@@ -66,7 +66,7 @@ dependencies {
     implementation("com.github.Minestom", "Minestom", "7867313290")
 
     // JLine
-    implementation("org.jline:jline:3.21.0")
+    implementation("org.jline:jline:3.25.1")
 
     // Jansi
     implementation("org.jline:jline-terminal-jansi:3.21.0")
