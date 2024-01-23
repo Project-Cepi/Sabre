@@ -69,7 +69,7 @@ dependencies {
     implementation("org.jline:jline:3.21.0")
 
     // Jansi
-    implementation("org.jline:jline-terminal-jansi:3.21.0")
+    implementation("org.jline:jline-terminal-jansi:3.25.1")
 }
 
 tasks {
