@@ -46,7 +46,7 @@ dependencies {
     implementation("org.tinylog:tinylog-impl:2.5.0")
 
     // Add intergration
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8:1.8.0")
 
     // import kotlinx serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1")
