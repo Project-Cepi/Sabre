@@ -13,7 +13,7 @@ plugins {
 }
 
 detekt {
-    toolVersion = "1.22.0"
+    toolVersion = "1.23.6"
     config = files("config/detekt/detekt.yml")
     buildUponDefaultConfig = true
 }
